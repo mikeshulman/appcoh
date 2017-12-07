@@ -1,0 +1,80 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=2.5cm]{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                % Activate for for rotated page geometry
+\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{epstopdf}
+\graphicspath{ {images/} }
+
+\newtheorem{lemma}{Lemma}
+
+\newtheorem{thm}{Theorem}
+\newtheorem*{thm*}{Theorem}
+\newtheorem*{prop}{Proposition}
+\newtheorem{cor}{Corollary}
+\newtheorem*{cor*}{Corollary}
+\theoremstyle{remark}
+\newtheorem{rmk}{Remark}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+
+\newtheorem*{ex}{Examples}
+
+
+\title{Meeting Notes}
+\author{}
+%\date{}                                           % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+\section{Dec 1 2017}
+\subsection{Chandrika's notes}
+\subsubsection{Rushed Introduction and summary} Consider the following diagram, where $A, B, C$ are sets, and $D$ is the homotopy pushout of $B$ and $C$ along $A$.
+
+\begin{displaymath}
+	\xymatrix{A \ar@{^{(}->}[r]^{f} \ar[d]^{g} & B \ar[d] \\
+	C \ar[r] & D
+	}
+\end{displaymath}
+
+We would like to show that $D$ is a homotopy set as well using the encode-decode method. Therefore, we defined $\text{code}: D \rightarrow D \rightarrow \text{Type}$ so that $\text{code}(x,y)$ is a proposition.
+
+Amelia spoke of a picture to think of for D. This is my understanding of the picture. D is the following topological space (``the double mapping cylinder"). $(B \cup A \times [0,1] \cup C) / \sim$, where $\sim$ is defined by:
+\begin{itemize}
+	\item $(a,1) \sim b \iff f(a)=b,$ $\forall a \in A,$ $b \in B$
+	\item $(a,0) \sim c \iff g(a)=c,$ $\forall a \in A,$ $c \in C$
+\end{itemize}
+We have attempted to define $\text{code(x,y)}$ to be the homotopy structure of the paths from $x$ to $y$ in this double mapping cylinder.
+
+In Utah, we sucessfully defined encode and  began to define $\text{decode}: \text{code} \rightarrow \text{Id}_D$. We defined $\text{decode}(\text{code}(x,y))$ for all $x, y \in (B \cup C) \subset D$.
+
+\subsubsection{What's next?} It remains to define $\text{ap}_{\text{decode}}$. I think that these are the types of the various parts of $\text{ap}_{\text{decode}}$.
+
+	\begin{alignat*}{1}
+	{\text{ap}_{\text{decode}} \Big( \text{ap}_{\text{code}}(\text{inl}b, \text{glue}(a)) \Big)}:  \Bigg( \text{decode} \Big( \text{code} \big( \text{inl}b, \text{inl}f(a) \big) \Big) = \text{decode} \Big( \text{code} \big( \text{inl}b, \text{inr}g(a) \big) \Big) \Bigg) \\
+	%
+	%
+	{\text{ap}_{\text{decode}} \Big( \text{ap}_{\text{code}}(\text{glue}(a), \text{inl}b)} \Big):  \Bigg( \text{decode} \Big( \text{code} \big( \text{inl}f(a), \text{inl}b \big) \Big) = \text{decode} \Big( \text{code} \big( \text{inl}g(a), \text{inl}b \big) \Big) \Bigg) \\
+	%
+	%
+	{\text{ap}_{\text{decode}} \Big( \text{ap}_{\text{code}}(\text{glue}(a), \text{inr}c)} \Big): \Bigg( \text{decode} \Big( \text{code} \big( \text{inl}f(a), \text{inr}c \big) \Big) = \text{decode} \Big( \text{code} \big( \text{inl}g(a), \text{inr}c \big) \Big) \Bigg) \\
+	%
+	%
+	{\text{ap}_{\text{decode}} \Big( \text{ap}_{\text{code}}(\text{inr}c, \text{glue}(a)) \Big)}:  \Bigg( \text{decode} \Big( \text{code} \big( \text{inr}c, \text{inl}f(a) \big) \Big) = \text{decode} \Big( \text{code} \big( \text{inr}c, \text{inr}g(a) \big) \Big) \Bigg) \\
+	%
+	%
+	{\text{ap}_{\text{decode}} \Big( \text{ap}_{\text{code}}(\text{glue}(a), \text{glue}(a)) \Big)}: \text{isContr}\Bigg( \text{decode} \Big( \text{code} \big( \text{inl}f(a'), \text{inl}f(a) \big) \Big) = \text{decode} \Big( \text{code} \big( \text{inr}g(a'), \text{inr}g(a) \big) \Big) \Bigg)\\	
+	\end{alignat*}
+
+\bibliography{}
+\bibliographystyle{plain}
+
+
+\end{document}  
