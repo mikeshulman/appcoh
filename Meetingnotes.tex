@@ -72,6 +72,49 @@ In Utah, we sucessfully defined encode and  began to define $\text{decode}: \tex
 	%
 	{\text{ap}_{\text{decode}} \Big( \text{ap}_{\text{code}}(\text{glue}(a), \text{glue}(a)) \Big)}: \text{isContr}\Bigg( \text{decode} \Big( \text{code} \big( \text{inl}f(a'), \text{inl}f(a) \big) \Big) = \text{decode} \Big( \text{code} \big( \text{inr}g(a'), \text{inr}g(a) \big) \Big) \Bigg)\\	
 	\end{alignat*}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+
+\section{Dec 8 2017}
+\subsection{Chandrika's notes}
+
+\subsubsection{Questions to think about and things to do for next time}
+
+	\begin{enumerate}
+	\item Internalize and share if possible.
+	\item Do we have to deal with a push out when defining $\text{ap}_{\text{code}}(b, b)$? Understand why/why not.
+		\begin{itemize}
+		\item My memory is that while $\text{code}(b,b)$ is a push out, this is not an issue because for $\text{ap}_{\text{code}}$ the relevant situation is when $b$ is in the image of $A$.
+		\item What happens to $\text{code}(b,b)$ when we restrict to $b$ being in the image of $A$?
+		\end{itemize}
+	\item Why isn't defining decode as simple as defining encode? Why can't we use path induction like we did for encode?
+		\begin{itemize}
+		\item Refer to Michael Schulman's comment: ``The point is that the domain of code is a *colimit* of
+infinity-groupoids, so to define code we have to give a coherently
+commuting cocone.  The part that looks like "defining it on objects"
+is defining the *morphisms* in that cone, each of which is
+automatically an infinity-groupoid morphism.  The part that looks like
+"defining $ap_code$" is showing that that cone commutes (up to coherent
+homotopy), which amounts to "defining $ap_code$" *only* on the "new"
+higher morphisms that are "glued it universally" by the colimit.  It's
+a little hard to distinguish in this case because the
+infinity-groupoids going into the colimit are all discrete, so they
+don't have any higher morphisms themselves, but in general there could
+be some, and we wouldn't have to define ap on those; it would come for
+free once we defined the morphisms in the cone.
+
+For encode, we are using the universal property of equality types,
+which is essentially a colimit-like construction.  But there are no
+homotopies being glued in, and hence no "ap" cases to do.
+
+For decode, we again use the universal property of the domain of code,
+so we have ap cases to deal with.
+
+I hope this helps.  You may also find it useful to look at chapters 6
+and 8 of the HoTT Book."
+		\end{itemize}
+	\end{enumerate}
+
 
 \bibliography{}
 \bibliographystyle{plain}
