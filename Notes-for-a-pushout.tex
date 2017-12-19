@@ -1,4 +1,4 @@
-\documentclass[11pt]{amsart}
+\documentclass[12pt]{amsart}
 
 % packages
 
@@ -6,6 +6,8 @@
 \usepackage{graphicx,caption,subcaption}
 \usepackage{tikz}
 \usetikzlibrary{matrix,arrows}
+
+
 
 % new commands
 
@@ -15,7 +17,7 @@
 \newcommand{\QQ}{\mathbb{Q}}
 \newcommand{\CC}{\mathbb{C}}
 \newcommand{\from}{\colon}
-\newcommand{\defn}[1]{\textbf{#1}}
+%\newcommand{\defn}[1]{\textbf{#1}}
 \newcommand{\tin}{\colon}
 
 % fonts
@@ -34,6 +36,21 @@
 \DeclareMathOperator{\Bij}{Bij}
 \DeclareMathOperator{\Sub}{Sub}
 
+% theorem styles
+
+\newtheorem{lemma}{Lemma}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{prop}{Proposition}
+\newtheorem{cor}{Corollary}
+\theoremstyle{remark}
+\newtheorem{rmk}{Remark}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+
+\newtheorem{ex}{Examples}
+
 %%%%%%%%%%%%%
 % begin document
 %%%%%%%%%%%%%
@@ -42,14 +59,109 @@
 \title{Notes on a pushout of sets}
 \maketitle
 
-%%%%%%%%%%%%%
-% new section
-%%%%%%%%%%%%%
+\section{HoTT concepts}
+
+\begin{defn} % def : set
+	\label{def:set}
+	A \textbf{set} is a type $ \type{S} $ such that
+	for any elements $ x,y \tin \type{S} $,
+	and $ p,q \tin x = y $, we have $ p = q $.
+\end{defn}
+
+\begin{defn} % def : ap
+	\label{def:ap}
+	Let $ f \from \type{ A } \to \type{B} $.
+	For any $ x,y \tin \type{ A } $, we get a function 
+	\[
+	\type{ap}_f \from 
+	x =_\type{A} y \to fx =_\type{B} fy
+	\]
+	on identity types.  
+	
+	This can be interpreted in three ways:
+	\begin{enumerate}
+		\item type morphisms preserve equality,
+		\item functions of spaces are continuous,
+		\item groupoid morphisms given functions
+		on hom-sets.
+	\end{enumerate}
+	Because $ \type{ ap } $ preserve paths, 
+	all functions in HoTT are continuous.
+	There are more results showing that
+	$ f $ is functorial in that it preserves
+	refl's and path concatenation.
+	
+	\emph{Note: we can take the categorical
+		notation and write $ f ( p ) $ for a path
+		$ p \tin x = y $ instead of 
+		$ \type{ ap }_f ( p ) $, 
+		but for now we stick with the latter.}
+\end{defn}
+
+\begin{defn} % def : higher induction
+	Types can be defined by constructors.
+	For example the circle type $ \type{S}^1 $
+	is given by a $ 0 $-cell $s$ and 
+	a $ 2 $-cell $ p \tin s = s $.
+	
+	Higher induction says that to define
+	a map out of such a type, it suffices
+	to define the map on the constructors.
+	Hence a map 
+	\[
+		f \from \type{ S }^1 \to \type{ A }
+	\] 
+	is given by $ f ( s ) $ and 
+	$\type{ ap }_f ( p )$.
+\end{defn}
+
+\begin{defn} % def : pushout
+\label{def:pushout}
+	Given a span
+	\[
+	\begin{tikzpicture}
+		\node (A) at (0,0) {$\type{A}$};
+		\node (B) at (1,0) {$\type{B}$};
+		\node (C) at (0,-1) {$\type{C}$};
+		\draw [->] (A) to 
+			node [above] {\scriptsize $ f $} 
+			(B);
+		\draw [->] (A) to 
+			node [left] {\scriptsize $ g $} 
+			(C);
+	\end{tikzpicture}
+	\]
+	its pushout $ \type{B +_A C} $ is defined by
+	\begin{itemize}
+		\item a function 
+			$ \type{ inl } \from \type{B} \to \type{B +_A C} $
+		\item a function 
+			$ \type{ inr } \from \type{C} \to \type{B +_A C} $
+		\item for each $ a \in \type{A} $ and path
+			$ \type{ glue } ( a ) \tin fa = ga $
+	\end{itemize}
+	Hence, all functions $F \from \type{B +_A C} \to \type{D}$
+	are given by higher induction:
+	\begin{itemize}
+		\item define $ F ( \type{ inl } (b) ) $
+			for all $ b \tin \type{B} $
+		\item define $ F ( \type{ inr } (c) ) $
+			for all $ c \tin \type{C} $
+		\item define 
+			$ \type{ ap }_{ F } ( \type{ glue} ( a ) ) \tin 
+			 F ( \type{ inl } (fa) ) = F ( \type{ inr } (ga) ) $
+			for all $ a \tin \type{ A } $
+	\end{itemize}
+\end{defn}
+
+% -------
+
 \section{the setup}
 
-The idea is that we have types $A$, $B$, and $C$, all of which are sets. 
+The idea is that we have types 
+$A$, $B$, and $C$, all of which are sets. 
 The question: is the pushout given by the square
-\[
+\[ % pushoutsquare
 	\begin{tikzpicture}
 		\node (C) at (0,0) {$C$};
 		\node (BAC) at (2,0) {$B +_A C$};
@@ -63,9 +175,6 @@ The question: is the pushout given by the square
 \]
 also a set when $f$ is a monomorphism?
 
-Recall that a \defn{set} is a type such that, 
-for any elements $x$, $y$ and $p$, $q \from x = y$, 
-we have $p = q$.  
 Thus to determine whether $B +_A C$ is a set,
 we need to access its identity types.  
 We do this with an \emph{encode-decode} style proof.  
@@ -88,23 +197,26 @@ Then we define functions
 for each $x$ and $y$ in $B +_A C$.  
 Hopefully, these are mutually inverse.
 
-%%%%%%%%%%%%%
-% new section
-%%%%%%%%%%%%%
+% 
 \section{defining $\type{code}$}
 
 Let's try to define 
-$\type{code} \from B +_A C \to B +_A C \to \type{Type}$.  
-Note that $\type{code}$ is a map from a coproduct, 
-so we can define it using induction of higher types.
-This requires us to define, at first, three types schemes:
+\[
+	\type{code} \from 
+	B +_A C \to B +_A C \to \type{Type}.
+\]  
+Note that $\type{code}$ is a map from a pushout, 
+so we define it using induction of higher types, 
+as in Definition \ref{def:pushout}.
+Hence we need three types schemes:
 \begin{align*}
 	\type{code}(\type{inl}(b)) & \from B +_A C \to \type{Type} \\
 	\type{code}(\type{inr}(c)) & \from B +_A C \to \type{Type} \\
 	\type{code}(\type{ap_{glue}}(a)) & \from B +_A C \to \type{Type} \\
 \end{align*}
-These run through $a \tin A$, $b \tin B$, and $c \tin C$.  
-But these are also functions on the same coproduct!
+These schemes run through 
+$a \tin A$, $b \tin B$, and $c \tin C$.  
+They are also functions on the same coproduct!
 To define $\type{code}(\type{inl}(b))$, 
 we use higher induction which gives the type schemes:
 \[
@@ -138,7 +250,7 @@ ensure that this pre- and post-composition
 action is coherent.
 This fits together in a nice little 
 diagram:
-\[
+\[ % coherence diagram for code
 	\begin{tikzpicture}
 		\node (AA) at (0,0) 
 			{ $ \simeq \type{ code } ( \type{ ap_{glue} } ( a ) , \type{ ap_{glue} } ( a' )  )$ }; 
@@ -172,26 +284,43 @@ diagram:
 			(CC);
 	\end{tikzpicture}
 \]
-Next, let's define all of these elements in this diagram.  
-First, we look at the types occupying the corners. 
 
-\vspace{2em}
+\textbf{Define the coherence 0-cells }
 
+\fbox{ % code (inl b, inl b')
+\begin{minipage}{\textwidth}
 $\type{ code } \left( \type{ inl } ( b ) , \type{ inl } ( b' ) \right)$ is the most complicated. 
 In order to incorporate $\type{ refl }_b$ when $b$ is not in the image of $f$, 
 we define this type to be the pushout of the span
 \[
 \begin{tikzpicture}
 	\node (1) at (0,2) 
-		{ $ \sum_{ a : A } ( b =_B f ( a ) ) \times ( b' =_B f ( a ) )  $ };
+		{ $ \sum_{ a : A } 
+			( b =_B f ( a ) ) 
+			\times ( b' =_B f ( a' ) ) 
+			\times ( b =_B b' ) $ };
 	\node (2) at (6,2) 
 		{ $ ( b =_B b' ) $ };
 	\node (3) at (0,0) 
-		{ $ \sum_{ a , a' : A } ( b =_B f ( a ) ) \times  (b' =_B f ( a' ) ) \times ( g ( a ) =_C g ( a' ) ) $ };
-	\draw [ -> ] (1) to (2);
-	\draw [ -> ] (1) to (3);
+		{ $ \sum_{ a , a' : A } 
+			( b =_B f ( a ) ) 
+			\times  (b' =_B f ( a' ) ) 
+			\times ( g ( a ) =_C g ( a' ) ) $ };
+	\draw [ -> ] (1) to 
+		node [above] {\scriptsize $ \alpha $} 
+		(2);
+	\draw [ -> ] (1) to 
+		node [above] {\scriptsize $ \beta $}
+		(3);
 \end{tikzpicture}
 \]
+Here, $ \alpha $ is a projection. Also,
+$ \beta $ is a projection of the first
+two factors and places $ \type{ ap }_g (p) $ 
+in the third factor. This uses the injectivity of $f$
+to get a $ p \tin a = a' $ if the upper left
+is populated.
+
 This is a proposition. 
 Indeed, the span feet are propositions
 and the only way for both to be populated
@@ -199,9 +328,11 @@ is if the apex is also populated.
 But this would identify the 
 left and right included elements
 with a glue.
+\end{minipage}
+}
 
-\vspace{2em}
-
+\fbox{ % code (inl b, inr c')
+\begin{minipage}{\textwidth}
 $
 \type{ code } \left( \type{ inl } ( b ) , \type{ inr } ( c' ) \right) \coloneqq
 	\sum_{ a : A } ( b =_B f ( a ) ) \times ( c' =_C g ( a ) )
@@ -229,119 +360,132 @@ $a =_A a'$
 which also gives us that 
 $ \type{ code } \left( \type{ inl } ( b ) , \type{ inr } ( c' ) \right) $ 
 is equivalent to $ \type{ 1 }$.
+\end{minipage}
+}
 
-\vspace{2em}
-
-$
-\type{ code } \left( \type{ inr } ( c ) , \type{ inl } ( b' ) \right) \coloneqq
+\fbox{ % code (inr c, inl b')
+\begin{minipage}{\textwidth}
+	$
+	\type{ code } \left( \type{ inr } ( c ) , \type{ inl } ( b' ) \right) \coloneqq
 	\sum_{ a : A } ( c =_C g ( a ) ) \times ( b' =_B f ( a ) )
-$
-This is a proposition by the same sort of argument from above.
-	
-\vspace{2em}
+	$
+	This is a proposition by the same sort of argument from above.
+\end{minipage}	
+}
 
-$
-\type{ code } \left( \type{ inr } ( c ) , \type{ inr } ( c' ) \right) \coloneqq
+\fbox{ % code (inr c, inr c')
+\begin{minipage}{\textwidth}
+	$
+	\type{ code } \left( \type{ inr } ( c ) , \type{ inr } ( c' ) \right) \coloneqq
 	\sum_{ a , a' : A } ( c =_C g ( a ) ) \times ( c' =_C g ( a' ) ) \times ( f ( a ) =_B f ( a' ) )
-$ 	
-The injectivity of $f$ gives us that 
+	$ 	
+	The injectivity of $f$ gives us that 
 	$ f ( a ) =_B f ( a' ) $
-imples that 
+	imples that 
 	$ a =_A a'$
-which in turn implies that
+	which in turn implies that
 	$ g ( a ) =_C g ( a' )$,
-hence 
+	hence 
 	$ c =_C c'$.
-Therefore, 
-$
-\type{ code } \left( \type{ inr } ( c ) , \type{ inr } ( c' ) \right) =	
+	Therefore, 
+	$
+	\type{ code } \left( \type{ inr } ( c ) , \type{ inr } ( c' ) \right) =	
 	\left( c =_C c'  \right). 
-$
-Hence 
-$ \type{ code } \left( \type{ inr } ( c ) , \type{ inr } ( c' ) \right) $
-is a proposition.	
+	$
+	Hence 
+	$ \type{ code } \left( \type{ inr } ( c ) , \type{ inr } ( c' ) \right) $
+	is a proposition.
+\end{minipage}
+}
+	
 
-\vspace{2em}
+\textbf{Define the coherence 1-cells }
 
-Next, we look at the maps. 
-They are all equivalences, hence by univalence
+These are all equivalences, hence by univalence
 we define them as identity types. 
 To show this, we show each is populated.
 
-\vspace{2em}
-
-$ 
-\type{ code } \left( \type{ inl } ( b ) , \type{ ap }_{ \type{ glue } } ( a' ) \right) \colon
+\fbox{ % code (inl b , glue a')
+\begin{minipage}{\textwidth}
+	$ 
+	\type{ code } \left( \type{ inl } ( b ) , \type{ ap }_{ \type{ glue } } ( a' ) \right) \colon
 	\left(
-		\type{ code } ( \type{ inl } ( b ) , \type{ inl } ( f ( a' ) ) ) =
-		\type{ code } ( \type{ inl } ( b ) , \type{ inr } ( g ( a' ) ) ) 
+	\type{ code } ( \type{ inl } ( b ) , \type{ inl } ( f ( a' ) ) ) =
+	\type{ code } ( \type{ inl } ( b ) , \type{ inr } ( g ( a' ) ) ) 
 	\right)
-$
-Because both sides of the identity type are propositions,
-to show that this equivalence holds
-it suffices to show that either
-$\type{ code } ( \type{ inl } ( b ) , \type{ inl } ( f ( a' ) ) )$
-and
-$\type{ code } ( \type{ inl } ( b ) , \type{ inr } ( g ( a' ) ) )$
-are both empty or both populated.
-This follows from post-composition with
-$ \type{ glue ( a' ) }$
-or its inverse.
+	$
+	Because both sides of the identity type are propositions,
+	to show that this equivalence holds
+	it suffices to show that either
+	$\type{ code } ( \type{ inl } ( b ) , \type{ inl } ( f ( a' ) ) )$
+	and
+	$\type{ code } ( \type{ inl } ( b ) , \type{ inr } ( g ( a' ) ) )$
+	are both empty or both populated.
+	This follows from post-composition with
+	$ \type{ glue ( a' ) }$
+	or its inverse.	
+\end{minipage}
+}
 
-\vspace{2em}
-
-$ 
-\type{ code } \left( \type{ ap }_{ \type{ glue } } ( a ) , \type{ inl } ( b' ) \right) \colon
+\fbox{ % code ( glue a , inl b')
+\begin{minipage}{\textwidth}
+	$ 
+	\type{ code } \left( \type{ ap }_{ \type{ glue } } ( a ) , \type{ inl } ( b' ) \right) \colon
 	\left(
-		\type{ code } ( \type{ inl } ( f ( a ) ) , \type{ inl } ( b' ) ) =
-		\type{ code } ( \type{ inr } ( g ( a ) ), \type{ inl } ( b' ) ) 
+	\type{ code } ( \type{ inl } ( f ( a ) ) , \type{ inl } ( b' ) ) =
+	\type{ code } ( \type{ inr } ( g ( a ) ), \type{ inl } ( b' ) ) 
 	\right)
-$
-This follows from a similar argument to that above, 
-with post-composition replaced with pre-composition.
+	$
+	This follows from a similar argument to that above, 
+	with post-composition replaced with pre-composition.
+\end{minipage}
+}
 
-\vspace{2em}
-
-$ 
-\type{ code } \left( \type{ inr } ( c ) , \type{ ap }_{ \type{ glue } } ( a' ) \right) \coloneqq
+\fbox{ % code (inr c , glue a')
+\begin{minipage}{\textwidth}
+	$ 
+	\type{ code } \left( \type{ inr } ( c ) , \type{ ap }_{ \type{ glue } } ( a' ) \right) \coloneqq
 	\left( 
-		\type{ code } ( \type{ inr } ( c ) , \type{ inl } ( f ( a' ) ) ) =
-		\type{ code } ( \type{ inr } ( c ) , \type{ inr } ( g ( a' ) ) ) 
+	\type{ code } ( \type{ inr } ( c ) , \type{ inl } ( f ( a' ) ) ) =
+	\type{ code } ( \type{ inr } ( c ) , \type{ inr } ( g ( a' ) ) ) 
 	\right) 
-$ 
-This follows from a similar argument.
+	$ 
+	This follows from a similar argument.	
+\end{minipage}
+}
 
-\vspace{2em}
-
-$ 
-\type{ code } \left( \type{ ap }_{ \type{ glue } } ( a ) , \type{ inr } ( c' ) \right) \coloneqq 
+\fbox{ % code ( glue a , inr c')
+\begin{minipage}{\textwidth}
+	$ 
+	\type{ code } \left( \type{ ap }_{ \type{ glue } } ( a ) , \type{ inr } ( c' ) \right) \coloneqq 
 	\left( 
-		\type{ code } ( \type{ inl } ( f ( a ) ) , \type{ inr } ( c' ) ) =
-		\type{ code } ( \type{ inr } ( g ( a ) ) , \type{ inr } ( c' ) ) 
+	\type{ code } ( \type{ inl } ( f ( a ) ) , \type{ inr } ( c' ) ) =
+	\type{ code } ( \type{ inr } ( g ( a ) ) , \type{ inr } ( c' ) ) 
 	\right) 
-$ 
-This follows from a similar argument.
+	$ 
+	This follows from a similar argument.	
+\end{minipage}
+}
 
-\vspace{2em}
+\textbf{Define the coherence 2-cell}
 
-Now we define the $2$-cell to be
-\[
-	\type{ code } ( \type{ ap }_\type{ glue } ( a ) , \type{ ap }_\type{ glue } ( a' )  ) .
-\]
-I think this is uniquely determined because
-everything involved is a proposition. 
-Because we have that the 1-cells 
-in the square are equalities,
-there is only a single way to commute.
-This single way is how we define our 2-cell. 
-
-\textbf{here's a change! Here's a conflict test!}
-
-\textbf{and another one from amelia!}
-\textbf{yo}
-
+\fbox{ % code (glue a , glue a')
+\begin{minipage}{\textwidth}
+	$\type{ code } ( \type{ ap }_\type{ glue } ( a ) , \type{ ap }_\type{ glue } ( a' )  )$ is uniquely determined because
+	everything involved is a proposition. 
+	Because we have that the 1-cells 
+	in the square are equalities,
+	there is only a single way to commute.
+	This single way is how we define our 2-cell.
+\end{minipage}
+}
+ 
 
 %%%%%%%%%%%%%
 % end document
 %%%%%%%%%%%%%
+
+
+
+
 \end{document}
