@@ -7,8 +7,6 @@
 \usepackage{tikz}
 \usetikzlibrary{matrix,arrows}
 
-
-
 % new commands
 
 \newcommand{\RR}{\mathbb{R}}
@@ -21,12 +19,25 @@
 \newcommand{\tin}{\colon}
 
 % fonts
-
 \newcommand{\cat}[1]{\mathbf{#1}}
 \newcommand{\type}[1]{\mathtt{#1}}
 
-% math operators
+% types
+\newcommand{\A}{\type{A}}
+\newcommand{\B}{\type{B}}
+\newcommand{\C}{\type{C}}
+\newcommand{\Type}{\type{Type}}
+\newcommand{\ap}{\type{ap}}
+\newcommand{\inl}{\type{inl}}
+\newcommand{\inr}{\type{inr}}
+\newcommand{\glue}{\type{glue}}
+\newcommand{\refl}{\type{refl}}
+\newcommand{\code}{\type{code}}
+\newcommand{\encode}{\type{encode}}
+\newcommand{\decode}{\type{decode}}
 
+
+% math operators
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\ob}{Ob}
@@ -37,15 +48,12 @@
 \DeclareMathOperator{\Sub}{Sub}
 
 % theorem styles
-
 \newtheorem{lemma}{Lemma}
-
 \newtheorem{thm}{Theorem}
 \newtheorem{prop}{Proposition}
 \newtheorem{cor}{Corollary}
 \theoremstyle{remark}
 \newtheorem{rmk}{Remark}
-
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}
 
@@ -59,6 +67,8 @@
 \title{Notes on a pushout of sets}
 \maketitle
 
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
 \section{HoTT concepts}
 
 \begin{defn} % def : set
@@ -70,11 +80,11 @@
 
 \begin{defn} % def : ap
 	\label{def:ap}
-	Let $ f \from \type{ A } \to \type{B} $.
+	Let $ f \from \type{ A } \to \B $.
 	For any $ x,y \tin \type{ A } $, we get a function 
 	\[
-	\type{ap}_f \from 
-	x =_\type{A} y \to fx =_\type{B} fy
+	\ap_f \from 
+	x =_\A y \to fx =_\B fy
 	\]
 	on identity types.  
 	
@@ -120,9 +130,9 @@
 	Given a span
 	\[
 	\begin{tikzpicture}
-		\node (A) at (0,0) {$\type{A}$};
-		\node (B) at (1,0) {$\type{B}$};
-		\node (C) at (0,-1) {$\type{C}$};
+		\node (A) at (0,0) {$\A$};
+		\node (B) at (1,0) {$\B$};
+		\node (C) at (0,-1) {$\C$};
 		\draw [->] (A) to 
 			node [above] {\scriptsize $ f $} 
 			(B);
@@ -134,19 +144,19 @@
 	its pushout $ \type{B +_A C} $ is defined by
 	\begin{itemize}
 		\item a function 
-			$ \type{ inl } \from \type{B} \to \type{B +_A C} $
+			$ \type{ inl } \from \B \to \type{B +_A C} $
 		\item a function 
-			$ \type{ inr } \from \type{C} \to \type{B +_A C} $
-		\item for each $ a \in \type{A} $ and path
+			$ \type{ inr } \from \C \to \type{B +_A C} $
+		\item for each $ a \in \A $ and path
 			$ \type{ glue } ( a ) \tin fa = ga $
 	\end{itemize}
 	Hence, all functions $F \from \type{B +_A C} \to \type{D}$
 	are given by higher induction:
 	\begin{itemize}
 		\item define $ F ( \type{ inl } (b) ) $
-			for all $ b \tin \type{B} $
+			for all $ b \tin \B $
 		\item define $ F ( \type{ inr } (c) ) $
-			for all $ c \tin \type{C} $
+			for all $ c \tin \C $
 		\item define 
 			$ \type{ ap }_{ F } ( \type{ glue} ( a ) ) \tin 
 			 F ( \type{ inl } (fa) ) = F ( \type{ inr } (ga) ) $
@@ -154,8 +164,8 @@
 	\end{itemize}
 \end{defn}
 
-% -------
-
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
 \section{the setup}
 
 The idea is that we have types 
@@ -169,8 +179,8 @@ The question: is the pushout given by the square
 		\node (B) at (2,2) {$B$};
 		\draw[right hook ->]  (A) to node [above] {\scriptsize $f$} (B);
 		\draw[->]  (A) to node [left] {\scriptsize $g$} (C);
-		\draw[->]  (B) to node [right] {\scriptsize $\type{inl}$} (BAC);
-		\draw[->]  (C) to node [above] {\scriptsize $\type{inr}$} (BAC);
+		\draw[->]  (B) to node [right] {\scriptsize $\inl$} (BAC);
+		\draw[->]  (C) to node [above] {\scriptsize $\inr$} (BAC);
 	\end{tikzpicture}
 \]
 also a set when $f$ is a monomorphism?
@@ -184,67 +194,68 @@ what the identity types are.  That is,
 for each $x$ and $y$ in $B +_A C$, 
 we define a type 
 \[
-	\type{code} \from B +_A C \to B +_A C \to \type{Type}
+	\code \from B +_A C \to B +_A C \to \Type
 \]
-so that $\type{code}(x,y)$ serves as our guess  
+so that $\code(x,y)$ serves as our guess  
 as to what $x =_{\scriptsize B +_A C} y$ actually is.  
 Then we define functions
 \[
-	\type{ encode }_{ x , y } \from  ( x = y ) \to \type{code} ( x , y ) 
+	\type{ encode }_{ x , y } \from  ( x = y ) \to \code ( x , y ) 
 	\text{ and }
-	\type{ decode }_{ x , y } \from \type{code} ( x , y ) \to ( x = y )
+	\type{ decode }_{ x , y } \from \code ( x , y ) \to ( x = y )
 \]
 for each $x$ and $y$ in $B +_A C$.  
 Hopefully, these are mutually inverse.
 
-% 
-\section{defining $\type{code}$}
+% %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+\section{defining $\code$}
 
 Let's try to define 
 \[
-	\type{code} \from 
-	B +_A C \to B +_A C \to \type{Type}.
+	\code \from 
+	B +_A C \to B +_A C \to \Type.
 \]  
-Note that $\type{code}$ is a map from a pushout, 
+Note that $\code$ is a map from a pushout, 
 so we define it using induction of higher types, 
 as in Definition \ref{def:pushout}.
 Hence we need three types schemes:
 \begin{align*}
-	\type{code}(\type{inl}(b)) & \from B +_A C \to \type{Type} \\
-	\type{code}(\type{inr}(c)) & \from B +_A C \to \type{Type} \\
-	\type{code}(\type{ap_{glue}}(a)) & \from B +_A C \to \type{Type} \\
+	\code(\inl(b)) & \from B +_A C \to \Type \\
+	\code(\inr(c)) & \from B +_A C \to \Type \\
+	\code(\type{ap_{glue}}(a)) & \from B +_A C \to \Type \\
 \end{align*}
 These schemes run through 
 $a \tin A$, $b \tin B$, and $c \tin C$.  
 They are also functions on the same coproduct!
-To define $\type{code}(\type{inl}(b))$, 
+To define $\code(\inl(b))$, 
 we use higher induction which gives the type schemes:
 \[
-	\type{code}(\type{inl}(b),\type{inl}(b')), \hspace{0.5em}
-	\type{code}(\type{inl}(b),\type{inr}(c')), \hspace{0.5em}
-	\type{code}(\type{inl}(b),\type{ap_{glue}}(a')).
+	\code(\inl(b),\inl(b')), \hspace{0.5em}
+	\code(\inl(b),\inr(c')), \hspace{0.5em}
+	\code(\inl(b),\type{ap_{glue}}(a')).
 \]
-Similarly, we define $\type{code}(\type{inr}(c))$ by
+Similarly, we define $\code(\inr(c))$ by
 \[
-	\type{code}(\type{inr}(c),\type{inl}(b')), \hspace{0.5em}
-	\type{code}(\type{inr}(c),\type{inr}(c')) , \hspace{0.5em}
-	\type{code}(\type{inr}(c),\type{ap_{glue}}(a')).
+	\code(\inr(c),\inl(b')), \hspace{0.5em}
+	\code(\inr(c),\inr(c')) , \hspace{0.5em}
+	\code(\inr(c),\type{ap_{glue}}(a')).
 \]
-and $\type{code}(\type{glue}(a))$ by 
+and $\code(\glue(a))$ by 
 \[
-	\type{code}(\type{ap_{glue}}(a),\type{inl}(b')), \hspace{0.5em}
-	\type{code}(\type{ap_{glue}}(a),\type{inr}(c')) , \hspace{0.5em} 
-	\type{code}(\type{ap_{glue}}(a),\type{ap_{glue}}(a')).
+	\code(\type{ap_{glue}}(a),\inl(b')), \hspace{0.5em}
+	\code(\type{ap_{glue}}(a),\inr(c')) , \hspace{0.5em} 
+	\code(\type{ap_{glue}}(a),\type{ap_{glue}}(a')).
 \]
-The $\type{code}$'s that have 
+The $\code$'s that have 
 no $\type{ap_{glue}}$'s in the arguments 
 correspond to our guesses
 for the identity types.
-The $\type{code}$'s that have 
+The $\code$'s that have 
 one $\type{ap_{glue}}$ in the arguments
 give a pre- or post-composition
 of paths.
-The $\type{code}$'s that have 
+The $\code$'s that have 
 two $\type{ap_{glue}}$'s in the arguments  
 ensure that this pre- and post-composition
 action is coherent.
@@ -295,7 +306,7 @@ we define this type to be the pushout of the span
 \[
 \begin{tikzpicture}
 	\node (1) at (0,2) 
-		{ $ \sum_{ a : A } 
+		{ $ \sum_{ a , a' : A } 
 			( b =_B f ( a ) ) 
 			\times ( b' =_B f ( a' ) ) 
 			\times ( b =_B b' ) $ };
@@ -479,7 +490,158 @@ To show this, we show each is populated.
 	This single way is how we define our 2-cell.
 \end{minipage}
 }
- 
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+\section{defining $\encode$}
+
+Now that $ \code $ is defined, we define maps between it and the identity types inside of $ B+_A C $. The first map we consider is encode, which is of type
+\[
+	\encode : 
+		\prod_{x : B+_AC} \prod_{y : B+_AC} 
+		(x=_{B+_AC} y) \to  \code (x,y).
+\]
+What are the non-empty identity types in $ B+_A C $ that $ \encode $ must map from?  
+\begin{itemize}
+	\item for $ b,b' : B $ and $ p : b =_B b'  $, a path 
+	\[
+		\ap_{\inl}(p) : \inl (b) =_{B+_AC} \inl (b')
+	\]
+	%
+	\item for $ c,c' : C $ and $ q : c =_C c'  $, a path  
+	\[
+		\ap_{\inr}(q) : \inr (c) =_{B+_AC} \inl (c') 
+	\]
+	%
+	\item for $ a : A $, a path  
+	\[
+		\glue (a) : \inl(fa) =_{B+_AC} \inr(ga)
+	\] 
+\end{itemize}
+
+Thus it suffices to define the value of $ \encode $ for $ \ap_{\inl}(p) $, $ \ap_{\inr}(q) $, and $ \glue (a) $.  
+
+Also, since we are mapping out of identity types, we can use path induction.
+
+\begin{itemize}
+	%___________
+	\item Define 
+	\[
+		\encode \from (\inl (b) =_{B+_AC} \inl (b)) \to \code (\inl(b),\inl(b))
+	\] 
+	by $ \refl_b \mapsto \ap_\inl (\type{refl_b})  $. Note that this $ \inl $ is coming from the span used to define $ \code(\inl(b),\inl(b)) $
+	%____________
+	\item Define 
+	\[
+		\encode \from (\inr (c) =_{B+_AC} \inr (c)) \to \code (\inr(c),\inr(c))
+	\] 
+	by $ \refl_c \mapsto \ap_\inr (\refl_c)  $. Note that this $ \inr $ is coming from the span used to define $ \code(\inr(c),\inr(c)) $.
+	%____________
+	\item Define 
+	\[
+		\encode \from (\inl (fa) =_{B+_AC} \inr (ga)) \to \code (\inl(fa),\inr(ga))
+	\]
+	by $ \glue (a) \mapsto ( \refl_{fa} , \refl_{ga}) $
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+\section{defining $\decode$}
+
+Define 
+\[
+	\decode : 
+	\prod_{x : B+_AC} \prod_{y : B+_AC} 
+	\code (x,y) \to (x=_{B+_AC} y).
+\]
+We can't use path induction because we are not mapping out of an identity type. The general strategy will be to give values for $ \decode $ when feeding it the four different types of inputs--- $ b/b' $, $ c/c' $, $ b/c $, and $ c/b $---as well as higher paths coming from $ \glue $.  Of the former four, $ b/b' $ is the most difficult because of the complicated definition for $ \code (\inl b , \inl b') $.  When dealing with $ \glue $, we must ensure naturality, meaning that there will be commuting diagrams to check.
+
+\begin{itemize}
+	%____________
+	\item The type
+	\[
+		\decode ( \inr c , \inr c') \from 
+		\code ( \inr c , \inr c' ) \to ( c =_{\B +_{\A} \C}) c' )
+	\]
+	is given by $ p \mapsto \ap_{\inl} p $
+	%____________
+	\item The type 
+	\[
+		\decode ( \inl b , \inr c ) \from 
+		\code ( \inl b , \inr c ) \to ( b =_{\B +_{\A} \C}) c )
+	\]
+	is trivial unless $ b = fa $ and $ c = ga $ hold. Define
+	\[
+		\decode ( \inl b , \inr c ) \from 
+		\code ( \inl fa , \inr ga ) \to ( fa =_{\B +_{\A} \C}) ga )
+	\]
+	given by $ (p,q) \mapsto (\ap_{\inr} q^{-1}) (\glue a) (\ap_{\inl} p)$.
+	%_______________
+	\item The type 
+	\[
+		\decode ( \inr c , \inl b ) \from 
+		\code ( \inr c , \inl b ) \to ( c =_{\B +_{\A} \C}) b )
+	\]
+	is trivial unless $ b = fa $ and $ c = ga $ hold. Define
+	\[
+		\decode ( \inr c , \inl b ) \from 
+		\code ( \inr ga , \inl fa ) \to ( ga =_{\B +_{\A} \C}) fa )
+	\]
+	given by $ (q,p) \mapsto (\ap_{\inl} p^{-1}) (\glue a) (\ap_{\inr} q) $.
+	%______________
+	\item The type 
+	\[
+		\decode ( \inl b , \inl b' ) \from 
+		\code ( \inl b , \inl b' ) \to ( b =_{\B +_{\A} \C}) b' )
+	\]
+	is more involved because $ \code ( \inl b , \inl b' ) $ is a pushout.  To define a map out of a pushout, define it on the constructors.  Hence, to define $ \decode ( \inl b , \inl b' ) $ we need to produce values for
+	\begin{itemize}
+		\item $ \decode ( \inl b , \inl b' ) (\inl p) $ for $ p : b =_{\B} b' $
+		\item for each $ a,a' : \A $, define $ \decode ( \inl b , \inl b' ) (\inr (p,q,r)) $ for $ p : (b +_{\B} fa) $, $ q : (b' =_{\B} fa') $, and $ r : (ga =_{\C} ga') $, and
+		\item $ \ap_{\decode ( \inl b , \inl b' )} (\glue a)  $ for $ a : \A $.
+	\end{itemize}
+	%______________
+\end{itemize}
+
+Now let's make the definitions.
+\begin{itemize}
+	\item $ \decode ( \inl b , \inl b' ) (\inl p) = \ap_{\inl} \inl p$
+	\item $ \decode ( \inl b , \inl b' ) (\inr (a,a',p,q,s)) = 
+		(\ap_{\inl} q) (\glue a'^{-1}) (\ap_{\inr} r) (\glue a) ( \ap_{\inl} p)$
+		We need to check that this is well defined.  Here, that means ensuring that an element of $ \code (\inl b , \inl b') $ coming from 
+		\[
+		\sum_{a,a' : 'A} 
+			(b =_{\B} fa) \times 
+			(b' =_{\B} fa') \times 
+			(b =_{\B} b')
+		\]
+		has the same output under $ \decode $ regardless if it travels via the pushout maps $ \alpha $ or $ \beta $.  Let's take an element
+		\[
+		(a,a',p,q,r) :
+			\sum_{a,a' : 'A} 
+			(b =_{\B} fa) \times 
+			(b' =_{\B} fa') \times 
+			(b =_{\B} b').
+		\]
+		\begin{itemize}
+			\item Under $ \alpha $, we have that $ \alpha (a,a',p,q,r) \coloneqq r $ which $ \decode (\inl b , \inl b') (\inl r) \coloneqq \ap_{\inl} r$.
+			\item Under $ \beta $, we have that $ \beta (a,a',p,q,r) \coloneqq (a,a',p,q, \ap_g s) $.  What is $ s $? Since $ r : (b =_{\B} b') $, then $ qrp^{-1} : fa =_{\A} f'a $. By the injectivity of $ f $, there exists $ s : a =_{\A} a' $.   Then $ \decode (\inl b , \inl b') $ sends this to 
+			\[
+			( \ap_{inl} q )( \glue a'^{-1} )( \ap_{\inr} \ap_{g} s )( \glue a )( \ap_{\inl} p )
+			\]
+			{\color{red}ARE THESE EQUAL?}
+		\end{itemize}
+		
+		
+		
+		
+\end{itemize} 
+
+
+
+
+
+
 
 %%%%%%%%%%%%%
 % end document
