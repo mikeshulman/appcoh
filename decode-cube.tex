@@ -1,0 +1,48 @@
+\documentclass{amsart}
+\usepackage[all]{xy}
+\usepackage{mathtools}
+\def\code{\mathsf{code}}
+\def\inl{\mathsf{inl}}
+\def\inr{\mathsf{inr}}
+\def\glue{\mathsf{glue}}
+\def\decode{\mathsf{decode}}
+\def\ap{\mathsf{ap}}
+\def\assoc{\mathsf{assoc}}
+\begin{document}
+
+\[\begin{array}{c}\xymatrix@R=1pc@C=1pc{
+  && \code(\inl(f(a)),\inr(g(a')))\ar[dll]_{\mathllap{\ap_{\code(\inl(f(a)),-)}(\glue_{a'})}} \ar[drr]^{\decode}
+  \ar@{}[dd]_{}="d1" \ar@{=>}"d1"+/^ 0.5pc/;"d1"+/_ 0.5pc/ ^{\ap_{\decode}}
+  \\
+  \code(\inl(f(a)),\inl(f(a')))\ar[dd]|{\ap_{\code(-,\inl (f(a')))}(\glue_a)}\ar[drr]
+   \ar@{}[dddrr]_{}="l1" \ar@{=>}"l1"+/^ 0.5pc/;"l1"+/_ 0.5pc/  ^{\ap_{\decode}}
+  &&&&
+  \inl(f(a))=\inr(g(a'))\ar[dd]^{\glue_{a}\bullet -}\ar[dll]^{-\bullet \glue_{a'}}
+  \ar@{}[dddll]_{}="o1" \ar@{=>}"o1"+/^ 0.5pc/;"o1"+/_ 0.5pc/  ^{\assoc}
+  \\
+  && \inl(f(a))=\inl(f(a')) \ar[dd]^{\glue_{a}\bullet -} \\
+  \code(\inr(g(a)),\inl(f(a')))\ar[drr]_{\decode}
+  &&&& \inr(g(a))=\inr(g(a')) \ar[dll]^{-\bullet \glue_{a'}}\\
+  && \inl(g(a))=\inl(f(a'))
+}\end{array}
+\]
+\vspace{1cm}
+\[
+\begin{array}{c}\xymatrix@R=1pc@C=1pc{
+  && \code(\inl(f(a)),\inr(g(a')))\ar[dll]_{\mathllap{\ap_{\code(\inl(f(a)),-)}(\glue_{a'})}} \ar[drr]^{\decode} \ar[dd]|{\ap_{\code(-,\inr (g(a')))}(\glue_a)}
+  \ar@{}[dddrr]_{}="l2" \ar@{=>}"l2"+/^ 0.5pc/;"l2"+/_ 0.5pc/  ^{\ap_{\decode}}
+  \ar@{}[dddll]_{}="o2" \ar@{=>}"o2"+/^ 0.8pc/;"o2"+/_ 0.8pc/  |{\ap_{\code}(\glue,\glue)}
+  \\
+  \code(\inl(f(a)),\inl(f(a')))\ar[dd]|{\ap_{\code(-,\inl (f(a')))}(\glue_a)}
+  &&&&
+  \inl(f(a))=\inr(g(a'))\ar[dd]^{\glue_{a}\bullet -}
+  \\
+  && \code(\inr(g(a)),\inr(g(a')))\ar[dll]|{\ap\mathrlap{{}_{\code(\inr(g(a)),-)}(\glue_{a'})}} \ar[drr]^{\decode}
+  \ar@{}[dd]_{}="d2" \ar@{=>}"d2"+/^ 0.5pc/;"d2"+/_ 0.5pc/ ^{\ap_{\decode}}
+  \\
+  \code(\inr(g(a)),\inl(f(a')))\ar[drr]_{\decode}
+  &&&& \inr(g(a))=\inr(g(a')) \ar[dll]^{-\bullet \glue_{a'}}\\
+  && \inl(g(a))=\inl(f(a'))
+}\end{array}\]
+
+\end{document}
