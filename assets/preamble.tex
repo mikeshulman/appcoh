@@ -44,67 +44,68 @@
 
 % text formatting
 \newcommand{\defn}[1]{\textbf{#1}} % to define a word
-\newcommand{\cat}[1]{\mathrm{#1}} % cateegory font
+\newcommand{\cat}[1]{\mathrm{#1}} % category font
 \newcommand{\type}[1]{\mathtt{#1}} % type font
+\newcommand{\set}[1]{\mathbb{#1}} % mere set font
 
 % sets and types
 \newcommand{\A}{\type{A}}
-\renewcommand{\AA}{\mathbb{A}}
+\renewcommand{\AA}{\set{A}}
 \newcommand{\B}{\type{B}}
-\newcommand{\BB}{\mathbb{B}}
+\newcommand{\BB}{\set{B}}
 \newcommand{\C}{\type{C}}
-\newcommand{\CC}{\mathbb{C}}
+\newcommand{\CC}{\set{C}}
 \newcommand{\D}{\type{D}}
-\newcommand{\DD}{\mathbb{D}}
+\newcommand{\DD}{\set{D}}
 \newcommand{\E}{\type{E}}
-\newcommand{\EE}{\mathbb{E}}
+\newcommand{\EE}{\set{E}}
 \newcommand{\F}{\type{F}}
-\newcommand{\FF}{\mathbb{F}}
+\newcommand{\FF}{\set{F}}
 \newcommand{\G}{\type{G}}
-\newcommand{\GG}{\mathbb{G}}
+\newcommand{\GG}{\set{G}}
 \renewcommand{\H}{\type{H}}
-\newcommand{\HH}{\mathbb{H}}
+\newcommand{\HH}{\set{H}}
 \newcommand{\I}{\type{I}}
-\newcommand{\II}{\mathbb{I}}
+\newcommand{\II}{\set{I}}
 \newcommand{\J}{\type{J}}
-\newcommand{\JJ}{\mathbb{J}}
+\newcommand{\JJ}{\set{J}}
 \newcommand{\K}{\type{K}}
-\newcommand{\KK}{\mathbb{K}}
+\newcommand{\KK}{\set{K}}
 \renewcommand{\L}{\type{L}}
-\newcommand{\LL}{\mathbb{L}}
+\newcommand{\LL}{\set{L}}
 \newcommand{\M}{\type{M}}
-\newcommand{\MM}{\mathbb{M}}
+\newcommand{\MM}{\set{M}}
 \newcommand{\N}{\type{N}}
-\newcommand{\NN}{\mathbb{N}}
+\newcommand{\NN}{\set{N}}
 \renewcommand{\O}{\type{O}}
-\newcommand{\OO}{\mathbb{O}}
+\newcommand{\OO}{\set{O}}
 \renewcommand{\P}{\type{P}}
-\newcommand{\PP}{\mathbb{P}}
+\newcommand{\PP}{\set{P}}
 \newcommand{\Q}{\type{Q}}
-\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\QQ}{\set{Q}}
 \newcommand{\R}{\type{R}}
-\newcommand{\RR}{\mathbb{R}}
+\newcommand{\RR}{\set{R}}
 \renewcommand{\S}{\type{S}}
-\renewcommand{\SS}{\mathbb{S}}
+\renewcommand{\SS}{\set{S}}
 \newcommand{\T}{\type{T}}
-\newcommand{\TT}{\mathbb{T}}
+\newcommand{\TT}{\set{T}}
 \newcommand{\U}{\type{U}}
-\newcommand{\UU}{\mathbb{U}}
+\newcommand{\UU}{\set{U}}
 \newcommand{\V}{\type{V}}
-\newcommand{\VV}{\mathbb{V}}
+\newcommand{\VV}{\set{V}}
 \newcommand{\W}{\type{W}}
-\newcommand{\WW}{\mathbb{W}}
+\newcommand{\WW}{\set{W}}
 \newcommand{\X}{\type{X}}
-\newcommand{\XX}{\mathbb{X}}
+\newcommand{\XX}{\set{X}}
 \newcommand{\Y}{\type{Y}}
-\newcommand{\YY}{\mathbb{Y}}
+\newcommand{\YY}{\set{Y}}
 \newcommand{\Z}{\type{Z}}
-\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\ZZ}{\set{Z}}
 
 % other sets and types
 \newcommand{\ZZtwo}{\ZZ/2\ZZ} % Z mod two
 \newcommand{\RP}{\type{RP}} % type real projective
-\newcommand{\RRP}{\mathbb{R}\textrm{P}} % set real projective
+\newcommand{\RRP}{\set{R}\textrm{P}} % set real projective
 
 % symbols
 \renewcommand{\equiv}{\simeq}
@@ -127,9 +128,9 @@
 \DeclareMathOperator{\colim}{colim}
 
 % commenting
-\newcommand{\Amelia}{{\color{Amelia} AMELIA:}}
-\newcommand{\Chandrika}{{\color{Chandrika} CHANDRIKA:}}
-\newcommand{\Daniel}{{\color{Daniel} DANIEL:}}
+\newcommand{\Amelia}[1]{{\color{Amelia} AMELIA: #1}}
+\newcommand{\Chandrika}[1]{{\color{Chandrika} CHANDRIKA: #1}}
+\newcommand{\Daniel}[1]{{\color{Daniel} DANIEL: #1}}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % ENVIRONMENTS & COUNTERS
