@@ -1,0 +1,151 @@
+% This is the preamble for the
+% paper proving the Borsuk-Ulam
+% theorem
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% PACKAGES 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\usepackage{amsfonts}
+\usepackage{amssymb}  
+\usepackage{amsthm} 
+\usepackage{amsmath} 
+\usepackage{caption}
+\usepackage[inline]{enumitem}
+  \setlist{itemsep=0em, topsep=0em, parsep=0em}
+  \setlist[enumerate]{label=(\alph*)}
+\usepackage{etoolbox}
+\usepackage{stmaryrd} 
+\usepackage[dvipsnames]{xcolor}
+  \definecolor{editcolour}{rgb}{0.7,0.1,0}
+  \definecolor{hrefcolour}{rgb}{0,0,0.7}
+  \definecolor{Amelia}{rgb}{1,0,0}
+  \definecolor{Chandrika}{rgb}{0,1,0}
+  \definecolor{Daniel}{rgb}{0,0,1}
+\usepackage[]{hyperref}
+  \hypersetup{%
+    colorlinks,
+    linkcolor={hrefcolour},
+    citecolor={hrefcolour},
+    urlcolor={hrefcolour}}
+\usepackage{graphicx}
+  \graphicspath{ {assets/} }
+\usepackage{mathtools}
+\usepackage{tikz}
+\usetikzlibrary{%
+  matrix,
+  arrows,
+  shapes,
+  decorations.markings,
+  decorations.pathreplacing}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% NEW COMMANDS
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% text formatting
+\newcommand{\defn}[1]{\textbf{#1}} % to define a word
+\newcommand{\cat}[1]{\mathrm{#1}} % cateegory font
+\newcommand{\type}[1]{\mathtt{#1}} % type font
+
+% sets and types
+\newcommand{\A}{\type{A}}
+\renewcommand{\AA}{\mathbb{A}}
+\newcommand{\B}{\type{B}}
+\newcommand{\BB}{\mathbb{B}}
+\newcommand{\C}{\type{C}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\D}{\type{D}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\E}{\type{E}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\F}{\type{F}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\G}{\type{G}}
+\newcommand{\GG}{\mathbb{G}}
+\renewcommand{\H}{\type{H}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\I}{\type{I}}
+\newcommand{\II}{\mathbb{I}}
+\newcommand{\J}{\type{J}}
+\newcommand{\JJ}{\mathbb{J}}
+\newcommand{\K}{\type{K}}
+\newcommand{\KK}{\mathbb{K}}
+\renewcommand{\L}{\type{L}}
+\newcommand{\LL}{\mathbb{L}}
+\newcommand{\M}{\type{M}}
+\newcommand{\MM}{\mathbb{M}}
+\newcommand{\N}{\type{N}}
+\newcommand{\NN}{\mathbb{N}}
+\renewcommand{\O}{\type{O}}
+\newcommand{\OO}{\mathbb{O}}
+\renewcommand{\P}{\type{P}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\Q}{\type{Q}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\R}{\type{R}}
+\newcommand{\RR}{\mathbb{R}}
+\renewcommand{\S}{\type{S}}
+\renewcommand{\SS}{\mathbb{S}}
+\newcommand{\T}{\type{T}}
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\U}{\type{U}}
+\newcommand{\UU}{\mathbb{U}}
+\newcommand{\V}{\type{V}}
+\newcommand{\VV}{\mathbb{V}}
+\newcommand{\W}{\type{W}}
+\newcommand{\WW}{\mathbb{W}}
+\newcommand{\X}{\type{X}}
+\newcommand{\XX}{\mathbb{X}}
+\newcommand{\Y}{\type{Y}}
+\newcommand{\YY}{\mathbb{Y}}
+\newcommand{\Z}{\type{Z}}
+\newcommand{\ZZ}{\mathbb{Z}}
+
+% other sets and types
+\newcommand{\ZZtwo}{\ZZ/2\ZZ} % Z mod two
+\newcommand{\RP}{\type{RP}} % type real projective
+\newcommand{\RRP}{\mathbb{R}\textrm{P}} % set real projective
+
+% symbols
+\renewcommand{\equiv}{\simeq}
+\newcommand{\bydef}{\coloneqq} % definitional equality
+\newcommand{\tin}{\colon} % \in for types
+\newcommand{\ltrunc}{\left| \left|}
+\newcommand{\rtrunc}{\right| \right|}
+\newcommand{\shape}{\int}
+
+% arrows
+\newcommand{\from}{\colon}
+\newcommand{\rel}{\nrightarrow}
+\newcommand{\To}{\Rightarrow}
+\newcommand{\xto}[1]{\xrightarrow{#1}}
+\newcommand{\xgets}[1]{\xleftarrow{#1}}
+
+% operators
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\colim}{colim}
+
+% commenting
+\newcommand{\Amelia}{{\color{Amelia} AMELIA:}}
+\newcommand{\Chandrika}{{\color{Chandrika} CHANDRIKA:}}
+\newcommand{\Daniel}{{\color{Daniel} DANIEL:}}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ENVIRONMENTS & COUNTERS
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{notation}[theorem]{Notation}
+
+\theoremstyle{definition}
+\newtheorem{example}[theorem]{Example} 
+\newtheorem{definition}[theorem]{Definition}
+
+\setcounter{tocdepth}{1} % Sets depth for table of contents. 
+

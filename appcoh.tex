@@ -1,49 +1,143 @@
-\documentclass{article}
-\usepackage{amsmath,amssymb,latexsym,stmaryrd,mathrsfs,mathpartir,tikz,tikz-cd,cleveref}
-\title{Applications of real-cohesive homotopy type theory}
-\author{Daniel Cicala \and Liron Cohen \and Nachiket Karnick \and Chandrika Sadanand \and Michael Shulman \and Amelia Tebbe \and Dmitry Vagner}
+\documentclass{amsart}
+\input{assets/preamble.tex}
 \begin{document}
+
+% =================================================
+% TITLE & AUTHORS
+% =================================================
+\title{%
+        The Borsuk-Ulam theorm in real-cohesive homotopy
+        type theory}   
+\author{%
+        Daniel Cicala \and Chandrika Sadanand \and Michael
+        Shulman \and Amelia Tebbe}
+\begin{abstract}
+        Borsuk-Ulam!
+\end{abstract}
 \maketitle
 
+% =================================================
+% SECTION: INTRODUCTION
+% =================================================
 \section{Introduction}
 \label{sec:intro}
 
-
+% =================================================
+% SECTION: OVERVIEW OF REAL COHESIVE HOTT
+% =================================================
 \section{Overview of real-cohesive homotopy type theory}
-\label{sec:rcohott}
+\label{sec:rc-hott}
+
+OUTLINE:
+\begin{itemize}
+\item
+  HoTT as foundations
+\item
+  Intepreting AlgTop theorems in HoTT is obsructed by
+  discontinuous functions
+\item
+  Relating continuous and discontinuous with flat and
+  sharp, which are borrowed from cohesive topoi
+\item
+  Formalizing flat and sharp in HoTT + axioms needed,
+  e.g. Rflat
+\item
+  Connecting sets used in AlgTop with HITs used in HoTT
+  via shape
+\end{itemize}
 
 
-\section{The $n$-dimensional Brouwer's fixed-point theorem}
-\label{sec:nd-brouwer}
+% =================================================
+% SECTION: TRANLATING BORSUK ULAM TO HOTT
+% =================================================
+\section{Translating Borsuk-Ulam to homotopy type theory}
+\label{sec:bu-to-hott}
+
+OUTLINE:
+\begin{itemize}
+\item
+  \textbf{Subsection 1.} Give statements for BU-classic,
+  BU-odd, BU-retract) a la wikipedia. The proof strategy:
+  show BU-retract implies BU-odd which is equivalent to
+  BU-classic, then prove BU-retract. Give the proof for
+  BU-retract.
+\item
+  \textbf{Subsection 2.} Translate the classical statement
+  into propositions as types. We want to model classical proof.
+  The failure of contrpositive rule in constructive
+  logic---(not q implies not p) is (p implies not not
+  q)---means our proof strategy is BU-retract implies not
+  not BU-odd which is equivalent to not not BU-classic. But
+  not not BU-classic is sharp BU-classic. Prove BU-retract. 
+\item
+  To close out the section, list the ingredients we need to
+  prove BU-retract.
+\end{itemize}
 
 
-\section{The fundamental theorem of algebra}
-\label{sec:fta}
+% =================================================
+% SECTION: DEFINING RPn
+% =================================================
+\section{Topological and homotopical real projective spaces}
+\label{sec:rpn}
+
+OUTLINE:
+\begin{itemize}
+\item
+  Define n-disks as both sets and types, the latter which is
+  simply 1, since they're contractible. Show that $ \shape
+  \DD = \D $
+\item
+  Define n-spheres as sets.  Use pushouts to glue
+  disks together. Explain why we need to glue with a
+  collar---i.e. the ``topology'' (as encoded by continuous
+  paths $ \RR \to \X $ of a type $ \X $. Show, via Shulman,
+  that $ \shape \SS^n = \S^n $
+\item
+  Define $ \RRP^n $ as sets using pushouts and collaring.
+  Recall Bulcholtz and Egbert's definition of HIT $ \RP^n
+  $. Prove that $ \shape RRP^n = \RP^n $
+\end{itemize}
 
 
-\section{The hairy ball theorem}
-\label{sec:hairy-ball}
+% =================================================
+% SECTION: COHOMOLGY
+% =================================================
+\section{Cohomology}
+\label{sec:cohom}
+
+OUTLINE:
+\begin{itemize}
+\item
+  \textbf{Subsection 1.} Show that we get a commutative
+  graded ring structure for cohomology of any type $ \X $
+  with $ \ZZtwo $-coefficients. Follow Brunerie's thesis.
+\item
+  \textbf{Subsection 2.} Compute $ \ZZtwo $-cohomology ring
+  for $ \RRP^n $ using Mayer-Vietoris.  This needs us to
+  first compute cohomology for disks and spheres.  
+\end{itemize}
 
 
-\section{Pushouts of embeddings}
-\label{sec:push-emb}
-
-
-\section{Topological projective spaces}
-\label{sec:topproj}
-
-
-\section{Homotopical projective spaces}
-\label{sec:homot-proj-spac}
-
-
+% =================================================
+% SECTION: PROVING THE BORSUK ULAM THEORM
+% =================================================
 \section{The Borsuk-Ulam theorem}
 \label{sec:borsuk-ulam}
 
+OUTLINE:
+\begin{itemize}
+\item
+  The proof is done by this point. Just put it all
+  together and reconnect the dots for the reader.
+\end{itemize}
 
+
+% =================================================
+% BIBLIOGRAPHY
+% =================================================
 \bibliographystyle{alpha}
 \nocite{shulman:bfp,brunerie:thesis,br:rp-hott}
-\bibliography{appcoh}
-
+\bibliography{assets/appcoh.bib}
 
 \end{document}
