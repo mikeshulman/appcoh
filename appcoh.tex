@@ -62,6 +62,95 @@ OUTLINE:
   via shape
 \end{itemize}
 
+Homotopy type theory (HoTT) is an expression of a style of
+mathematics that expands the notion of ``identity'' to
+include logical identity, homotopy equivalence, and path
+connectedness.  Experts call this style \emph{Univalence
+  foundations}. And as foundations, there is an ambitious
+program to encode all of mathematics in homotopy type
+theory. There is a growning community working to realize
+these ambitions and this paper belongs to this group.
+
+Our present goal is to bring the classical threory of
+algebraic topology into the fray, and in particular the
+Borsuk-Ulam theorem.  However, the HoTT approach to
+algebraic topology comes with on immediate challenge. This
+is the presence of so many fixed point theorems where, in
+the course of a proof, the fixed point must be specified
+precisely, ont only up to homotopy.  What is the problem
+with this?  Homotopy type theory only works up to
+homotopy. Compare, for instance, the topological circle
+\[ \SS^1 \bydef \left\{ (x,y) \in \RR^2 | x^2 + y^2 = 1
+    \right\} \] with the homotopy type theoretical circle
+defined by a pair of constructors $ \type{base} $ and
+$ \type{loop} \tin \type{base} = \type{base}$. One has
+infinitely many points that can be described exactly and the
+other has a single point. Brouwer's Fixed Point Theorem
+serves as a good illustration of this problem. We provide
+its statement and proof here for reference.
+
+\begin{theorem}
+  Let $ \DD^2 $ denote the topological disk $ \left\{ (x,y)
+      \in \RR^2 | x^2 + y^2 \leq 1 \right\} $.  Any
+  continuous map $ f \from \DD^2 \to \DD^2 $ has a fixed point.
+\end{theorem}
+
+\begin{proof}
+  Suppose that $ f $ is continuous but does not have a fixed
+  point, hence $ f(x) \neq x $ for all $ x \in \DD^2 $.
+  For each $ x \in \DD^2 $, dray a ray from $ f(x) $ to $ x
+  $. This ray intersects the circle in a point we denote by
+  $ s(x) $. This defines a continuous function $ s \from
+  \DD^2 \to \SS^1 $ with the property that $ s(x)=x $ for all $ x $ on
+  the boundary of $ \DD^2 $.  That implies that the identity
+  on $ \SS^1 $ factors as the inclusion $ \SS^1
+  \hookrightarrow \DD^2 $ followed by $ s $.  Appying the
+  fundamental group function $ \pi_1 $ to this factorization
+  gives that the identity on $ \pi_1 \left( \SS^1 \right) =
+  \ZZ $ factors through $ \pi_1 \left( \DD^2 \right) = 1 $
+  which is absurd.
+\end{proof}
+
+Note how this proof relied on our precise specification of
+the point $ s(x) $ on the circle.  This point cannot be
+specified precisely in HoTT. Even if we did work with the
+only homotopical point on the circle, that is with $ \S^1 $,
+there is no way to relate $ \SS^1 $ to $ \S^1 $ inside of
+type theory. Semantically speaking, this involves comparing
+a topological space with $ \infty $-groupoids. This is done
+using the fundamental $ \infty $-groupiod construction.  No
+such construction exists in HoTT. This is the problem that
+real-cohesive homotopy theory solves. It does so by
+proposing to combine two already existing, but previously
+unrelated, type semantics: topological and
+$ \infty $-groupoidal. With this proposal, there are three
+puzzles to be solved.
+
+\begin{enumerate}
+\item We need to define a model for a \emph{topological $ \infty
+    $-groupoid}.
+\item What rules or axioms can we equip HoTT with so that we
+  can compare, for example, $ \SS^1 $ to $ \S^1 $.
+\item Topology is incompatible with the law of the excluded
+  middle, which is required to prove these classic fixed
+  point theorems. How can we resolve this?
+\end{enumerate}
+
+
+
+
+
+
+For a detailed account of real-cohesive homotopy type
+theory, we point the reader to Shulman's original paper
+\cite{shul:bfp}. At present, we content ourselves with
+providing a high-level account, which we begin with the
+following puzzle.  Given a 
+
+
+
+
+
 
 % =================================================
 % SECTION: TRANLATING BORSUK ULAM TO HOTT
