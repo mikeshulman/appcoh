@@ -71,23 +71,23 @@ program to encode all of mathematics in homotopy type
 theory. There is a growning community working to realize
 these ambitions and this paper belongs to this group.
 
-Our present goal is to bring the classical threory of
+Our present goal is to bring the classical theory of
 algebraic topology into the fray, and in particular the
 Borsuk-Ulam theorem.  However, the HoTT approach to
-algebraic topology comes with on immediate challenge. This
-is the presence of so many fixed point theorems where, in
-the course of a proof, the fixed point must be specified
-precisely, ont only up to homotopy.  What is the problem
-with this?  Homotopy type theory only works up to
+algebraic topology comes with on immediate challenge: the
+presence of so many fixed point theorems where, in the
+course of a proof, the fixed point must be specified
+precisely, not only up to homotopy.  What is the problem
+with this?  It is that homotopy type theory only works up to
 homotopy. Compare, for instance, the topological circle
-\[ \SS^1 \bydef \left\{ (x,y) \in \RR^2 | x^2 + y^2 = 1
-    \right\} \] with the homotopy type theoretical circle
+$$ \SS^1 \bydef \left\{ (x,y) \in \RR^2 | x^2 + y^2 = 1
+\right\} $$ with the homotopy type theoretical circle
 defined by a pair of constructors $ \type{base} $ and
 $ \type{loop} \tin \type{base} = \type{base}$. One has
 infinitely many points that can be described exactly and the
 other has a single point. Brouwer's Fixed Point Theorem
-serves as a good illustration of this problem. We provide
-its statement and proof here for reference.
+illustrates this problem nicely. We provide its statement
+and proof here for reference.
 
 \begin{theorem}
   Let $ \DD^2 $ denote the topological disk $ \left\{ (x,y)
@@ -136,16 +136,17 @@ puzzles to be solved.
   point theorems. How can we resolve this?
 \end{enumerate}
 
+Shulman's original paper on real-cohesive HoTT
+\cite{shul:bfp} discusses the solution to these puzzles in
+detail. Presently, we are content to simply say that the
+Lawvere's theory of cohesion provides a solution. Of course,
+we need to adapt cohesion to homotopy type theory and we
+leave the description of this to Shulman, but we do provide
+a high-level description of the role that cohesion plays.
 
-
-
-
-
-For a detailed account of real-cohesive homotopy type
-theory, we point the reader to Shulman's original paper
-\cite{shul:bfp}. At present, we content ourselves with
-providing a high-level account, which we begin with the
-following puzzle.  Given a 
+A \emph{cohesive topos} is a pair of topoi equipped with a
+string of adjunctions between them.  Lawever initially
+called these topos
 
 
 
@@ -246,7 +247,7 @@ OUTLINE:
 % BIBLIOGRAPHY
 % =================================================
 \bibliographystyle{alpha}
-\nocite{shulman:bfp,brunerie:thesis,br:rp-hott}
+%\nocite{shulman:bfp,brunerie:thesis,br:rp-hott}
 \bibliography{assets/appcoh.bib}
 
 \end{document}
