@@ -235,7 +235,7 @@ OUTLINE:
 We follow a similar construction for cohomology as found in \cite{brunerie:thesis}, modifying their construction with $\ZZ$ coefficients to have coefficients in $\ZZtwo$. In order to define cohomology, we must first define Eilenberg-MacLane spaces $\KZtwo{n}$. Eilenberg-MacLane spaces $K(G,n)$ were defined for arbitrary group $G$ by Finster and Licata in \cite{fl:em}, and so we follow their construction. 
 
 \begin{definition}
-	For $n:\NN$, the type Eilenberg-Maclane space $\KZtwo{n}$ is the $n$-truncated and $(n-1)$-connected pointed type defined by
+	For $n:\NN$, the type \defn{Eilenberg-MacLane space} $\KZtwo{n}$ is the $n$-truncated and $(n-1)$-connected pointed type defined by
 	\[ \KZtwo{n}:=\left\{ \begin{array}{ll} \ZZtwo & \text{for }n=0\\
 	\trunc{\Sigma^{n-1}\RRP^2}_n & \text{for } n\ge 1, 
 	\end{array}\right.\]
@@ -246,9 +246,8 @@ We follow a similar construction for cohomology as found in \cite{brunerie:thesi
 
 Given this construction of the EM spaces, we define cohomology in the following way. 
 
-\Amelia{we need to talk about definition formatting. I often make vocab being defined bold or italic. what do others want to do.}
 \begin{definition}
-	For a type $\X$ (\Amelia{should I be using this type font X here? I'm not totally sure what it's for}) and $n:N$, the $n$-th cohomology group of $\X$ is the type
+	For a type $\X$ and $n:N$, the \defn{$n$-th cohomology group of $\X$} is the type
 	\[H^n(\X;\ZZtwo):= \trunc{\X\rightarrow \KZtwo{n}}_0.\] 
 \end{definition}
 \Amelia{B also defines reduced cohomology as well, not i'm not sure we need that.}
