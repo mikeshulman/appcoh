@@ -202,9 +202,20 @@ OUTLINE:
 \item
   Define $ \RRP^n $ as sets using pushouts and collaring.
   Recall Bulcholtz and Egbert's definition of HIT $ \RP^n
-  $. Prove that $ \shape RRP^n = \RP^n $
+  $. Prove that $ \shape \set{RP}^n = \RP^n $
 \end{itemize}
 
+\subsection{Defining $\set{RP}^n$}
+We define $\set{RP}^n$ using push outs, tautological bundles, spheres, and a inductive process, following the work of Rijike [].
+
+$\set{RP}^1$ is defined as the following push out, where $a(-1,x) = \frac{x}{4}$ and $a(1,x)= \frac{x}{4} + \frac{3}{4}$, and $b (\pm 1, x) := (0, a(\pm1, x))$.\\
+\[\begin{tikzcd}
+\set{S}^0 \times \set{I} \arrow[r, hook, "a"] \arrow[d, hook, "b" ] & \set{I} \arrow[d]\\
+\{0 \} \times \set{I} \arrow[r] & \set{RP}^1
+\end{tikzcd}
+\]
+
+Given $\set{RP}^{n-1}$, the tautological bundle
 
 % =================================================
 % SECTION: COHOMOLGY
