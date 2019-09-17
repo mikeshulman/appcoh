@@ -144,9 +144,52 @@ we need to adapt cohesion to homotopy type theory and we
 leave the description of this to Shulman, but we do provide
 a high-level description of the role that cohesion plays.
 
-A \emph{cohesive topos} is a pair of topoi equipped with a
-string of adjunctions between them.  Lawever initially
-called these topos
+A \emph{cohesive topos} is a pair of topoi
+$ ( \cat{E}, \cat{S} ) $ equipped with a string of
+adjunctions 
+\[
+\begin{tikzcd}[row sep = 25pt]
+  \cat{E}
+    \arrow[d, shift left = 1em, "f_\ast"']
+    \arrow[d, shift right = 3em, "f_!"'] \\
+  \cat{S}
+    \arrow[u, shift left = 1em, "f^\ast"]
+    \arrow[u, shift right = 3em, "f^!"] 
+\end{tikzcd} 
+\]
+with $ f_! \dashv f^\ast \dashv f_\ast \dashv f^! $ and such
+that $ f_! $ preserves finite products.  As Lawvere puts it,
+the objects of $ \cat{S} $ should be thought of as
+\emph{abstract sets} which
+\begin{quote}
+  ... may by conceived of as a bag of dots which are devoid
+  of properties apart from mutual distinctness \cite{lawvere:cohesive}.
+\end{quote}
+On the other hand, the objects of $ \cat{E} $ should be
+thought of as abstract sets together with a sort of
+\emph{cohesion} between the ``dots''.  Today, one might call
+this cohesion a topology. Also, we might consider a set
+defined recursively to have a cohension arising from the
+relationship established between points as they become
+defined into existence.  The definition above axiomatizes
+the various forms that cohesion may take through the adjoint
+string. Lawvere originally gave the functors comprising that
+adjoint string the more evokative names
+\begin{center}
+  components $ \dashv $ discrete $ \dashv $ points $ \dashv
+  $ codiscrete.
+\end{center}
+The components functor tells us which points are ``stuck''
+together through the cohesion. The discrete functor endows a
+set with the minimal amount of cohesion. The points functor
+removes any cohesion and returns the mere ``bag of dots''
+underying a cohesive space. The codiscrete functor endows a
+set with the maximum cohesive structure.  
+
+
+
+
+
 
 
 

@@ -4,6 +4,7 @@
    (LaTeX-add-bibitems
     "brunerie:thesis"
     "br:rp-hott"
-    "shul:bfp"))
+    "shul:bfp"
+    "fl:em"))
  :bibtex)
 
