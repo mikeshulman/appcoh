@@ -325,12 +325,19 @@ We define $\set{RP}^n$ using push outs, tautological bundles, spheres, and a ind
 
 $\set{RP}^1$ is defined as the following push out, where $a(-1,x) = \frac{x}{4}$ and $a(1,x)= \frac{x}{4} + \frac{3}{4}$, and $b (\pm 1, x) := (0, a(\pm1, x))$.\\
 \[\begin{tikzcd}
-\set{S}^0 \times \set{I} \arrow[r, hook, "a"] \arrow[d, hook, "b" ] & \set{I} \arrow[d]\\
+\set{S}^0 \times \set{I} \arrow[r, hook, "a_1"] \arrow[d, hook, "b_1" ] & \set{I} \arrow[d]\\
 \{0 \} \times \set{I} \arrow[r] & \set{RP}^1
 \end{tikzcd}
 \]
 
-Given $\set{RP}^{n-1}$, the tautological bundle
+The tautological bundle $\set{T}^1$ over $\set{RP}^1$ is defined by the constructors $\set{I} \mapsto \set{R}$ and $(\{0\} \times \set{I}) \mapsto \set{R}$ and the transition maps $Id$ and $-Id$.
+
+From here, we proceed inductively. $\set{RP}^n$ is defined as the following pushout.\\
+\[\begin{tikzcd}
+\set{S}^{n-1} \times \set{I} \arrow[r, hook, "a_n"] \arrow[d, hook, "b_n" ] &\set{D}^{n} \arrow[d]\\
+\set{T}^{n-1} \arrow[r] &\set{RP}^n\\
+\end{tikzcd}
+\] where $a_n$ and $b_n$ are both inclusions of $\set{S}^{n-1} \times \set{I} $ as thickened boundary of $\set{T}^{n-1}$ and $\set{D}^{n}$.
 
 % =================================================
 % SECTION: COHOMOLGY
