@@ -139,52 +139,124 @@ puzzles to be solved.
 Shulman's original paper on real-cohesive HoTT
 \cite{shul:bfp} discusses the solution to these puzzles in
 detail. Presently, we are content to simply say that the
-Lawvere's theory of cohesion provides a solution. Of course,
+Lawvere's theory of cohesion offers a solution. Of course,
 we need to adapt cohesion to homotopy type theory and we
 leave the description of this to Shulman, but we do provide
 a high-level description of the role that cohesion plays.
 
-A \emph{cohesive topos} is a pair of topoi
-$ ( \cat{E}, \cat{S} ) $ equipped with a string of
-adjunctions 
+A \emph{category of cohesive space} is a pair of categories
+equipped with a string of adjunctions
 \[
 \begin{tikzcd}[row sep = 25pt]
-  \cat{E}
+  \cat{Spaces}
     \arrow[d, shift left = 1em, "f_\ast"']
     \arrow[d, shift right = 3em, "f_!"'] \\
-  \cat{S}
+  \cat{Sets}
     \arrow[u, shift left = 1em, "f^\ast"]
     \arrow[u, shift right = 3em, "f^!"] 
 \end{tikzcd} 
 \]
 with $ f_! \dashv f^\ast \dashv f_\ast \dashv f^! $ and such
 that $ f_! $ preserves finite products.  As Lawvere puts it,
-the objects of $ \cat{S} $ should be thought of as
+the objects of $ \cat{Sets} $ should be thought of as
 \emph{abstract sets} which
 \begin{quote}
   ... may by conceived of as a bag of dots which are devoid
   of properties apart from mutual distinctness \cite{lawvere:cohesive}.
 \end{quote}
-On the other hand, the objects of $ \cat{E} $ should be
+On the other hand, the objects of $ \cat{Spaces} $ should be
 thought of as abstract sets together with a sort of
-\emph{cohesion} between the ``dots''.  Today, one might call
-this cohesion a topology. Also, we might consider a set
-defined recursively to have a cohension arising from the
-relationship established between points as they become
-defined into existence.  The definition above axiomatizes
-the various forms that cohesion may take through the adjoint
-string. Lawvere originally gave the functors comprising that
-adjoint string the more evokative names
+\emph{cohesion} between the ``dots''. For our purposes, we
+think of cohesion as a topology though, in reality, this
+definition above axiomatizes the various forms that cohesion
+may take, each functor playing a different role.  The
+$ f_! $ functor tells us which points are ``stuck'' together
+through the cohesion by returning a set of connected
+components. The $ f^\ast $ functor endows a set with the
+discrete topology. The $ f_\ast $ functor forgets the
+topology of a space. The $ f^! $ functor endows a set with
+the codiscrete topology on a set.  From this string of
+adjoints, we get another adjoint string
+$ \int \dashv \flat \dashv \sharp $ on $ \cat{Spaces} $
+comprised of the \defn{shape operation}
+$ \int \bydef f^\ast f_! $, the \defn{flat operation}
+$ \flat \bydef f^\ast f_\ast $, and the \defn{sharp operation}
+$ \sharp \bydef f^! f_\ast $.
+
+To see how the axiomatic cohesion addresses the above
+puzzles, we will speak in the language of sets and
+categories instead of type theory. In other words, we
+restrict out attention to the semantics of the relevant type
+theory.
+
+To solve the first puzzle, constructing a topological
+$ \infty $-groupoid, we ask first that $ \cat{Spaces} $ and
+$ \cat{Sets} $ are toposes. A cohesive topos is also a
+\emph{local and locally connected topos} which can be
+constructed using sheaves on a site that satisfy certain
+properties. By expanding this construction to the
+$ (\infty,1) $-category, we can obtain cohesive
+$ (\infty,1) $-toposes using $ \infty $-sheaves on a site as
+shown by Schreiber \cite{schreib:diff}.  The objects of a
+resulting cohesive $ (\infty,1) $-topos are precisely the
+topological groupoids we seek.
+
+The second puzzle involves comparing a space with its
+homotopy type.  Again modifying axiomatic cohesion, we
+replace the categories $ \cat{Sets} $ and $ \cat{Spaces} $
+with the $ (\infty,1) $-categories of $ \cat{Spaces} $ and $
+\infty-\cat{Groupoids} $. We also replace the functors with
+$ \infty $-functors.  The validity of this rests on work by
+Schreiber \cite{schreib:diff}. In this setup, applying $
+\shape $ to a space returns the fundamental $ \infty
+$-groupoid, an excellent proxy for the homotopy type.  
+
+Axiomatic cohesion also provides a solution to the final
+puzzle: the failure of the \emph{continuous} excluded
+middle. Given that we are working with topological objects,
+we require that excluded middle holds continuously, but in
+general it does not. Given a space $ X $ and subspace $ U $,
+there is no continuous inverse to the inclusion
+$ U + (X \setminus U) \to X $ because, even though the
+underlying sets are the same, the topologies are
+different. If we can introduce discontinuous functions
+$ X \to U + (X \setminus U) $, then we can find a
+discontinuous inverse to the inclusion, therefore obtaining
+a modified, ``discontinuous'' law of the excluded
+middle. Hence, the existence of a law of the excluded middle
+in our context hinges on the introduction of such
+discontinuous functions. To this end, recall that $ \flat $
+retopolozes discretely and $ \sharp $ retopologizes
+codiscretely. If $ \hom (X,Y) $ is the space of continous
+functions from $ X $ to $ Y $, then both $ \hom (\flat X,Y)
+$ and $ \hom (X,\sharp Y) $ contain the discontinuous, by
+which we mean not necessarily continuous, functions from $ X
+$ to $ Y $.  
+
+Moving towards syntax means introducing into homotopy type
+theory the constructors that mirror the semantics of $ \int $,
+$ \flat $, and $ \sharp $. Upon adding these constructors,
+we obtain \emph{cohesive homotopy type theory}. The ``real''
+part of name comes from an additional axiom included so that
+we can capture the topology syntactically using continuous
+paths from the reals. This axiom states
 \begin{center}
-  components $ \dashv $ discrete $ \dashv $ points $ \dashv
-  $ codiscrete.
+\begin{quotation}
+  A crisp type $ \type{A} $ is discrete if and only if the
+  function that returns a constant path
+  $ \type{A} \to (\RR \to \type{A}) $ is an equivalence.
+\end{quotation}
 \end{center}
-The components functor tells us which points are ``stuck''
-together through the cohesion. The discrete functor endows a
-set with the minimal amount of cohesion. The points functor
-removes any cohesion and returns the mere ``bag of dots''
-underying a cohesive space. The codiscrete functor endows a
-set with the maximum cohesive structure.  
+Calling $ \type{A} $ a crisp variable means that we
+perform constructions on it without regarding the topology,
+such as defining maps $ \flat\type{A} \to \type{Y} $ or $
+\type{X}\to\sharp\type{A} $.  When including this axiom
+along with the syntactic versions of shape, flat, and sharp,
+we get \emph{real-cohesive homotopy type theory}.
+
+
+
+
 
 
 
