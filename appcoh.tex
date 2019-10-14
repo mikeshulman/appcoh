@@ -321,18 +321,16 @@ OUTLINE:
 \end{itemize}
 
 \subsection{Defining $\set{RP}^n$}
+We define $\set{RP}^n$ using push outs, tautological bundles, spheres, and an inductive process, following the work of Rijike [].
 
-\Chandrika{The tautological bundle over $\set{RP}^n$ is called $T^n$ for now in the text below. This is definitely a bad choice because it can be confused for a tangent space of a torus. I just couldn't think of a good choice in the moment, but I wanted to write. I do not understand the notation Egbert uses for these spaces (otherwise, I would have done something analogous)}
-We define $\set{RP}^n$ using push outs, tautological bundles, spheres, and a inductive process, following the work of Rijike [].
-
-$\set{RP}^1$ is defined as the following push out, where $a(-1,x) = \frac{x}{4}$ and $a(1,x)= \frac{x}{4} + \frac{3}{4}$, and $b (\pm 1, x) := (0, a(\pm1, x))$.\\
+$\set{RP}^1$ is defined as the following push out, where $a_1(-1,x) = \frac{x}{4}$ and $a_1(1,x)= \frac{x}{4} + \frac{3}{4}$, and $b_1 (\pm 1, x) := (0, a(\pm1, x))$.\\
 \[\begin{tikzcd}
 \set{S}^0 \times \set{I} \arrow[r, hook, "a_1"] \arrow[d, hook, "b_1" ] & \set{I} \arrow[d]\\
 \{0 \} \times \set{I} \arrow[r] & \set{RP}^1
 \end{tikzcd}
 \]
-
-The tautological bundle $\set{T}^1$ over $\set{RP}^1$ is defined by the constructors $\set{I} \mapsto \set{R}$ and $(\{0\} \times \set{I}) \mapsto \set{R}$ and the transition maps $Id$ and $-Id$.
+%%% show that shape of RP1 is S1.. start reading pg 63 of brouwer fixed pt paper%%
+Let$\U_{\set{R}}$ be the universe of types homeomorphic (\Chandrika{as opposed to homotopy equivalent}) to $\set{R}$. The tautological bundle $\text{taut}^1: \set{RP}^1 \rightarrow \U_{\set{R}}$ is defined by the constructors $\set{I} \mapsto \set{R}$ and $(\{0\} \times \set{I}) \mapsto \set{R}$, and the generator of $\pi_1(\set{RP}^1) \mapsto -Id$
 
 From here, we proceed inductively. $\set{RP}^n$ is defined as the following pushout.\\
 \[\begin{tikzcd}
@@ -344,7 +342,7 @@ From here, we proceed inductively. $\set{RP}^n$ is defined as the following push
 The tautological bundle $\set{T}^n$ is defined by the base space $\set{RP}^n$ and the constructors $U_i \times \set{R} \mapsto \set{R}$ for every chart $U_i$ of $T^{n-1}$ and $\set{D}^n \mapsto R$ with transition map $-Id$ between $U_i \times \set{R}$ and $U_j \times \set{R}$ if and only if this was the transition map for the corresponding intersection component of  $U_i$ and $U_j$ in $T^{n-1}$. Otherwise, the transition map between any two other charts is $Id$.
 %%%
 
-\subsection{Showing $ \shape \set{RP}^n = \RP^n $}.
+\subsection{Showing $ \shape \set{RP}^n = \RP^n $}
 
 
 % =================================================
