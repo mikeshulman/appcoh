@@ -370,17 +370,39 @@ OUTLINE:
 \subsection{Cohomology and EM-spaces for $\RRP^n$}
 
 
-We follow a similar construction for cohomology as found in \cite{brunerie:thesis}, modifying their construction with $\ZZ$ coefficients to have coefficients in $\ZZtwo$. In order to define cohomology, we must first define Eilenberg-MacLane spaces $\KZtwo{n}$. Eilenberg-MacLane spaces $K(G,n)$ were defined for arbitrary group $G$ by Finster and Licata in \cite{fl:em}, and so we follow their construction. 
+We follow a similar construction for cohomology as found in \cite{brunerie:thesis}, modifying their construction with $\ZZ$ coefficients to have coefficients in $\ZZtwo$. In order to define cohomology, we must first define Eilenberg-MacLane spaces $\KZtwo{n}$. Eilenberg-MacLane spaces $K(G,n)$ were defined for arbitrary group $G$ by Finster and Licata in \cite{fl:em}.
+
+We give a construction of $\RRP^n$ in Section \ref{sec:rpn}, which shows that $\RRP^2$ will have the homotopy groups necessary to be the foundation of our Eilenberg-Maclane spaces. 
+\begin{proposition}\label{prop:rpnhtpygps} %update this label when sec:rpn is done
+	\[ \pi_k(\RRP^2)=\left\{ \begin{array}{ll} 0 & \text{for }n=0\\
+	\ZZtwo & \text{for } n=1\\
+	0 & \text{for } n> 1, 
+	\end{array}\right.\]
+\end{proposition}
+\begin{proof}
+	\Amelia{We discussed this on Oct 1 2019 and thought this would go in Chandrika's section}
+\end{proof}
+
 
 \begin{definition}
 	For $n:\NN$, the type \defn{Eilenberg-MacLane space} $\KZtwo{n}$ is the $n$-truncated and $(n-1)$-connected pointed type defined by
 	\[ \KZtwo{n}:=\left\{ \begin{array}{ll} \ZZtwo & \text{for }n=0\\
 	\trunc{\Sigma^{n-1}\RRP^2}_n & \text{for } n\ge 1, 
 	\end{array}\right.\]
-	where $\Sigma^{n-1}$ indicates the reduced suspension. 
+	where $\Sigma^{n-1}$ indicates the reduced suspension $n-1$ times. 
 \end{definition}
 
-\Amelia{G showed equivalence of $K_n$ and $\Omega K_{n+1}$ at this point. I don't think that's necessary given Finster and Licata.}
+\begin{proposition}
+	This definition of $\KZtwo{n}$ does indeed define an Eilenberg-Maclane Space. 
+\end{proposition}
+
+\begin{proof}
+	\Amelia{This is Prop \ref{prop:rpnhtpygps} and the fact (that I don't have a HoTT reference for) that EM spaces are unique.}
+\end{proof}
+
+\Amelia{Finster and Licata constructed $K(G,1)$ in a particular way. My concern is that I am not sure how that impacts which of their results transfer over. I think that their results in section 4 and 5 mean that as long as the $K(G,1)$ has the right groups, using suspension and truncation works. In which case, it doesn't matter that we constructed $K(G,1)$ differently than they did, their results should all port over. I'd really like a second opinion on this. }
+
+\Amelia{G showed equivalence of $K_n$ and $\Omega K_{n+1}$. I don't think that's necessary given Finster and Licata.}
 
 Given this construction of the EM spaces, we define cohomology in the following way. 
 
@@ -388,10 +410,143 @@ Given this construction of the EM spaces, we define cohomology in the following 
 	For a type $\X$ and $n:N$, the \defn{$n$-th cohomology group of $\X$} is the type
 	\[H^n(\X;\ZZtwo):= \trunc{\X\rightarrow \KZtwo{n}}_0.\] 
 \end{definition}
-\Amelia{B also defines reduced cohomology as well, not i'm not sure we need that.}
+\Amelia{B also defines reduced cohomology as well, not i'm not sure we need that. G proved a reduced MV sequence, so we may need it if we also use MV}
+
 
 
 \subsection{Commutative Graded Ring Structure}
+
+
+
+ Our strategy for describing the graded ring structure is to show that $||K(R,n)\wedge K(R,m)||_{n+m} = K(R\otimes R, n+m).$, then  lift the ring multiplication of $R \otimes R \to R$ to a cup product on cohomology with $R$-coefficient.s
+
+
+\Amelia{ basically copy paste from ``Notes''. I'll keep working through this.}
+
+\begin{proposition}
+	$ \trunc{K(R,n) \wedge K(R,m)}_{n+m} = K(R \otimes R, n+m)$
+\end{proposition} 
+
+\begin{proof}
+	We use the fact that $K(R \otimes R, n+m)$ is the unique up to homotopy space
+	having the property that
+	\[
+	\pi_k (K(R \otimes R, n+m )) =
+	\begin{cases}
+	0, & k \neq n+m \\
+	R \otimes R, & k= n+m \\
+	\end{cases}
+	\]
+	Thus by showing that $ || K(R,n) \wedge K(R,m) ||_{n+m} $
+	has the property, we have the desired
+	equivalence. First, (see [Strom, Prop 19.60]) we have that
+	\[
+	\pi_{n+m} ( || K(R,n) \wedge K(R,m) ||_{n+m} )
+	= R \otimes R.
+	\]
+	Second, we have that
+	\[
+	\pi_k ( || K(R,n) \wedge K(R,m) ||_{n+m} )
+	= 0
+	\]
+	for $ k > n+m $ because $ || K(R,n) \wedge K(R,m) ||_{n+m} $
+	is an $ ( n+m ) $-type. Third, we have that 
+	\[
+	\pi_k (|| K(R,n) \wedge K(R,m) ||_{n+m} ) = 0
+	\]
+	for $ k \leq n+m-1 $ because
+	$ || K(R,n) \wedge K(R,m) ||_{n+m} $ is
+	$ ( n+m-1 ) $-connected, which follows from $ K( R,k ) $ being
+	$ ( k-1 ) $-connected, as seen in Guillame's
+	thesis Prop 4.3.1. From these three facts, we conclude that
+	\[
+	\pi_k (|| K(R,n) \wedge K(R,m) ||_{n+m}) =
+	\begin{cases}
+	0, & k \neq n+m \\
+	R \otimes R, & k= n+m \\
+	\end{cases}
+	\]
+	and, in particular, we get that
+	\[
+	|| K(R,n) \wedge K(R,m) ||_{n+m} \simeq
+	K (R \otimes R, n+m ).
+	\]
+	Evoking the univalence axiom, we get that
+	\[
+	|| K(R,n) \wedge K(R,m) ||_{n+m} =
+	K (R \otimes R, n+m ).
+	\]
+\end{proof}
+
+Now, we construct the ring structure on cohomology. The
+strategy is to define structures and property on EM-spaces
+then lift those up to cohomology. We defined our EM-spaces above.
+
+
+To simplify the notation, we write $ K_n $ for
+$ K( \ZZtwo,n) $ when feeling lazy.  Addition and subtraction
+operations of type $ K_n \times K_n \to K_n $ follow
+directly from Guillaume's thesis Proposition 5.1.4. Let's do
+multiplication. From the multiplication
+$ \ZZtwo \otimes \ZZtwo \to \ZZtwo $, we get a multiplication
+$ K(\ZZtwo \otimes \ZZtwo, n)\to K(\ZZtwo, n) $ by applying the
+functor
+\[
+K(-,n) \from \mathbf{Ring} \to \mathbf{Ho}(\mathbf{Top_\ast})
+\]
+But
+\[
+|| K(R,n) \wedge K(R,m) ||_{n+m} =
+K (R \otimes R, n+m ).
+\]
+for any ring $ R $ as we showed above, and so we can treat our multiplication as
+\[
+\widehat{\mu} \from
+|| K(\ZZtwo,n) \wedge K(\ZZtwo,m) ||_{n+m} \to K(\ZZtwo, n+m).
+\]
+However, we \emph{really} want the domain of multiplication
+to be $ K ( \ZZtwo , n) \times K( \ZZtwo, m) $. To get this, we
+precompose $ \widehat{\mu} $ by several canonical arrows
+resulting in the composite
+\[
+K (\ZZtwo , n) \times K(\ZZtwo, m)
+\xrightarrow{\mathtt{proj}}
+K (\ZZtwo , n) \wedge K(\ZZtwo, m)
+\xrightarrow{|-|_{n+m}}
+|| K (\ZZtwo , n) \wedge K(\ZZtwo, m) ||_{n+m}
+\xrightarrow{\widehat{\mu}}
+K(\ZZtwo, n+m)
+\]
+that we call \emph{multiplication} $ \mu $.  This induces
+the cup product
+\[
+\smile \from H^n(X) \times H^m(X) \to H^{n+m}(X)
+\]
+on cohomology. Recall that we define the $ n $-th cohomology
+with $ \ZZtwo $-coefficients to be
+$ H^n (X) \coloneqq || X \to_\ast K_n ||_0 $. This is the
+standard definition in homotopy type theory, we do not use
+singular cochains, because taking the set up cochains is not
+a continuous process. Define
+$ \smile ( |\alpha|, |\beta|) ) $, for
+$ \alpha \from X \to_\ast K_n $ and
+$ \beta ]from X \to K_m $, to be the truncation of the
+pairing $ \langle \alpha, \beta \rangle $ followed by $ \mu $:
+\[
+\smile ( |\alpha|, |\beta|) ) :
+|| X \to K_n \times K_m \to K_{n+m} ||_0.
+\]
+Thus $ \smile ( |\alpha|, |\beta|) ) $ type-checks. It
+remains to show the usual ring properties hold for $ H^n(X)
+$.  Distributivity follows directly from Guillaume's
+argument in Proposition 5.1.7 which uses only connectivity
+hence carries through to our context without issue.  To show
+'graded comutativity', it suffices to show standard
+comutativity because of the $ \ZZtwo $-coefficients.  
+
+
+
+
 
 \subsection{Computing the Cohomology Ring of $\RRP^n$}
 
