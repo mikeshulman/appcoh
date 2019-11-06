@@ -330,16 +330,15 @@ $\set{RP}^1$ is defined as the following push out, where $a_1(-1,x) = \frac{x}{4
 \end{tikzcd}
 \]
 %%% show that shape of RP1 is S1.. start reading pg 63 of brouwer fixed pt paper%%
-Let$\U_{\set{R}}$ be the universe of types homeomorphic (\Chandrika{as opposed to homotopy equivalent}) to $\set{R}$. The tautological bundle $\text{taut}^1: \set{RP}^1 \rightarrow \U_{\set{R}}$ is defined by the constructors $\set{I} \mapsto \set{R}$ and $(\{0\} \times \set{I}) \mapsto \set{R}$, and the generator of $\pi_1(\set{RP}^1) \mapsto -Id$
+Let$\U_{\set{R}}$ be the universe of types homeomorphic to $\set{R}$. The tautological bundle $\text{taut}^1: \set{RP}^1 \rightarrow \U_{\set{R}}$ is defined by the constructors $\set{I}$ maps to the path between $\set{R}$ and itself given by $\lambda x. x$, and $(\{0\} \times \set{I})$ maps to the path given by the automorphism $\lambda x . -x$.
 
 From here, we proceed inductively. $\set{RP}^n$ is defined as the following pushout.\\
 \[\begin{tikzcd}
 \set{S}^{n-1} \times \set{I} \arrow[r, hook, "a_n"] \arrow[d, hook, "b_n" ] &\set{D}^{n} \arrow[d]\\
-\set{T}^{n-1} \arrow[r] &\set{RP}^n\\
+\text{taut}^{n-1} \arrow[r] &\set{RP}^n\\
 \end{tikzcd}
-\] where $a_n$ and $b_n$ are both inclusions of $\set{S}^{n-1} \times \set{I} $ as thickened boundary of $\set{T}^{n-1}$ and $\set{D}^{n}$.
+\] where $a_n$ and $b_n$ are both inclusions of $\set{S}^{n-1} \times \set{I} $ as thickened boundary of $\text{taut}^{n-1}$ and $\set{D}^{n}$. The tautological bundle $\text{taut}^n: \set{RP}^n \rightarrow \U_{\set{R}}$ is defined by the constructors 
 
-The tautological bundle $\set{T}^n$ is defined by the base space $\set{RP}^n$ and the constructors $U_i \times \set{R} \mapsto \set{R}$ for every chart $U_i$ of $T^{n-1}$ and $\set{D}^n \mapsto R$ with transition map $-Id$ between $U_i \times \set{R}$ and $U_j \times \set{R}$ if and only if this was the transition map for the corresponding intersection component of  $U_i$ and $U_j$ in $T^{n-1}$. Otherwise, the transition map between any two other charts is $Id$.
 %%%
 
 \subsection{Showing $ \shape \set{RP}^n = \RP^n $}
