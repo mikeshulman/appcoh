@@ -362,8 +362,8 @@ OUTLINE:
   with $ \ZZtwo $-coefficients. Follow Brunerie's thesis.
 \item
   \textbf{Subsection 3.} Compute $ \ZZtwo $-cohomology ring
-  for $ \RRP^n $ using Mayer-Vietoris.  This needs us to
-  first compute cohomology for disks and spheres.  
+  for $ \RRP^n $ using Mayer-Vietoris.  To do this we 
+  first need to compute cohomology for disks and spheres.  
 \end{itemize}
 
 
@@ -401,6 +401,7 @@ We give a construction of $\RRP^n$ in Section \ref{sec:rpn}, which shows that $\
 \end{proof}
 
 \Amelia{Finster and Licata constructed $K(G,1)$ in a particular way. My concern is that I am not sure how that impacts which of their results transfer over. I think that their results in section 4 and 5 mean that as long as the $K(G,1)$ has the right groups, using suspension and truncation works. In which case, it doesn't matter that we constructed $K(G,1)$ differently than they did, their results should all port over. I'd really like a second opinion on this. }
+\Amelia{On October 17 2019 we talked about this question of what results port over. we said: According to Mike, in classic topology, EM spaces are unique up to unique isomorphism, however in HoTT they are equivalent up to homotopy but the homotopy may not be unique. Our though was that our K(G,1) should be homotopy equivalent to theirs, so by univalence they're equal as types. So, their results for their construction of K(G,1) should apply to ours.  }
 
 \Amelia{G showed equivalence of $K_n$ and $\Omega K_{n+1}$. I don't think that's necessary given Finster and Licata.}
 
@@ -410,7 +411,7 @@ Given this construction of the EM spaces, we define cohomology in the following 
 	For a type $\X$ and $n:N$, the \defn{$n$-th cohomology group of $\X$} is the type
 	\[H^n(\X;\ZZtwo):= \trunc{\X\rightarrow \KZtwo{n}}_0.\] 
 \end{definition}
-\Amelia{B also defines reduced cohomology as well, not i'm not sure we need that. G proved a reduced MV sequence, so we may need it if we also use MV}
+\Amelia{B also defines reduced cohomology as well. I'm not sure we need that. G proved a reduced MV sequence, so we may need it if we also use MV. Leaving it out for now.}
 
 
 
@@ -418,65 +419,68 @@ Given this construction of the EM spaces, we define cohomology in the following 
 
 
 
- Our strategy for describing the graded ring structure is to show that $||K(R,n)\wedge K(R,m)||_{n+m} = K(R\otimes R, n+m).$, then  lift the ring multiplication of $R \otimes R \to R$ to a cup product on cohomology with $R$-coefficient.s
+ Our strategy for describing the graded ring structure is to show that $||K(R,n)\wedge K(R,m)||_{n+m} = K(R\otimes R, n+m)$, then  lift the ring multiplication of $R \otimes R \to R$ to a cup product on cohomology with $R$-coefficients.
 
 
-\Amelia{ basically copy paste from ``Notes''. I'll keep working through this.}
+\Amelia{ basically copy pasted the following from ``Notes'', with some edits. I'll keep working through this.}
 
 \begin{proposition}
 	$ \trunc{K(R,n) \wedge K(R,m)}_{n+m} = K(R \otimes R, n+m)$
 \end{proposition} 
+\Amelia{is = the right symbol here? probably yes bc univalence?}
 
 \begin{proof}
-	We use the fact that $K(R \otimes R, n+m)$ is the unique up to homotopy space
+	Recall that $K(R \otimes R, n+m)$ is the unique up to homotopy space
 	having the property that
 	\[
-	\pi_k (K(R \otimes R, n+m )) =
+	\pi_k (K(R \otimes R, n+m )) \cong
 	\begin{cases}
 	0, & k \neq n+m \\
 	R \otimes R, & k= n+m \\
 	\end{cases}
-	\]
-	Thus by showing that $ || K(R,n) \wedge K(R,m) ||_{n+m} $
-	has the property, we have the desired
-	equivalence. First, (see [Strom, Prop 19.60]) we have that
+	.\]
+	\Amelia{I changed some equalities of groups to be isomorphisms. Hopefully that's correct}
+	
+	Thus, by showing that $ || K(R,n) \wedge K(R,m) ||_{n+m} $
+	satisfies this property, we have the desired
+	equivalence. 
+	
+	In order to establish the property for $k=n+m$, it is a known result (see \cite[Prop 19.60]{strom:mcht}) that
 	\[
 	\pi_{n+m} ( || K(R,n) \wedge K(R,m) ||_{n+m} )
-	= R \otimes R.
+	\cong R \otimes R.
 	\]
-	Second, we have that
-	\[
+	
+	In the case where $k>m+n$, 
+	 $ || K(R,n) \wedge K(R,m) ||_{n+m} $
+	is truncated to be an $ ( n+m ) $-type. So, \[
 	\pi_k ( || K(R,n) \wedge K(R,m) ||_{n+m} )
-	= 0
-	\]
-	for $ k > n+m $ because $ || K(R,n) \wedge K(R,m) ||_{n+m} $
-	is an $ ( n+m ) $-type. Third, we have that 
-	\[
-	\pi_k (|| K(R,n) \wedge K(R,m) ||_{n+m} ) = 0
-	\]
-	for $ k \leq n+m-1 $ because
+	\cong 0,
+	\] for $k>n+m$. 
+	
+	Finally, note that  
 	$ || K(R,n) \wedge K(R,m) ||_{n+m} $ is
 	$ ( n+m-1 ) $-connected, which follows from $ K( R,k ) $ being
-	$ ( k-1 ) $-connected, as seen in Guillame's
-	thesis Prop 4.3.1. From these three facts, we conclude that
+	$ ( k-1 ) $-connected, as seen in \cite[Prop 4.3.1]{brunerie:thesis}.
+	Thus,
 	\[
-	\pi_k (|| K(R,n) \wedge K(R,m) ||_{n+m}) =
-	\begin{cases}
-	0, & k \neq n+m \\
-	R \otimes R, & k= n+m \\
-	\end{cases}
+	\pi_k (|| K(R,n) \wedge K(R,m) ||_{n+m} ) \cong 0
 	\]
-	and, in particular, we get that
+	for $ k \leq n+m-1 $.
+	
+	Thus we have shown the desired property and arrive at the homotopy equivalence 
 	\[
 	|| K(R,n) \wedge K(R,m) ||_{n+m} \simeq
 	K (R \otimes R, n+m ).
 	\]
-	Evoking the univalence axiom, we get that
+	Invoking the univalence axiom, we conclude that
 	\[
 	|| K(R,n) \wedge K(R,m) ||_{n+m} =
 	K (R \otimes R, n+m ).
 	\]
 \end{proof}
+
+\Amelia{I've worked this far as of 12/4}
 
 Now, we construct the ring structure on cohomology. The
 strategy is to define structures and property on EM-spaces
