@@ -323,14 +323,26 @@ OUTLINE:
 \subsection{Defining $\set{RP}^n$}
 We define $\set{RP}^n$ using push outs, tautological bundles, spheres, and an inductive process, following the work of Rijike [].
 
-$\set{RP}^1$ is defined as the following push out, where $a_1(-1,x) = \frac{x}{4}$ and $a_1(1,x)= \frac{x}{4} + \frac{3}{4}$, and $b_1 (\pm 1, x) := (0, a(\pm1, x))$.\\
+The base case for our induction is $\set{RP}^1$.
+
+\begin{definition}
+We define $\set{RP}^1$ as the push out seen in the diagram below, where $\set{I}$ is the open unit interval, and the maps are defined by $a_1(-1,x) = \frac{x}{4}$ and $a_1(1,x)= \frac{x}{4} + \frac{3}{4}$, and $b_1 (\pm 1, x) := (0, a(\pm1, x))$.\\
 \[\begin{tikzcd}
 \set{S}^0 \times \set{I} \arrow[r, hook, "a_1"] \arrow[d, hook, "b_1" ] & \set{I} \arrow[d]\\
 \{0 \} \times \set{I} \arrow[r] & \set{RP}^1
 \end{tikzcd}
 \]
-%%% show that shape of RP1 is S1.. start reading pg 63 of brouwer fixed pt paper%%
-Let$\U_{\set{R}}$ be the universe of types homeomorphic to $\set{R}$. The tautological bundle $\text{taut}^1: \set{RP}^1 \rightarrow \U_{\set{R}}$ is defined by the constructors $\set{I}$ maps to the path between $\set{R}$ and itself given by $\lambda x. x$, and $(\{0\} \times \set{I})$ maps to the path given by the automorphism $\lambda x . -x$. \Chandrika{need to make them agree on the intersection. Communication in progress with Michael Shulman}
+\end{definition}
+
+It is intuitively helpful to think of $a_1$ as an inclusion of a tubular neighbourhood of the boundary of $[0,1] \subseteq \set{R}$, with the boundary points deleted (so that it is indeed a subset of the open interval $\set{I}$). We informally call this a \emph{thickened boundary}. In fact, $b_1$ is also an inclusion of a thickened boundary. The image of $b_1$ is the deleted tubular neighbourhood of the boundary of $\{0\} \times [0,1] \subseteq \{0\} \times \set{R}$.
+%%% show that shape of \set{RP1} is S1.. start reading pg 63 of brouwer fixed pt paper.%%
+
+We also need the following $\set{R}$-bundle as part of our base case. 
+\begin{definition}
+Let $\U_{\set{R}}$ be the universe of types homeomorphic to $\set{R}$. The \emph{tautological bundle} $\text{taut}^1: \set{RP}^1 \rightarrow \U_{\set{R}}$ is defined by the constructors $\set{I} \mapsto \set{R}$, $\{0 \} \times \set{I} \mapsto \set{R}$, and the equivalence $\lambda x. x$ for every point in $\{0\} \times \set{I}$, and the equivalence $\lambda x. -x$ for every point in $\{1\} \times \set{I}$.
+\end{definition}
+
+We note that $\set{R}$ is homeomorphic to $\set{I}$, which is a subset of $[0,1]$. Therefore while $\text{taut}^1$ is an $\set{R}$-bundle, we may consider a deleted tubular neighbourhood of the boundary of the corresponding $[0,1]$-bundle to be a subset of $\text{taut}^1$. \Chandrika{Is this correct language? (Where $\text{taut}^1$ is used as the map defining a bundle and also as the bundle itself?) Better check with how Egbert writes it.}
 
 From here, we proceed inductively. $\set{RP}^n$ is defined as the following pushout.\\
 \[\begin{tikzcd}
