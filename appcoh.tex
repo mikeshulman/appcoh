@@ -334,22 +334,34 @@ We define $\set{RP}^1$ as the push out seen in the diagram below, where $\set{I}
 \]
 \end{definition}
 
-It is intuitively helpful to think of $a_1$ as an inclusion of a tubular neighbourhood of the boundary of $[0,1] \subseteq \set{R}$, with the boundary points deleted (so that it is indeed a subset of the open interval $\set{I}$). We informally call this a \emph{thickened boundary}. In fact, $b_1$ is also an inclusion of a thickened boundary. The image of $b_1$ is the deleted tubular neighbourhood of the boundary of $\{0\} \times [0,1] \subseteq \{0\} \times \set{R}$.
+It is helpful to think of $a_1$ as an inclusion of a tubular neighbourhood of the boundary of $[0,1] \subseteq \set{R}$, with the boundary points deleted (so that it is indeed a subset of the open interval $\set{I}$). We call this a \emph{thickened boundary}. In fact, $b_1$ is also an inclusion of a thickened boundary. The image of $b_1$ is the deleted tubular neighbourhood of the boundary of $\{0\} \times [0,1] \subseteq \{0\} \times \set{R}$.
+
+\begin{definition}
+Let $A, B$ be two cohesive types, with $A$ an open subset of $B$. Let $\bar{A}$ be the closure of $A$ in $B$. Suppose $\bar{A}$ has a non-empty boundary, $\partial \bar{A}$. Let $N'$ be a tubular neighbourhood of $\partial\bar{A}$. Let $N := N' \setminus A^C$, where $A^C$ is the complement of $A$. Even though $A$ has no boundary, we call $N$ a \emph{thickened boundary of $A$, relative to $B$}.
+\end{definition}
 %%% show that shape of \set{RP1} is S1.. start reading pg 63 of brouwer fixed pt paper.%%
 
 We also need the following $\set{R}$-bundle as part of our base case. 
-\begin{definition}
+\begin{definition}(M\"{o}bius strip)
 Let $\U_{\set{R}}$ be the universe of types homeomorphic to $\set{R}$. The \emph{tautological bundle} $\text{taut}^1: \set{RP}^1 \rightarrow \U_{\set{R}}$ is defined by the constructors $\set{I} \mapsto \set{R}$, $\{0 \} \times \set{I} \mapsto \set{R}$, and the equivalence $\lambda x. x$ for every point in $\{0\} \times \set{I}$, and the equivalence $\lambda x. -x$ for every point in $\{1\} \times \set{I}$.
 \end{definition}
 
-We note that $\set{R}$ is homeomorphic to $\set{I}$, which is a subset of $[0,1]$. Therefore while $\text{taut}^1$ is an $\set{R}$-bundle, we may consider a deleted tubular neighbourhood of the boundary of the corresponding $[0,1]$-bundle to be a subset of $\text{taut}^1$. \Chandrika{Is this correct language? (Where $\text{taut}^1$ is used as the map defining a bundle and also as the bundle itself?) Better check with how Egbert writes it.}
+We note that the homeomorphism $\tau: \set{R} \rightarrow \set{I}$, $\tau x. \text{arctan}(x)+ \frac{1}{2}$, can be used to define a thickened boundary of $\text{taut}^1$. We define $\tau(\text{taut}^1)$ as a $\set{I}$-bundle given by the composition $\tau \circ \text{taut}^1$.  Note that there is a natural inclusion $\tau(\text{taut}^1) \hookrightarrow \text{taut}^1$ induced by the inclusion of $\set{I}$ into $\set{R}$. Any thickened boundary of $\tau(\text{taut}^1)$ relative to $\text{taut}^1$ has a pre-image by $\tau$. With a slight abuse of notation, we call this a thickened boundary of $\text{taut}^1$. \Chandrika{Is this correct language? (Where $\text{taut}^1$ is used as the map defining a bundle and also as the bundle itself?) Better check with how Egbert writes it.}
 
-From here, we proceed inductively. $\set{RP}^n$ is defined as the following pushout.\\
+From here, we proceed inductively with the definitions below. The definition of $\set{RP}^n$ depends on the definition of $\text{taut}^{n-1}$, which depends on $\set{RP}^{n-1}$, which depends on $\text{taut}^{n-2}$, and so on.
+
+\begin{definition} $\set{RP}^n$ is defined (up to homeomorphism) as the following pushout.\\
 \[\begin{tikzcd}
 \set{S}^{n-1} \times \set{I} \arrow[r, hook, "a_n"] \arrow[d, hook, "b_n" ] &\set{D}^{n} \arrow[d]\\
 \text{taut}^{n-1} \arrow[r] &\set{RP}^n\\
 \end{tikzcd}
-\] where $a_n$ and $b_n$ are both inclusions of $\set{S}^{n-1} \times \set{I} $ as thickened boundary of $\text{taut}^{n-1}$ and $\set{D}^{n}$. The tautological bundle $\text{taut}^n: \set{RP}^n \rightarrow \U_{\set{R}}$ is defined by the constructors $\set{D}^n \mapsto \set{R}$ and $f: \text{taut}^{n-1} \rightarrow U_{R}$ where $f$ is projection to the base space, followed by the map defining the bundle structure on $\text{taut}^{n-1}$.
+\] where $a_n$ and $b_n$ are both inclusions of $\set{S}^{n-1} \times \set{I} $ as thickened boundaries of $\text{taut}^{n-1}$ and $\set{D}^{n}$ (relative to $\set{R}^n$). The choice of thickened boundary does not change the homeomorphism type of $\set{RP}^n$.
+\end{definition}
+\Chandrika{Are others worried about only defining it up to homeomorphism? My thinking was that in type theory, things are only really ever defined up to equivalence, because of univalence.}
+
+\begin{definition}
+The tautological bundle $\text{taut}^n: \set{RP}^n \rightarrow \U_{\set{R}}$ is defined by the constructors $\set{D}^n \mapsto \set{R}$ and $\text{taut}^{n-1} \mapsto \set{R}$, and the automorphism of $\set{R}$, $\lambda x.x$ for every point of $\set{S}^{n-1} \times \set{I}$.
+\end{definition}
 
 %%%
 
