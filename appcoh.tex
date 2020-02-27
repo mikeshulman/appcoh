@@ -458,7 +458,7 @@ Given this construction of the EM spaces, we define cohomology in the following 
 
 \Amelia{ basically copy pasted the following from ``Notes'', with some edits. I'll keep working through this.}
 
-\begin{proposition}
+\begin{proposition}\label{prop:K_smash}
 	$ \trunc{K(R,n) \wedge K(R,m)}_{n+m} = K(R \otimes R, n+m)$
 \end{proposition} 
 \Amelia{is = the right symbol here? probably yes bc univalence?}
@@ -524,65 +524,80 @@ and then lift those to cohomology.
 
 The addition and subtraction
 operations of type $ K(\ZZtwo,n) \times K(\ZZtwo,n) \to K(\ZZtwo,n) $ follow
-directly from \cite{brunerie:thesis}. We restate them below.
+directly from \cite{brunerie:thesis}, and satisfy the properties to make $K(\ZZtwo,n)$ and abelian group. We restate the operation below.
 
-\Amelia{I've worked this far as of 12/10}
 
 \begin{proposition}\cite[Prop. 5.1.4]{brunerie:thesis}
-	The maps $ +: K(\ZZtwo,n) \times K(\ZZtwo,n) \to K(\ZZtwo,n) $ and $-: K(\ZZtwo,n) \times K(\ZZtwo,n) \to K(\ZZtwo,n) $ are given by the following equalities for all $x$, $y$, $z:K(\ZZtwo,n)$:
-	\begin{align*}
-	% 6 eqns...
-	\end{align*}
+	The maps $ +: K(\ZZtwo,n) \times K(\ZZtwo,n) \to K(\ZZtwo,n) $ and $-: K(\ZZtwo,n) \times K(\ZZtwo,n) \to K(\ZZtwo,n) $ are given by the following equalities for all $x$, $y$, $z:K(\ZZtwo,n)$ :
+	
+	\[x+0=x,\]
+	\[0+x=x,\]
+	\[x+(-x)=0,\]
+	\[(-x)+x=0,\]
+	\[(x+y)+z=x+(x+z),\]
+	and
+	\[x+y=y+x.\]
 	
 	\end{proposition}
 
 
 
-Let's do
-multiplication. From the multiplication
-$ \ZZtwo \otimes \ZZtwo \to \ZZtwo $, we get a multiplication
+We now define the ring operation multiplication. From the multiplication
+$ \ZZtwo \otimes \ZZtwo \to \ZZtwo $, we induce a multiplication
 $ K(\ZZtwo \otimes \ZZtwo, n)\to K(\ZZtwo, n) $ by applying the
 functor
 \[
-K(-,n) \from \mathbf{Ring} \to \mathbf{Ho}(\mathbf{Top_\ast})
+K(-,n) \from \mathbf{Ring} \to \mathbf{Ho}(\mathbf{Top_\ast}).
 \]
-But
+\Amelia{Do we know that $K(-,n)$ is a functor? I think so, but I'm not sure we ever proved it and I don't think it's explicitly stated in Finster-Licata.}
+
+As we showed in Proposition \ref{prop:K_smash}, 
 \[
 || K(R,n) \wedge K(R,m) ||_{n+m} =
 K (R \otimes R, n+m ).
 \]
-for any ring $ R $ as we showed above, and so we can treat our multiplication as
+for any ring $ R $ , and so we can treat our multiplication as
 \[
 \widehat{\mu} \from
 || K(\ZZtwo,n) \wedge K(\ZZtwo,m) ||_{n+m} \to K(\ZZtwo, n+m).
 \]
-However, we \emph{really} want the domain of multiplication
-to be $ K ( \ZZtwo , n) \times K( \ZZtwo, m) $. To get this, we
+
+
+However, we want the domain of multiplication
+to be $ K ( \ZZtwo , n) \times K( \ZZtwo, m) $, without the truncation. To get this, we
 precompose $ \widehat{\mu} $ by several canonical arrows
 resulting in the composite
 \[
 K (\ZZtwo , n) \times K(\ZZtwo, m)
 \xrightarrow{\mathtt{proj}}
 K (\ZZtwo , n) \wedge K(\ZZtwo, m)
-\xrightarrow{|-|_{n+m}}
-|| K (\ZZtwo , n) \wedge K(\ZZtwo, m) ||_{n+m}
+\xrightarrow{|-|_{n+m}}\cdots\]
+\[\rightarrow|| K (\ZZtwo , n) \wedge K(\ZZtwo, m) ||_{n+m}
 \xrightarrow{\widehat{\mu}}
 K(\ZZtwo, n+m)
 \]
-that we call \emph{multiplication} $ \mu $.  This induces
+that we call \emph{multiplication} $ \mu $.  We will use this multiplication to induce
 the cup product
 \[
 \smile \from H^n(X) \times H^m(X) \to H^{n+m}(X)
 \]
-on cohomology. Recall that we define the $ n $-th cohomology
+on cohomology. 
+
+
+
+Recall that we define the $ n $-th cohomology
 with $ \ZZtwo $-coefficients to be
-$ H^n (X) \coloneqq || X \to_\ast K_n ||_0 $. This is the
-standard definition in homotopy type theory, we do not use
-singular cochains, because taking the set up cochains is not
-a continuous process. Define
+$H^n(\X;\ZZtwo)= \trunc{\X\rightarrow \KZtwo{n}}_0$. This is the
+standard definition in homotopy type theory, rather than
+singular cochains, because using singular cochains is not
+a continuous process. 
+
+\Amelia{I've worked this far as of 2/27/20}
+
+Define
 $ \smile ( |\alpha|, |\beta|) ) $, for
 $ \alpha \from X \to_\ast K_n $ and
-$ \beta ]from X \to K_m $, to be the truncation of the
+$ \beta \from X \to K_m $, to be the truncation of the
 pairing $ \langle \alpha, \beta \rangle $ followed by $ \mu $:
 \[
 \smile ( |\alpha|, |\beta|) ) :
@@ -593,7 +608,7 @@ remains to show the usual ring properties hold for $ H^n(X)
 $.  Distributivity follows directly from Guillaume's
 argument in Proposition 5.1.7 which uses only connectivity
 hence carries through to our context without issue.  To show
-'graded comutativity', it suffices to show standard
+`graded comutativity', it suffices to show standard
 comutativity because of the $ \ZZtwo $-coefficients.  
 
 
