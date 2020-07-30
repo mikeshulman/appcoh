@@ -297,6 +297,27 @@ OUTLINE:
 
 \subsection{The classical Borsuk-Ulam Theorem}
 
+Outside homotopy type theory, the Borsuk-Ulam Theorem states that 
+
+\begin{statement}
+if $f: \SS \rightarrow \RR^n$ is a continuous function then there exists a point $x \in \SS$ such that $f(x) = f(-x)$, where $-x$ is the antipodal point of $x$. 
+\end{statement}
+
+Instead of proving this statement directly in homotopy type theory, we make use of two equivalent statement involving odd functions.
+
+\begin{statement}
+Any odd continuous function $g: \SS \rightarrow \RR^n$ must have a zero.
+\end{statement}
+
+To see that this implies the original statement, note that given a continuous $f$, one can construct a continuous function $g(x) = f(x) - f(-x)$ that is, by definition, odd. To see the opposite implication, we apply the original statement to the odd function $g$ to find an $x \in \SS$ such that $g(x)=g(-x)$. Then since $g$ is odd, $g(-x) = -g(x)$, which implies that $g(x)=0$.
+
+A third classically equivalent statement is that
+\begin{statement}
+there is no continuous odd function $h:\SS^n \rightarrow \SS^{n-1}$.
+\end{statement}
+
+In order to avoid issues involving the law of excluded middle, we will not prove this equivalence in homotopy type theory.
+
 \subsection{ Translating the classical Borsuk-Ulam Theorem into HoTT}
 
 
