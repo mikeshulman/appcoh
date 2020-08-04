@@ -320,12 +320,17 @@ In order to avoid issues involving the law of excluded middle, we will not prove
 
 We now state a classical/standard proof of Statement \ref{BURetract}, which inspired the type theoretic proof we give in this paper. 
 
-\Amelia{I wasn't sure whether to put this in a proof environment or not since it is not a HoTT proof}
+\Amelia{I wasn't sure whether to put this in a proof environment or not since it is not a HoTT proof. We can decide this later.}
 
-\Amelia{the proof doesn't cover n=1 or n=2 cases. I think that's fine since it's just showing the intuition for our approach anyways.}
+\Amelia{the proof doesn't cover n=1, but I think our intention here is just to give intuition for the proof strategy later, so thats ok. If we think it would be helpful to the reader later once we , we can add the n=1 case later.}
 
 
- Let $h:\SS^n \rightarrow \SS^{n-1}$ be a continuous odd function with integer $n>2$. Since $h$ is odd, we can identify antipodal points and arrive at the induced continuous function $h':\RRP^n\rightarrow\RRP^{n-1}$. \Amelia{next I should say $h'$ induces an isomorphism of the fundamental groups, but I don't remember why that is.} Using the Hurewicz homomorphism, (\Amelia{and universal coeffcient theorem?}) we get an induced graded ring homomorphism on cohomology with $\ZZtwo$ coefficients, $h^*:H^*(\RRP^n;\ZZtwo)\leftarrow H^*(\RRP^{n-1};\ZZtwo)$, where $H^*(\RRP^n;\ZZtwo)\cong \ZZtwo[a]/a^{n+1}$ and $H^*(\RRP^{n-1};\ZZtwo)\cong \ZZtwo[b]/b^n$ (\Amelia{Why was this again? also should we change these letters?}).  Since $h':\RRP^n\rightarrow\RRP^{n-1}$ induces an isomorphism on the fundamental groups, and the Hurewicz homomorphism is an isomorphism at the $i=1$ level, the induced homomorphism $h^*$ must send $b$ to $a$. This implies that $b^n$ is sent to $a^n$, which is a contradiction since $b^n=0$ and $a^n\neq 0$.  Thus, no such map continuous odd map $h:\SS^n \rightarrow \SS^{n-1}$ can exist.  
+ Let $h:\SS^n \rightarrow \SS^{n-1}$ be a continuous odd function with integer $n>2$ (\Amelia{does this work for n=2?}). Since $h$ is odd, we can identify antipodal points and arrive at the induced continuous function $h':\RRP^n\rightarrow\RRP^{n-1}$. Note that the fundamental groups of $\RRP^n$ and $\RRP^{n-1}$ are both $\ZZtwo$. Thus, as long as $h'$ induces a nontrivial homomorphism of the fundamental groups, it will also be an isomorphism. Since the fundamental group of $\RRP^n$ is $\ZZtwo$, it has a nontrivial element. Therefore there must exist a representative loop $\gamma$ in $\RRP^n$ that is essential. The loop $\gamma$ can then be lifted to $\SS^n$, resulting in a path $p$ between antipodal points in $\SS^n$ (since $\SS^n$ is the universal cover of $\RRP^n$). Applying the odd map $h$ to this path $p$, we get a path $h(p)$ between two antipodal points in $\SS^{n-1}$, which then projects to a loop $h'(\gamma)$ in $\RRP^{n-1}$ . If $h'(\gamma)$ was null homotopic, the null homotopy would lift to $\SS^{n-1}$, contradicting that $h(p)$ is a path between antipodal points in $\SS^{n-1}$. 
+ 
+ 
+ 
+  Using the Hurewicz homomorphism, (\Amelia{and universal coefficient theorem?}) we get an induced graded ring homomorphism on cohomology with $\ZZtwo$ coefficients, $h^*:H^*(\RRP^n;\ZZtwo)\leftarrow H^*(\RRP^{n-1};\ZZtwo)$, where $H^*(\RRP^n;\ZZtwo)\cong \ZZtwo[a]/a^{n+1}$ and $H^*(\RRP^{n-1};\ZZtwo)\cong \ZZtwo[b]/b^n$ (\Amelia{Why was this again? also should we change these letters?}).  Since $h':\RRP^n\rightarrow\RRP^{n-1}$ induces an isomorphism on the fundamental groups, and the Hurewicz homomorphism is an isomorphism at the $i=1$ level, the induced homomorphism $h^*$ must send $b$ to $a$. This implies that $b^n$ is sent to $a^n$, which is a contradiction since $b^n=0$ and $a^n\neq 0$.  Thus, no such map continuous odd map $h:\SS^n \rightarrow \SS^{n-1}$ can exist.  
+ 
 
 
 
