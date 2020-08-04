@@ -299,24 +299,35 @@ OUTLINE:
 
 Outside homotopy type theory, the Borsuk-Ulam Theorem states that 
 
-\begin{statement}
-if $f: \SS \rightarrow \RR^n$ is a continuous function then there exists a point $x \in \SS$ such that $f(x) = f(-x)$, where $-x$ is the antipodal point of $x$. 
+\begin{statement}\label{BUClassic}
+If $f: \SS \rightarrow \RR^n$ is a continuous function, then there exists a point $x \in \SS$ such that $f(x) = f(-x)$, where $-x$ is the antipodal point of $x$. 
 \end{statement}
 
-Instead of proving this statement directly in homotopy type theory, we make use of two equivalent statement involving odd functions.
+Instead of proving this statement directly in homotopy type theory, we make use of two equivalent statements involving odd functions.
 
-\begin{statement}
+\begin{statement}\label{BUOdd}
 Any odd continuous function $g: \SS \rightarrow \RR^n$ must have a zero.
 \end{statement}
 
-To see that this implies the original statement, note that given a continuous $f$, one can construct a continuous function $g(x) = f(x) - f(-x)$ that is, by definition, odd. To see the opposite implication, we apply the original statement to the odd function $g$ to find an $x \in \SS$ such that $g(x)=g(-x)$. Then since $g$ is odd, $g(-x) = -g(x)$, which implies that $g(x)=0$.
+To see that Statement \ref{BUOdd} implies the original statement, note that given a continuous function $f$, one can construct a continuous function $g(x) = f(x) - f(-x)$ that is, by definition, odd. To see the opposite implication, we apply the original statement to the continuous odd function $g$ to find an $x \in \SS$ such that $g(x)=g(-x)$. Then, since $g$ is odd, $g(-x) = -g(x)$, which implies that $g(x)=0$.
 
-A third classically equivalent statement is that
-\begin{statement}
-there is no continuous odd function $h:\SS^n \rightarrow \SS^{n-1}$.
+There is a third classically equivalent statement.
+\begin{statement}\label{BURetract}
+There is no continuous odd function $h:\SS^n \rightarrow \SS^{n-1}$.
 \end{statement}
 
-In order to avoid issues involving the law of excluded middle, we will not prove this equivalence in homotopy type theory.
+In order to avoid issues involving the law of excluded middle, we will not prove this equivalence in homotopy type theory. Instead, our strategy for proving the Borsuk-Ulam Theorem will be to prove that Statement \ref{BURetract} is true and that it implies Statement \ref{BUOdd}, which is equivalent to Statement \ref{BUClassic}. 
+
+We now state a classical/standard proof of Statement \ref{BURetract}, which inspired the type theoretic proof we give in this paper. 
+
+\Amelia{I wasn't sure whether to put this in a proof environment or not since it is not a HoTT proof}
+
+\Amelia{the proof doesn't cover n=1 or n=2 cases. I think that's fine since it's just showing the intuition for our approach anyways.}
+
+
+ Let $h:\SS^n \rightarrow \SS^{n-1}$ be a continuous odd function with integer $n>2$. Since $h$ is odd, we can identify antipodal points and arrive at the induced continuous function $h':\RRP^n\rightarrow\RRP^{n-1}$. \Amelia{next I should say $h'$ induces an isomorphism of the fundamental groups, but I don't remember why that is.} Using the Hurewicz homomorphism, (\Amelia{and universal coeffcient theorem?}) we get an induced graded ring homomorphism on cohomology with $\ZZtwo$ coefficients, $h^*:H^*(\RRP^n;\ZZtwo)\leftarrow H^*(\RRP^{n-1};\ZZtwo)$, where $H^*(\RRP^n;\ZZtwo)\cong \ZZtwo[a]/a^{n+1}$ and $H^*(\RRP^{n-1};\ZZtwo)\cong \ZZtwo[b]/b^n$ (\Amelia{Why was this again? also should we change these letters?}).  Since $h':\RRP^n\rightarrow\RRP^{n-1}$ induces an isomorphism on the fundamental groups, and the Hurewicz homomorphism is an isomorphism at the $i=1$ level, the induced homomorphism $h^*$ must send $b$ to $a$. This implies that $b^n$ is sent to $a^n$, which is a contradiction since $b^n=0$ and $a^n\neq 0$.  Thus, no such map continuous odd map $h:\SS^n \rightarrow \SS^{n-1}$ can exist.  
+
+
 
 \subsection{ Translating the classical Borsuk-Ulam Theorem into HoTT}
 
@@ -394,6 +405,7 @@ The tautological bundle $\text{taut}^n: \set{RP}^n \rightarrow \U_{\set{R}}$ is 
 \end{definition}
 
 %%%
+
 
 \subsection{Showing $ \shape \set{RP}^n = \RP^n $}
 \subsection{The $\mathbb{Z}$-homology of $\set{RP}^n$.}
