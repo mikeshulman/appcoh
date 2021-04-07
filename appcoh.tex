@@ -369,7 +369,7 @@ Show that the homology of $\set{RP}^n$ is what we want it to be (see Prop 5.1, i
 
 \subsection{Disks, Spheres and their shapes}
 \subsection{Defining $\set{RP}^n$}
-We define $\set{RP}^n$ using push outs, tautological bundles, spheres, and an inductive process, following the work of Rijike [].
+We define $\set{RP}^n$ using push outs, tautological bundles, spheres, and an inductive process, similar to the work of Rijike [].
 
 The base case for our induction is $\set{RP}^1$.
 
@@ -394,7 +394,7 @@ We also need the following $\set{R}$-bundle as part of our base case.
 Let $\U_{\set{R}}$ be the universe of types homeomorphic to $\set{R}$. The \emph{tautological bundle} $\text{taut}^1: \set{RP}^1 \rightarrow \U_{\set{R}}$ is defined by the constructors $\set{I} \mapsto \set{R}$, $\{0 \} \times \set{I} \mapsto \set{R}$, and the equivalence $\lambda x. x$ for every point in $\{0\} \times \set{I}$, and the equivalence $\lambda x. -x$ for every point in $\{1\} \times \set{I}$.
 \end{definition}
 
-We note that the homeomorphism $\tau: \set{R} \rightarrow \set{I}$, $\tau x. \text{arctan}(x)+ \frac{1}{2}$, can be used to define a thickened boundary of $\text{taut}^1$. We define $\tau(\text{taut}^1)$ as a $\set{I}$-bundle given by the composition $\tau \circ \text{taut}^1$.  Note that there is a natural inclusion $\tau(\text{taut}^1) \hookrightarrow \text{taut}^1$ induced by the inclusion of $\set{I}$ into $\set{R}$. Any thickened boundary of $\tau(\text{taut}^1)$ relative to $\text{taut}^1$ has a pre-image by $\tau$. With a slight abuse of notation, we call this a thickened boundary of $\text{taut}^1$. \Chandrika{Is this correct language? (Where $\text{taut}^1$ is used as the map defining a bundle and also as the bundle itself?) Better check with how Egbert writes it.}
+We note that the homeomorphism $\tau: \set{R} \rightarrow \set{I}$, $\tau x. \text{arctan}(x)+ \frac{1}{2}$, can be used to define a thickened boundary of $\text{taut}^1$. We define $\tau(\text{taut}^1)$ as a $\set{I}$-bundle given by the composition $\tau \circ \text{taut}^1$.  Note that there is a natural inclusion $\tau(\text{taut}^1) \hookrightarrow \text{taut}^1$ induced by the inclusion of $\set{I}$ into $\set{R}$. Any thickened boundary of $\tau(\text{taut}^1)$ relative to $\text{taut}^1$ has a pre-image by $\tau$. With a slight abuse of notation, we call this a thickened boundary of $\text{taut}^1$. \Chandrika{Is this correct language? (Where $\text{taut}^1$ is used as the map defining a bundle and also as the bundle itself?)}
 
 From here, we proceed inductively with the definitions below. The definition of $\set{RP}^n$ depends on the definition of $\text{taut}^{n-1}$, which depends on $\set{RP}^{n-1}$, which depends on $\text{taut}^{n-2}$, and so on.
 
