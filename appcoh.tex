@@ -436,7 +436,7 @@ OUTLINE:
 \item 
   \textbf{Subsection 1.} 
   Define cohomology for $ \ZZtwo $ coefficients and the
-  EM-spaces for $ \RRP^n $
+  EM-spaces for $ \RRP^n $ \Amelia{Done except for some questions/references/anxiety and maybe a proof of prop 5.4}
 \item
   \textbf{Subsection 2.} Show that we get a commutative
   graded ring structure for cohomology of any type $ \X $
@@ -453,7 +453,7 @@ OUTLINE:
 
 We follow a similar construction for cohomology as found in \cite{brunerie:thesis}, modifying their construction with $\ZZ$ coefficients to have coefficients in $\ZZtwo$. In order to define cohomology, we must first define Eilenberg-MacLane spaces $\KZtwo{n}$. Eilenberg-MacLane spaces $K(G,n)$ were defined for arbitrary group $G$ by Finster and Licata in \cite{fl:em}.
 
-We give a construction of $\RRP^n$ in Section \ref{sec:rpn}, which shows that $\RRP^2$ will have the homotopy groups necessary to be the foundation of our Eilenberg-Maclane spaces. 
+We give a construction of $\RRP^n$ in Section \ref{sec:rpn}, which shows that $\RRP^2$ will have the homotopy groups necessary to be the foundation of our Eilenberg-MacLane spaces. 
 \begin{proposition}\label{prop:rpnhtpygps} %update this label when sec:rpn is done
 	\[ \pi_n(\RRP^2)=\left\{ \begin{array}{ll} 0 & \text{for }n=0\\
 	\ZZtwo & \text{for } n=1\\
@@ -474,11 +474,11 @@ We give a construction of $\RRP^n$ in Section \ref{sec:rpn}, which shows that $\
 \end{definition}
 
 \begin{proposition}
-	This definition of $\KZtwo{n}$ does indeed define an Eilenberg-Maclane Space. 
+	This definition of $\KZtwo{n}$ does indeed define an Eilenberg-MacLane Space. 
 \end{proposition}
 
-\begin{proof}
-	\Amelia{This is Prop \ref{prop:rpnhtpygps} and the fact (that I don't have a HoTT reference for) that EM spaces are unique.}
+\begin{proof} This follows from Prop \ref{prop:rpnhtpygps} and
+	\Amelia{the fact (that I don't have a HoTT reference for) that EM spaces are unique.}
 \end{proof}
 
 \Amelia{Finster and Licata constructed $K(G,1)$ in a particular way. My concern is that I am not sure how that impacts which of their results transfer over. I think that their results in section 4 and 5 mean that as long as the $K(G,1)$ has the right groups, using suspension and truncation works. In which case, it doesn't matter that we constructed $K(G,1)$ differently than they did, their results should all port over. I'd really like a second opinion on this. }
@@ -576,7 +576,7 @@ and then lift those to cohomology.
 
 The addition and subtraction
 operations of type $ K(\ZZtwo,n) \times K(\ZZtwo,n) \to K(\ZZtwo,n) $ follow
-directly from \cite{brunerie:thesis}, and satisfy the properties to make $K(\ZZtwo,n)$ and abelian group. We restate the operation below.
+directly from \cite{brunerie:thesis}, and satisfy the properties to make $K(\ZZtwo,n)$ an abelian group. We restate the operation below.
 
 
 \begin{proposition}\cite[Prop. 5.1.4]{brunerie:thesis}
