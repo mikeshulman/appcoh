@@ -391,24 +391,24 @@ Let $A, B$ be two cohesive types, with $A$ an open subset of $B$. Let $\bar{A}$ 
 
 We also need the following $\set{R}$-bundle as part of our base case. 
 \begin{definition}(M\"{o}bius strip)
-Let $\U_{\set{R}}$ be the universe of types homeomorphic to $\set{R}$. The \emph{tautological bundle} $\text{taut}^1: \set{RP}^1 \rightarrow \U_{\set{R}}$ is defined by the constructors $\set{I} \mapsto \set{R}$, $\{0 \} \times \set{I} \mapsto \set{R}$, and the equivalence $\lambda x. x$ for every point in $\{0\} \times \set{I}$, and the equivalence $\lambda x. -x$ for every point in $\{1\} \times \set{I}$.
+Let $\U_{\set{R}}$ be the universe of types homeomorphic to $\set{R}$. The \emph{tautological bundle} $\mathcal{M}^1: \set{RP}^1 \rightarrow \U_{\set{R}}$ is defined by the constructors $\set{I} \mapsto \set{R}$, $\{0 \} \times \set{I} \mapsto \set{R}$, and the equivalence $\lambda x. x$ for every point in $\{0\} \times \set{I}$, and the equivalence $\lambda x. -x$ for every point in $\{1\} \times \set{I}$.
 \end{definition}
 
-We note that the homeomorphism $\tau: \set{R} \rightarrow \set{I}$, $\tau x. \text{arctan}(x)+ \frac{1}{2}$, can be used to define a thickened boundary of $\text{taut}^1$. We define $\tau(\text{taut}^1)$ as a $\set{I}$-bundle given by the composition $\tau \circ \text{taut}^1$.  Note that there is a natural inclusion $\tau(\text{taut}^1) \hookrightarrow \text{taut}^1$ induced by the inclusion of $\set{I}$ into $\set{R}$. Any thickened boundary of $\tau(\text{taut}^1)$ relative to $\text{taut}^1$ has a pre-image by $\tau$. With a slight abuse of notation, we call this a thickened boundary of $\text{taut}^1$. \Chandrika{Is this correct language? (Where $\text{taut}^1$ is used as the map defining a bundle and also as the bundle itself?)}
+We note that the homeomorphism $\tau: \set{R} \rightarrow \set{I}$, $\tau x. \text{arctan}(x)+ \frac{1}{2}$, can be used to define a thickened boundary of $\mathcal{M}^1$. We define $\tau(\mathcal{M}^1)$ as a $\set{I}$-bundle given by the composition $\tau \circ \mathcal{M}^1$.  Note that there is a natural inclusion $\tau(\mathcal{M}^1) \hookrightarrow \mathcal{M}^1$ induced by the inclusion of $\set{I}$ into $\set{R}$. Any thickened boundary of $\tau(\mathcal{M}^1)$ relative to $\mathcal{M}^1$ has a pre-image by $\tau$. With a slight abuse of notation, we call this a thickened boundary of $\mathcal{M}^1$. \Chandrika{Is this correct language? (Where $\mathcal{M}^1$ is used as the map defining a bundle and also as the bundle itself?)}
 
-From here, we proceed inductively with the definitions below. The definition of $\set{RP}^n$ depends on the definition of $\text{taut}^{n-1}$, which depends on $\set{RP}^{n-1}$, which depends on $\text{taut}^{n-2}$, and so on.
+From here, we proceed inductively with the definitions below. The definition of $\set{RP}^n$ depends on the definition of $\mathcal{M}^{n-1}$, which depends on $\set{RP}^{n-1}$, which depends on $\mathcal{M}^{n-2}$, and so on.
 
 \begin{definition} $\set{RP}^n$ is defined (up to homeomorphism) as the following pushout.\\
 \[\begin{tikzcd}
 \set{S}^{n-1} \times \set{I} \arrow[r, hook, "a_n"] \arrow[d, hook, "b_n" ] &\set{D}^{n} \arrow[d]\\
-\text{taut}^{n-1} \arrow[r] &\set{RP}^n\\
+\mathcal{M}^{n-1} \arrow[r] &\set{RP}^n\\
 \end{tikzcd}
-\] where $a_n$ and $b_n$ are both inclusions of $\set{S}^{n-1} \times \set{I} $ as thickened boundaries of $\text{taut}^{n-1}$ and $\set{D}^{n}$ (relative to $\set{R}^n$). The choice of thickened boundary does not change the homeomorphism type of $\set{RP}^n$.
+\] where $a_n$ and $b_n$ are both inclusions of $\set{S}^{n-1} \times \set{I} $ as thickened boundaries of $\mathcal{M}^{n-1}$ and $\set{D}^{n}$ (relative to $\set{R}^n$). The choice of thickened boundary does not change the homeomorphism type of $\set{RP}^n$.
 \end{definition}
 \Chandrika{Are others worried about only defining it up to homeomorphism? My thinking was that in type theory, things are only really ever defined up to equivalence, because of univalence.}
 
 \begin{definition}
-The tautological bundle $\text{taut}^n: \set{RP}^n \rightarrow \U_{\set{R}}$ is defined by the constructors $\set{D}^n \mapsto \set{R}$ and $\text{taut}^{n-1} \mapsto \set{R}$, and the automorphism of $\set{R}$, $\lambda x.x$ for every point of $\set{S}^{n-1} \times \set{I}$.
+The tautological bundle $\mathcal{M}^n: \set{RP}^n \rightarrow \U_{\set{R}}$ is defined by the constructors $\set{D}^n \mapsto \set{R}$ and $\mathcal{M}^{n-1} \mapsto \set{R}$, and the automorphism of $\set{R}$, $\lambda x.x$ for every point of $\set{S}^{n-1} \times \set{I}$.
 \end{definition}
 
 %%%
@@ -418,11 +418,11 @@ The tautological bundle $\text{taut}^n: \set{RP}^n \rightarrow \U_{\set{R}}$ is 
 Our first observation is that shape is a left adjoint operator, and so it preserves colimits. Therefore we have the following commutative diagram.
 \[\begin{tikzcd}
 \shape(\set{S}^{n-1} \times \set{I}) \arrow[r] \arrow[d] &\shape (\set{D}^{n}) \arrow[d]\\
-\shape (\text{taut}^{n-1}) \arrow[r] &\shape (\set{RP}^n)\\
+\shape (\mathcal{M}^{n-1}) \arrow[r] &\shape (\set{RP}^n)\\
 \end{tikzcd}
 \] 
 
-Based on work of Shulman \cite{}, we have $\shape(\set{S}^{n-1} \times \set{I}) =S^{n-1}$ and $\shape (\set{D}^{n})$ is the unit type. Next, we find $\shape (\text{taut}^{n-1})$ so that we may understand $ \shape \set{RP}^n$.  We begin by showing that $\text{taut}^{n}$ is a push out for all $n$. Consider the following commutative diagram. 
+Based on work of Shulman \cite{}, we have $\shape(\set{S}^{n-1} \times \set{I}) =S^{n-1}$ and $\shape (\set{D}^{n})$ is the unit type. Next, we find $\shape (\mathcal{M}^{n-1})$ so that we may understand $ \shape \set{RP}^n$.  We begin by showing that $\mathcal{M}^{n}$ is a push out for all $n$. Consider the following commutative diagram. 
 
 
 \subsection{The $\mathbb{Z}$-homology of $\set{RP}^n$.}
