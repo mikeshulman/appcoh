@@ -295,42 +295,109 @@ OUTLINE:
   prove BU-retract.
 \end{itemize}
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{The classical Borsuk-Ulam Theorem}
 
 Outside homotopy type theory, the Borsuk-Ulam Theorem states that 
 
 \begin{statement}\label{BUClassic}
-If $f: \SS^n \rightarrow \RR^n$ is a continuous function, then there exists a point $x \in \SS^n$ such that $f(x) = f(-x)$, where $-x$ is the antipodal point of $x$. 
+  If $f: \SS^n \rightarrow \RR^n$ is a continuous function, then there
+  exists a point $x \in \SS^n$ such that $f(x) = f(-x)$, where $-x$ is
+  the antipodal point of $x$.
 \end{statement}
 
 Instead of proving this statement directly in homotopy type theory, we make use of two equivalent statements involving odd functions.
 
 \begin{statement}\label{BUOdd}
-Any odd continuous function $g: \SS^n \rightarrow \RR^n$ must have a zero.
+  Any odd continuous function $g: \SS^n \rightarrow \RR^n$ must have a
+  zero.
 \end{statement}
 
-To see that Statement \ref{BUOdd} implies the original statement, note that given a continuous function $f$, one can construct a continuous function $g(x) = f(x) - f(-x)$ that is, by definition, odd. To see the opposite implication, we apply the original statement to the continuous odd function $g$ to find an $x \in \SS^n$ such that $g(x)=g(-x)$. Then, since $g$ is odd, $g(-x) = -g(x)$, which implies that $g(x)=0$.
+To see that Statement \ref{BUOdd} implies the original statement, note
+that given a continuous function $f$, one can construct a continuous
+function $g(x) = f(x) - f(-x)$ that is, by definition, odd. To see the
+opposite implication, we apply the original statement to the
+continuous odd function $g$ to find an $x \in \SS^n$ such that
+$g(x)=g(-x)$. Then, since $g$ is odd, $g(-x) = -g(x)$, which implies
+that $g(x)=0$.
 
 There is a third classically equivalent statement.
+
 \begin{statement}\label{BURetract}
-There is no continuous odd function $h:\SS^n \rightarrow \SS^{n-1}$.
+  There is no continuous odd function $h:\SS^n \rightarrow \SS^{n-1}$.
 \end{statement}
 
-In order to avoid issues involving the law of excluded middle, we will not prove this equivalence in homotopy type theory. Instead, our strategy for proving the Borsuk-Ulam Theorem will be to prove that Statement \ref{BURetract} is true and that it implies Statement \ref{BUOdd}, which is equivalent to Statement \ref{BUClassic}. 
+In order to avoid issues involving the law of excluded middle, we will
+not prove this equivalence in homotopy type theory. Instead, our
+strategy for proving the Borsuk-Ulam Theorem will be to prove that
+Statement \ref{BURetract} is true and that it implies Statement
+\ref{BUOdd}, which is equivalent to Statement \ref{BUClassic}.
 
-We now state a classical/standard proof of Statement \ref{BURetract}, which inspired the type theoretic proof we give in this paper. 
+We now state a classical/standard proof of Statement \ref{BURetract},
+which inspired the type theoretic proof we give in this paper.
 
-\Amelia{I wasn't sure whether to put this in a proof environment or not since it is not a HoTT proof. We can decide this later.}
+\Amelia{I wasn't sure whether to put this in a proof environment or
+  not since it is not a HoTT proof. We can decide this later.}
 
-\Amelia{the proof doesn't cover n=1, but I think our intention here is just to give intuition for the proof strategy later, so thats ok. If we think it would be helpful to the reader later, we can add the n=1 case.}
+\Amelia{the proof doesn't cover n=1, but I think our intention here is
+  just to give intuition for the proof strategy later, so thats ok. If
+  we think it would be helpful to the reader later, we can add the n=1
+  case.}
 
- Let $h:\SS^n \rightarrow \SS^{n-1}$ be a continuous odd function with integer $n>2$ (\Amelia{does this work for n=2?}). Since $h$ is odd, we can identify antipodal points and arrive at the induced continuous function $h':\RRP^n\rightarrow\RRP^{n-1}$. Note that the fundamental groups of $\RRP^n$ and $\RRP^{n-1}$ are both $\ZZtwo$. 
- Thus, if the homomorphism of fundamental groups induced by $h'$ is nontrivial, it will also be an isomorphism.
- Since the fundamental group of $\RRP^n$ is $\ZZtwo$, it has a nontrivial element. Therefore there must exist a representative loop $\gamma$ in $\RRP^n$ that is essential. The loop $\gamma$ can then be lifted to $\SS^n$, resulting in a path $p$ between antipodal points in $\SS^n$ (since $\SS^n$ is the universal cover of $\RRP^n$). Applying the odd map $h$ to this path $p$, we get a path $h(p)$ between two antipodal points in $\SS^{n-1}$, which then projects to a loop $h'(\gamma)$ in $\RRP^{n-1}$. If $h'(\gamma)$ was null homotopic, the null homotopy would lift to $\SS^{n-1}$, contradicting that $h(p)$ is a path between antipodal points in $\SS^{n-1}$. 
+Let $h:\SS^n \rightarrow \SS^{n-1}$ be a continuous odd function with
+integer $n>2$ (\Amelia{does this work for n=2?}). Since $h$ is odd, we
+can identify antipodal points and arrive at the induced continuous
+function $h':\RRP^n\rightarrow\RRP^{n-1}$. Note that the fundamental
+groups of $\RRP^n$ and $\RRP^{n-1}$ are both $\ZZtwo$.  Thus, if the
+homomorphism of fundamental groups induced by $h'$ is nontrivial, it
+will also be an isomorphism.  Since the fundamental group of $\RRP^n$
+is $\ZZtwo$, it has a nontrivial element. Therefore there must exist a
+representative loop $\gamma$ in $\RRP^n$ that is essential. The loop
+$\gamma$ can then be lifted to $\SS^n$, resulting in a path $p$
+between antipodal points in $\SS^n$ (since $\SS^n$ is the universal
+cover of $\RRP^n$). Applying the odd map $h$ to this path $p$, we get
+a path $h(p)$ between two antipodal points in $\SS^{n-1}$, which then
+projects to a loop $h'(\gamma)$ in $\RRP^{n-1}$. If $h'(\gamma)$ was
+null homotopic, the null homotopy would lift to $\SS^{n-1}$,
+contradicting that $h(p)$ is a path between antipodal points in
+$\SS^{n-1}$.
  
-  Using the Hurewicz homomorphism and universal coefficient theorem, we get an induced graded ring homomorphism on cohomology with $\ZZtwo$ coefficients, $h^*:H^*(\RRP^n;\ZZtwo)\leftarrow H^*(\RRP^{n-1};\ZZtwo)$, where $H^*(\RRP^n;\ZZtwo)\cong \ZZtwo[a]/\langle a^{n+1}\rangle$ and $H^*(\RRP^{n-1};\ZZtwo)\cong \ZZtwo[b]/\langle b^n\rangle$ (\Amelia{Why was this again?}).  Since $h':\RRP^n\rightarrow\RRP^{n-1}$ induces an isomorphism on the fundamental groups, and the Hurewicz homomorphism is an isomorphism at the $i=1$ level, the induced homomorphism $h^*$ must send $b$ to $a$. This implies that $b^n$ is sent to $a^n$, which is a contradiction since $b^n=0$ and $a^n\neq 0$.  Thus, no such map continuous odd map $h:\SS^n \rightarrow \SS^{n-1}$ can exist.  
- 
-\subsection{ Translating the classical Borsuk-Ulam Theorem into HoTT}
+Using the Hurewicz homomorphism and universal coefficient theorem, we
+get an induced graded ring homomorphism on cohomology with $\ZZtwo$
+coefficients,
+$h^*:H^*(\RRP^n;\ZZtwo)\leftarrow H^*(\RRP^{n-1};\ZZtwo)$, where
+$H^*(\RRP^n;\ZZtwo)\cong \ZZtwo[a]/\langle a^{n+1}\rangle$ and
+$H^*(\RRP^{n-1};\ZZtwo)\cong \ZZtwo[b]/\langle b^n\rangle$
+(\Amelia{Why was this again?}).  Since
+$h':\RRP^n\rightarrow\RRP^{n-1}$ induces an isomorphism on the
+fundamental groups, and the Hurewicz homomorphism is an isomorphism at
+the $i=1$ level, the induced homomorphism $h^*$ must send $b$ to
+$a$. This implies that $b^n$ is sent to $a^n$, which is a
+contradiction since $b^n=0$ and $a^n\neq 0$.  Thus, no such map
+continuous odd map $h:\SS^n \rightarrow \SS^{n-1}$ can exist.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Translating the classical Borsuk-Ulam Theorem into HoTT}
+
+We start by restating the three Borsuk-Ulam statements above in a
+homotopy type theoretic language.
+
+\begin{statement}\label{BUClassic-HoTT}
+  For any $f: \SS^n \rightarrow \RR^n$, $\Sigma\limits_{x : \SS^n}
+  f(x) = f(-x)$ is inhabited.
+\end{statement}
+
+\begin{statement}\label{BUOdd-HoTT}
+  Any odd continuous function $g: \SS^n \rightarrow \RR^n$,
+  $\Sigma\limits_{x : \SS^n} g(x) = 0$ is inhabited.
+\end{statement}
+
+\begin{statement}\label{BURetract-HoTT}
+  The type $\Pi\limits_{h:\SS^n \rightarrow \SS^{n-1}}
+  \Sigma\limits_{x : \SS^n} h(x) = h(-x)$ is not inhabited. 
+\end{statement}
+
+
 
 
 % =================================================
