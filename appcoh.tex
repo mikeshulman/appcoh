@@ -306,14 +306,15 @@ Outside homotopy type theory, the Borsuk-Ulam Theorem states that
   the antipodal point of $x$.
 \end{statement}
 
-Instead of proving this statement directly in homotopy type theory, we make use of two equivalent statements involving odd functions.
+Instead of proving this statement directly in homotopy type theory, we
+make use of two equivalent statements involving odd functions.
 
 \begin{statement}\label{BUOdd}
   Any odd continuous function $g: \SS^n \rightarrow \RR^n$ must have a
   zero.
 \end{statement}
 
-To see that Statement \ref{BUOdd} implies the original statement, note
+To see that Statement \ref{BUOdd} implies Statement \ref{BUClassic}, note
 that given a continuous function $f$, one can construct a continuous
 function $g(x) = f(x) - f(-x)$ that is, by definition, odd. To see the
 opposite implication, we apply the original statement to the
@@ -324,13 +325,19 @@ that $g(x)=0$.
 There is a third classically equivalent statement.
 
 \begin{statement}\label{BURetract}
-  There is no continuous odd function $h:\SS^n \rightarrow \SS^{n-1}$.
+  There is no odd continuous function $h:\SS^n \rightarrow \SS^{n-1}$.
 \end{statement}
 
-In order to avoid issues involving the law of excluded middle, we will
-not prove this equivalence in homotopy type theory. Instead, our
-strategy for proving the Borsuk-Ulam Theorem will be to prove that
-Statement \ref{BURetract} is true and that it implies Statement
+Statement \ref{BUOdd} implies \ref{BURetract}. Indeed, any odd
+continuous $h \from \SS^n \to \SS^{n-1} \subseteq \RR^n$ must have a
+zero, but $0 \not\in \SS^{n-1}$, so no such $h$ exists.  Conversely,
+suppose that an odd continuou $g \from \SS^n \to \RR^n$ has no zero,
+then the map $h(x) = g(x) / \vert g(x) \vert$ defines an odd
+continuous function $h \from \SS^n \to \SS^{n-1}$. 
+
+This proof strategy will not work in homotopy type theory because we
+do not have a law of the excluded middle, and so we will instead prove
+Statement \ref{BURectract} is true and that it implies Statement
 \ref{BUOdd}, which is equivalent to Statement \ref{BUClassic}.
 
 We now state a classical/standard proof of Statement \ref{BURetract},
@@ -343,6 +350,14 @@ which inspired the type theoretic proof we give in this paper.
   just to give intuition for the proof strategy later, so thats ok. If
   we think it would be helpful to the reader later, we can add the n=1
   case.}
+
+If $n=1$, Statement \ref{BUOdd} is quickly shown. Given an odd
+continuous $g \from \SS^1 \to \RR^1$ and a chosen $x$, then either
+$g(x)=0$ in which case we are done or, without loss of generality,
+$g(x) > 0$ which means that $g(-x) < 0$.  Apply the intermediate value
+theorem.
+
+% TODO include n=2 case here
 
 Let $h:\SS^n \rightarrow \SS^{n-1}$ be a continuous odd function with
 integer $n>2$ (\Amelia{does this work for n=2?}). Since $h$ is odd, we
@@ -396,6 +411,7 @@ homotopy type theoretic language.
   The type $\Pi\limits_{h:\SS^n \rightarrow \SS^{n-1}}
   \Sigma\limits_{x : \SS^n} h(x) = h(-x)$ is not inhabited. 
 \end{statement}
+
 
 
 
@@ -484,14 +500,14 @@ Our first observation is that shape is a left adjoint operator, and so it preser
 \end{tikzcd}
 \] 
 
-Based on work of Shulman \cite{shul:bfp}, we have $\shape(\set{S}^{n-1} \times \set{I}) =S^{n-1}$ and $\shape (\set{D}^{n})$ is the unit type. Next, we find $\shape (\mathcal{M}^{n-1})$ so that we may understand $ \shape \set{RP}^n$.  We begin by showing that $\mathcal{M}^{n}$ is a push out for all $n$. Note that $\mathcal{M}^n= \sum _{x \in \set{RP}^n} f(x)$ where $f$ is the map taking each point in $\set{RP}^n$ to the fibre over it (see Definition~\ref{defn:tautologicalbundle}). Consider the following commutative diagram, where the bottom square in the cube is the push out defining $\set{RP}^n$, and $f$ is the map defining the bundle  $ \mathcal{M}^{n}$.
+Based on work of Shulman \cite{shul:bfp}, we have $\shape(\set{S}^{n-1} \times \set{I}) =S^{n-1}$ and $\shape (\set{D}^{n})$ is the unit type. Next, we find $\shape (\mathcal{M}^{n-1})$ so that we may understand $ \shape \set{RP}^n$.  We begin by showing that $\mathcal{M}^{n}$ is a push out for all $n$. Note that $\mathcal{M}^n= \sum _{x \in \set{RP}^n} f(x)$ where $f$ is the map taking each point in $\set{RP}^n$ to the fibre over it (see Definition~\ref{defn:tautologicalbundle}). Consider the following commutative diagram, where the bottom square in the cube is the push out defining $\set{RP}^n$, and $f$ is the map defining the bundle  $ \mathcal{M}^{n}$. The maps $s$ and $q$ are induced by the push out.
 
 \[\begin{tikzcd}
-										& \sum_{x \in \set{S}^n \times \set{I}} \arrow[rr]	\arrow[ld] \arrow[dd, near start, "p_4"] &						& \sum_{x \in \set{D}^n} \arrow[ld] \arrow[dd, "p_2"]\\
-\sum_{x \in \mathcal{M}^{n-1}} \arrow[rr, crossing over] \arrow[dd, "p_3"]&										& \sum_{x \in \set{RP}^n}f(x)				&	\\
-										& \set{S}^n \times \set{I} \arrow[rr, near start, "a_n"] \arrow[ld, "b_n"]					&									& \set{D}^n \arrow [ld]\\
-\mathcal{M}^{n-1} \arrow[rr]					&													& \set{RP}^n \ar[rd, "f"] 					& \\
-										&													&									& \U_{\set{R}}\\
+																& \sum_{x \in \set{S}^n \times \set{I}} f \circ s \circ b_n (x) \arrow[rr]	\arrow[ld] \arrow[dd, near start, "p_4"] 	&									& \sum_{x \in \set{D}^n} f \circ q (x) \arrow[ld] \arrow[dd, "p_2"]\\
+\sum_{x \in \mathcal{M}^{n-1}}  f \circ s (x) \arrow[rr, crossing over] \arrow[dd, "p_3"]	&																					& \sum_{x \in \set{RP}^n}f(x)				&	\\
+																& \set{S}^n \times \set{I} \arrow[rr, near start, "a_n"] \arrow[ld, "b_n"]									&									& \set{D}^n \arrow [ld, "q"]\\
+\mathcal{M}^{n-1} \arrow[rr, "s" ]										&																					& \set{RP}^n \ar[rd, "f"] 					& \\
+																&																					&									& \U_{\set{R}}\\
 \arrow[from=2-3, to=4-3, crossing over, near start, "p_1"]
 \end{tikzcd}
 \]
