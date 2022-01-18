@@ -500,17 +500,19 @@ Our first observation is that shape is a left adjoint operator, and so it preser
 \end{tikzcd}
 \] 
 
-Based on work of Shulman \cite{shul:bfp}, we have $\shape(\set{S}^{n-1} \times \set{I}) =S^{n-1}$ and $\shape (\set{D}^{n})$ is the unit type. Next, we find $\shape (\mathcal{M}^{n-1})$ so that we may understand $ \shape \set{RP}^n$.  We begin by showing that $\mathcal{M}^{n}$ is a push out for all $n$. Note that $\mathcal{M}^n= \sum _{x \in \set{RP}^n} f(x)$ where $f$ is the map taking each point in $\set{RP}^n$ to the fibre over it (see Definition~\ref{defn:tautologicalbundle}). Consider the following commutative diagram, where the bottom square in the cube is the push out defining $\set{RP}^n$, and $f$ is the map defining the bundle  $ \mathcal{M}^{n}$. The maps $s$ and $q$ are induced by the push out.
+Based on work of Shulman \cite{shul:bfp}, we have $\shape(\set{S}^{n-1} \times \set{I}) =S^{n-1}$ and $\shape (\set{D}^{n})$ is the unit type. Next, we find $\shape (\mathcal{M}^{n-1})$ so that we may understand $ \shape \set{RP}^n$.  We begin by showing that $\mathcal{M}^{n}$ is a push out for all $n$. Note that $\mathcal{M}^n= \sum _{x \in \set{RP}^n} f(x)$ where $f$ is the map taking each point in $\set{RP}^n$ to the fibre over it (see Definition~\ref{defn:tautologicalbundle}). Consider the following commutative diagram, where the bottom square in the cube is the push out defining $\set{RP}^n$, and $f$ is the map defining the bundle  $ \mathcal{M}^{n}$ (in the top, front, right position in the cube). The maps $s$ and $q$ are induced by the push out. The top square consists of bundles over each of the types in the bottom square with fibres are types homeomorphic to $\RR$. The map$\lambda$ above $s$ is defined by $\lambda (x,y). (s(x),y)$. The remaining maps in on the top square are similarly defined by each of the maps they lie over. 
 
 \[\begin{tikzcd}
-																& \sum_{x \in \set{S}^n \times \set{I}} f \circ s \circ b_n (x) \arrow[rr]	\arrow[ld] \arrow[dd, near start, "p_4"] 	&									& \sum_{x \in \set{D}^n} f \circ q (x) \arrow[ld] \arrow[dd, "p_2"]\\
-\sum_{x \in \mathcal{M}^{n-1}}  f \circ s (x) \arrow[rr, crossing over] \arrow[dd, "p_3"]	&																					& \sum_{x \in \set{RP}^n}f(x)				&	\\
-																& \set{S}^n \times \set{I} \arrow[rr, near start, "a_n"] \arrow[ld, "b_n"]									&									& \set{D}^n \arrow [ld, "q"]\\
-\mathcal{M}^{n-1} \arrow[rr, "s" ]										&																					& \set{RP}^n \ar[rd, "f"] 					& \\
-																&																					&									& \U_{\set{R}}\\
+																				& \sum_{x \in \set{S}^n \times \set{I}} f \circ s \circ b_n (x) \arrow[rr]	\arrow[ld] \arrow[dd, near start, "p_4"] 	&									& \sum_{x \in \set{D}^n} f \circ q (x) \arrow[ld] \arrow[dd, "p_2"]\\
+\sum_{x \in \mathcal{M}^{n-1}}  f \circ s (x) \arrow[rr, crossing over, near start, "\lambda"] \arrow[dd, "p_3"]	&																					& \sum_{x \in \set{RP}^n}f(x)				&	\\
+																				& \set{S}^n \times \set{I} \arrow[rr, near start, "a_n"] \arrow[ld, "b_n"]									&									& \set{D}^n \arrow [ld, "q"]\\
+\mathcal{M}^{n-1} \arrow[rr, "s" ]														&																					& \set{RP}^n \ar[rd, "f"] 					& \\
+																				&																					&									& \U_{\set{R}}\\
 \arrow[from=2-3, to=4-3, crossing over, near start, "p_1"]
 \end{tikzcd}
 \]
+
+Because we are in a Van Kampen category, it suffices to show that the vertical faces of the cube are pullbacks in order to prove that the top face of the cube is a pushout.
 
 \subsection{The $\mathbb{Z}$-homology of $\set{RP}^n$.}
 
