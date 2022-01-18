@@ -282,14 +282,14 @@ OUTLINE:
   show BU-retract implies BU-odd which is equivalent to
   BU-classic, then prove BU-retract. Give the proof for
   BU-retract.
-\item
-  \textbf{Subsection 2.} Translate the classical statement
-  into propositions as types. We want to model classical proof.
-  The failure of contrapositive rule in constructive
-  logic---(not q implies not p) is (p implies not not
-  q)---means our proof strategy is BU-retract implies not
-  not BU-odd which is equivalent to not not BU-classic. But
-  not not BU-classic is sharp BU-classic. Prove BU-retract. 
+\item \textbf{Subsection 2.} Translate the classical statement into
+  propositions as types. We want to model classical proof as much as
+  possible.  Notes on intuitionistic logic: contrapositive holds one
+  way, i.e. $p \to q$ entails $-q \to -p$, and the inverse isn't true.
+  The rule $p \to -q$ is equivalent to $q \to -p$ in intuitionistic
+  logic. Due to this, our proof strategy is BU-retract implies not not
+  BU-odd which is equivalent to not not BU-classic. But not not
+  BU-classic is sharp BU-classic. Prove BU-retract.
 \item
   To close out the section, list the ingredients we need to
   prove BU-retract.
@@ -395,7 +395,11 @@ continuous odd map $h:\SS^n \rightarrow \SS^{n-1}$ can exist.
 \subsection{Translating the classical Borsuk-Ulam Theorem into HoTT}
 
 We start by restating the three Borsuk-Ulam statements above in a
-homotopy type theoretic language.
+homotopy type theoretic language. In our restated versions, we include
+the $\flat$ and $\sharp$ modes from real-cohesive HoTT to allow us to
+prove Borsuk-Ulam discontinuously. 
+
+
 
 \begin{statement}\label{BUClassic-HoTT}
   For any $f: \SS^n \rightarrow \RR^n$, $\Sigma\limits_{x : \SS^n}
