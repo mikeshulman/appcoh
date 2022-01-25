@@ -314,13 +314,13 @@ make use of two equivalent statements involving odd functions.
   zero.
 \end{statement}
 
-To see that Statement \ref{BUOdd} implies Statement \ref{BUClassic}, note
-that given a continuous function $f$, one can construct a continuous
-function $g(x) = f(x) - f(-x)$ that is, by definition, odd. To see the
-opposite implication, we apply the original statement to the
-continuous odd function $g$ to find an $x \in \SS^n$ such that
-$g(x)=g(-x)$. Then, since $g$ is odd, $g(-x) = -g(x)$, which implies
-that $g(x)=0$.
+To see that Statement \ref{BUOdd} implies Statement \ref{BUClassic},
+note that given a continuous function $f$, one can construct a
+continuous function $g(x) = f(x) - f(-x)$ that is, by definition,
+odd. To see the opposite implication, start with a continuous odd
+function $g$ which by assumption has some $x \in \SS^n$ such that
+$g(x)=g(-x)$. Then, since $g$ is odd, $g(-x) = -g(x)$ holds for this
+$x$, which implies that $g(x)= -g(x)$, hence $g(x)=0$.
 
 There is a third classically equivalent statement.
 
@@ -399,21 +399,19 @@ homotopy type theoretic language. In our restated versions, we include
 the $\flat$ and $\sharp$ modes from real-cohesive HoTT to allow us to
 prove Borsuk-Ulam discontinuously. 
 
-
-
 \begin{statement}\label{BUClassic-HoTT}
-  For any $f: \SS^n \rightarrow \RR^n$, $\Sigma\limits_{x : \SS^n}
+  For any $f: \SS^n \rightarrow \RR^n$, $\sum\limits_{x : \SS^n}
   f(x) = f(-x)$ is inhabited.
 \end{statement}
 
 \begin{statement}\label{BUOdd-HoTT}
   Any odd continuous function $g: \SS^n \rightarrow \RR^n$,
-  $\Sigma\limits_{x : \SS^n} g(x) = 0$ is inhabited.
+  $\sum\limits_{x : \SS^n} g(x) = 0$ is inhabited.
 \end{statement}
 
 \begin{statement}\label{BURetract-HoTT}
-  The type $\Pi\limits_{h:\SS^n \rightarrow \SS^{n-1}}
-  \Sigma\limits_{x : \SS^n} h(x) = h(-x)$ is not inhabited. 
+  The type $\prod\limits_{h:\SS^n \rightarrow \SS^{n-1}}
+  \sum\limits_{x : \SS^n} h(x) = h(-x)$ is not inhabited. 
 \end{statement}
 
 
