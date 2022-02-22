@@ -1,0 +1,137 @@
+\documentclass[12pt]{amsart}
+
+% PACKAGES ~~~~~~~~~~~~~~~~~~~
+
+\usepackage{amsfonts, amsthm, amssymb, amsmath, stmaryrd, etoolbox, mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx,caption,subcaption}
+\usepackage{tikz}
+\usetikzlibrary{matrix,arrows}
+
+% NEW COMMANDS ~~~~~~~~~~~~~~~
+
+% common math shorthands
+\newcommand{\RR}{\mathbb{R}}
+\renewcommand{\SS}{\mathbb{S}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\zmodtwo}{\ZZ / 2 \ZZ}
+\newcommand{\rptwo}{\RR \mathbf{P}^2}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\from}{\colon}
+%\newcommand{\to}{\rightarrow}
+%\newcommand{\gets}{\leftarrow}
+\newcommand{\xto}[1]{\xrightarrow{#1}}
+\newcommand{\xgets}[1]{\xleftarrow{#1}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\bydef}{\coloneqq}
+\newcommand{\imp}{\Rightarrow}
+\newcommand{\isequiv}{\Leftrightarrow}
+
+
+% fonts
+\newcommand{\edit}[1]{{\color{red} #1 }}
+\newcommand{\cat}[1]{\mathbf{#1}}
+\newcommand{\type}[1]{\mathtt{#1}}
+
+% types
+\newcommand{\tin}{\colon}
+\newcommand{\A}{\type{A}}
+\newcommand{\B}{\type{B}}
+\newcommand{\C}{\type{C}}
+\renewcommand{\P}{\type{P}}
+\newcommand{\Q}{\type{Q}}
+\newcommand{\BAC}{\B +_{\A} \C}
+\newcommand{\Type}{\type{Type}}
+\newcommand{\ap}{\type{ap}}
+\newcommand{\inl}{\type{inl}}
+\newcommand{\inr}{\type{inr}}
+\newcommand{\glue}{\type{glue}}
+\newcommand{\refl}{\type{refl}}
+\newcommand{\code}{\type{code}}
+\newcommand{\encode}{\type{encode}}
+\newcommand{\decode}{\type{decode}}
+
+% math operators
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\ob}{Ob}
+\DeclareMathOperator{\arr}{arr}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Bij}{Bij}
+\DeclareMathOperator{\Sub}{Sub}
+
+% theorem styles
+\newtheorem{lemma}{Lemma}
+\newtheorem{thm}{Theorem}
+\newtheorem{prop}{Proposition}
+\newtheorem{cor}{Corollary}
+\theoremstyle{remark}
+\newtheorem{rmk}{Remark}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\newtheorem{ex}{Example}
+
+
+
+%%%%%%%%%%%%%
+% begin document
+%%%%%%%%%%%%%
+
+\begin{document}
+	
+\title{Proof Logic}
+\maketitle
+
+There are three related statements for the Borsuk-Ulam theorem
+
+\begin{description}
+\item[Statement $C$] $(f \from \SS^n \to \RR^n)$ $\imp$
+  $(\exists x \in \SS^n. f(x) = f(-x))$. Symbolize this as $C_0
+  \imp C_1$.
+\item[Statement $O$] ($ g \from \SS^n \to \RR^n$ odd and
+  cont. $\imp$ $\exists x \in \SS^n. g(x)=0$. Symbolize this as
+  $O_0 \imp O_1$
+\item[Statement $R$] $\exists h \from \SS^n \to \SS^{n-1}$ odd and
+  cont. 
+\end{description}
+
+The Borsuk-Ulam theorem are the the three classically equivalent
+statement \[C \isequiv O \isequiv - R.\] The logic underlying
+classical strategy is to prove that equivalence as below, then prove
+$-R$ and conclude $C$ which is the classic version of Borsuk-Ulam.
+
+\begin{enumerate}
+\item $C \models O$
+\item $O \models C$
+\item $O \models - R$ where we instead prove
+  \begin{align*}
+    R &\models -O &\\
+    R &\models -(O_0 \imp O_1) &\\
+    R &\models ( O_0 \wedge -O_1) &(R \models O_0 \text{ holds}) \\
+    R &\models -O_1& (\text{prove this})
+  \end{align*}
+  Note these are two way equivalences in classical logic.
+\item $-R \models O$
+  \begin{align*}
+    -R & \models O & \\
+    -R & \models (O_0 \imp O_1) &\\
+    -R & \models (-O_1 \imp -O_0) &\\
+    -(-O_1 \imp -O_0) &\models R &\\
+    (-O_1 \wedge O_0) &\models R & (\text{prove this})    
+  \end{align*}
+  Note these are two way equivalences in classical logic.
+\end{enumerate}
+
+Because the intuitionistic logic rule differ, we need to adjust our strategy to
+accommodate for proving this in HoTT.
+
+
+
+%%%%%%%%%%%%%
+% end document
+%%%%%%%%%%%%%
+
+\end{document}
