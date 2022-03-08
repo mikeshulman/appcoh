@@ -577,17 +577,17 @@ We give a construction of $\RRP^n$ in Section \ref{sec:rpn}, which shows that $\
 \Amelia{Finster and Licata constructed $K(G,1)$ in a particular way. My concern is that I am not sure how that impacts which of their results transfer over. I think that their results in section 4 and 5 mean that as long as the $K(G,1)$ has the right groups, using suspension and truncation works. In which case, it doesn't matter that we constructed $K(G,1)$ differently than they did, their results should all port over. I'd really like a second opinion on this. }
 \Amelia{On October 17 2019 we talked about this question of what results port over. we said: According to Mike, in classic topology, EM spaces are unique up to unique isomorphism, however in HoTT they are equivalent up to homotopy but the homotopy may not be unique. Our thought was that our K(G,1) should be homotopy equivalent to theirs, so by univalence they're equal as types. So, their results for their construction of K(G,1) should apply to ours.  }
 
-As noted in \cite{fl:em}, Eilenberg-Maclane spaces have the following delooping property. This property allows us to construct a spectrum for ordinary cohomology with $\ZZtwo$ coefficients. 
+As noted in \cite{fl:em}, Eilenberg-MacLane spaces have the following delooping property. This property allows us to construct a spectrum for ordinary cohomology with $\ZZtwo$ coefficients. 
 
 \begin{proposition}\label{prop:EM-loop-equiv}
 	\[K(\ZZtwo,n)\simeq \Omega K(\ZZtwo,n+1)\]
 	\end{proposition}
 \Amelia{ **** G showed equivalence of $K_n$ and $\Omega K_{n+1}$. I thought this was in Finster and Licata. But now I can only find a mention of it as a fact, not something proven. May need to go back and prove this. }
 
-Given this construction of the EM spaces, we define cohomology in the following way. 
+Given this construction of the Eilenberg-MacLane spaces, we define cohomology in the following way. 
 
 \begin{definition}
-	For a type $\X$ and $n:N$, the \defn{$n$-th cohomology group of $\X$} is the type
+	For a type $\X$ and $n:\NN$, the \defn{$n$-th cohomology group of $\X$ with coefficients in $\ZZtwo$} is the type
 	\[H^n(\X;\ZZtwo):= \trunc{\X\rightarrow \KZtwo{n}}_0.\] 
 \end{definition}
 \Amelia{B also defines reduced cohomology as well. I'm not sure we need that. G proved a reduced MV sequence, so we may need it if we also use MV. Leaving it out for now.}
@@ -596,12 +596,16 @@ Given this construction of the EM spaces, we define cohomology in the following 
 
 \subsection{Commutative Graded Ring Structure}
 
+For a ring $R$, the multiplication operation on $R$ can be viewed as a homomorphism $R\otimes R\to R$, where $R\otimes R$ is the tensor product of the underlying abelian groups. Our strategy for describing the graded ring structure is to show that $||K(R,n)\wedge K(R,m)||_{n+m} = K(R\otimes R, n+m)$, then  lift the ring multiplication of $R \otimes R \to R$ to a cup product on cohomology with $R$-coefficients.
 
 
- Our strategy for describing the graded ring structure is to show that $||K(R,n)\wedge K(R,m)||_{n+m} = K(R\otimes R, n+m)$, then  lift the ring multiplication of $R \otimes R \to R$ to a cup product on cohomology with $R$-coefficients.
-
-
-\Amelia{ basically copy pasted the following from ``Notes'', with some edits. I'll keep working through this.}
+\Amelia{3/8/22: Probably shouldn't go into more detail on this tensor in the finished write up, but for my own sanity: For abelian groups $G$ and $H$, $G\otimes H$ is the quotient $G\times H/\sim$ where \begin{itemize}
+		\item $(g_1,h)+(g_2,h)\sim (g_1+g_2,h)$
+		\item $(g,h_1)+(g,h_2)\sim (g,h_1+h_2)$.
+	\end{itemize}
+So if we define $\cdot:R\otimes R\to R$ by $\cdot(a,b)=ab$, then the distributive axiom of rings and bilinearity of tensor gives us a group homomorphism because:
+\[\cdot((a_1,b)+(a_2,b))=\cdot(a_1+a_2,b)=(a_1+a_2)b=a_1b+a_2b=\cdot(a_1,b)+\cdot(a_2,b)\]
+}
 
 \begin{proposition}\label{prop:K_smash}
 	$ \trunc{K(R,n) \wedge K(R,m)}_{n+m} = K(R \otimes R, n+m)$
@@ -647,7 +651,7 @@ Given this construction of the EM spaces, we define cohomology in the following 
 	\]
 	for $ k \leq n+m-1 $.
 	
-	Thus we have shown the desired property and arrive at the homotopy equivalence 
+	We have shown the desired property and arrive at the homotopy equivalence 
 	\[
 	|| K(R,n) \wedge K(R,m) ||_{n+m} \simeq
 	K (R \otimes R, n+m ).
@@ -662,7 +666,7 @@ Given this construction of the EM spaces, we define cohomology in the following 
 
 
 Next, we construct the ring structure on cohomology. The
-strategy is to define the necessary structures and properties on EM-spaces (Def. \ref{def:EM-space})
+strategy is to define the necessary structures and properties on Eilenberg-MacLane spaces (Def. \ref{def:EM-space})
 and then lift those to cohomology.
 
 
@@ -694,14 +698,14 @@ functor
 \[
 K(-,n) \from \mathbf{Ring} \to \mathbf{Ho}(\mathbf{Top_\ast}).
 \]
-\Amelia{Do we know that $K(-,n)$ is a functor? I think so, but I'm not sure we ever proved it and I don't think it's explicitly stated in Finster-Licata.}
+\Amelia{Do we know that $K(-,n)$ is a functor in HoTT? It is a functor, but I'm not sure we ever proved it and I don't think it's explicitly stated in Finster-Licata.}
 
 As we showed in Proposition \ref{prop:K_smash}, 
 \[
 || K(R,n) \wedge K(R,m) ||_{n+m} =
-K (R \otimes R, n+m ).
+K (R \otimes R, n+m )
 \]
-for any ring $ R $ , and so we can treat our multiplication as
+for any ring $ R $, and so we can treat our multiplication as
 \[
 \widehat{\mu} \from
 || K(\ZZtwo,n) \wedge K(\ZZtwo,m) ||_{n+m} \to K(\ZZtwo, n+m).
@@ -737,20 +741,18 @@ standard definition in homotopy type theory, rather than
 singular cochains, because using singular cochains is not
 a continuous process. 
 
-\Amelia{I've worked this far as of 2/27/20}
-
 Define
 $ \smile ( |\alpha|, |\beta|) ) $, for
-$ \alpha \from X \to_\ast K_n $ and
-$ \beta \from X \to K_m $, to be the truncation of the
+$ \alpha \from X \to_\ast \KZtwo{n} $ and
+$ \beta \from X \to \KZtwo{m} $, to be the truncation of the
 pairing $ \langle \alpha, \beta \rangle $ followed by $ \mu $:
 \[
 \smile ( |\alpha|, |\beta|) ) :
-|| X \to K_n \times K_m \to K_{n+m} ||_0.
+|| X \to \KZtwo{n} \times \KZtwo{m} \to \KZtwo{n+m} ||_0.
 \]
 Thus $ \smile ( |\alpha|, |\beta|) ) $ type-checks. It
 remains to show the usual ring properties hold for $ H^n(X)
-$.  Distributivity follows directly from Guillaume's
+$. \Amelia{3/8/22: need to give more detail here} Distributivity follows directly from Guillaume's
 argument in Proposition 5.1.7 which uses only connectivity
 hence carries through to our context without issue.  To show
 `graded comutativity', it suffices to show standard
