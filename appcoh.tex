@@ -544,9 +544,9 @@ OUTLINE:
 
 We follow a similar construction for cohomology as found in \cite{brunerie:thesis}, modifying their construction with $\ZZ$ coefficients to have coefficients in $\ZZtwo$. In order to define cohomology, we must first define Eilenberg-MacLane spaces $\KZtwo{n}$. Eilenberg-MacLane spaces $K(G,n)$ were defined for arbitrary group $G$ by Finster and Licata in \cite{fl:em}.
 
-We give a construction of $\RRP^n$ in Section \ref{sec:rpn}, which shows that $\RRP^2$ will have the homotopy groups necessary to be the foundation of our Eilenberg-MacLane spaces. 
+We give a construction of $\RRP^n$ in Section \ref{sec:rpn}, which shows that $\trunc{\RRP^2}_1$ will have the homotopy groups necessary to be the foundation of our Eilenberg-MacLane spaces. 
 \begin{proposition}\label{prop:rpnhtpygps} %update this label when sec:rpn is done
-	\[ \pi_n(\RRP^2)=\left\{ \begin{array}{ll} 0 & \text{for }n=0\\
+	\[ \pi_n(\trunc{\RRP^2}_1)=\left\{ \begin{array}{ll} 0 & \text{for }n=0\\
 	\ZZtwo & \text{for } n=1\\
 	0 & \text{for } n> 1, 
 	\end{array}\right.\]
@@ -555,6 +555,7 @@ We give a construction of $\RRP^n$ in Section \ref{sec:rpn}, which shows that $\
 	\Amelia{We discussed this on Oct 1 2019 and thought this would go in Chandrika's section}
 \end{proof}
 
+\Amelia{(3/15/22) We need to say how we're viewing $\ZZtwo$ as a space below since we later refer to this as a functor landing in spaces}
 
 \begin{definition}\label{def:EM-space}
 	For $n:\NN$, the type \defn{Eilenberg-MacLane space} $\KZtwo{n}$ is the $n$-truncated and $(n-1)$-connected pointed type defined by
@@ -606,7 +607,7 @@ So if we define $\cdot:R\otimes R\to R$ by $\cdot(a,b)=ab$, then the distributiv
 }
 
 \begin{proposition}\label{prop:K_smash}
-	$ \trunc{K(R,n) \wedge K(R,m)}_{n+m} = K(R \otimes R, n+m)$
+	$ \trunc{K(R,n) \wedge K(R,m)}_{n+m} = K(R \otimes R, n+m)$ for $n,m\geq 1$.
 \end{proposition} 
 \Amelia{is = the right symbol here? probably yes bc univalence?}
 
@@ -626,7 +627,7 @@ So if we define $\cdot:R\otimes R\to R$ by $\cdot(a,b)=ab$, then the distributiv
 	satisfies this property, we have the desired
 	equivalence. 
 	
-	In order to establish the property for $k=n+m$, it is a known result (see \cite[Prop 19.60]{strom:mcht}) that
+	In order to establish the property for $k=n+m$, it is a known result (see \cite[Prop 19.60]{strom:mcht}) that for $n,m\geq 1$
 	\[
 	\pi_{n+m} ( || K(R,n) \wedge K(R,m) ||_{n+m} )
 	\cong R \otimes R.
@@ -669,13 +670,13 @@ and then lift those to cohomology.
 
 
 
-The addition and subtraction
-operations of type $ K(\ZZtwo,n) \times K(\ZZtwo,n) \to K(\ZZtwo,n) $ follow
-directly from \cite{brunerie:thesis}, and satisfy the properties to make $K(\ZZtwo,n)$ an abelian group. We restate the operation below.
+The addition and additive inverse
+operations follow
+directly from \cite{brunerie:thesis}, and satisfy the properties to make $K(\ZZtwo,n)$ an abelian group. When $n=0$, addition and additive inverses are defined as usual in $\ZZtwo$. For $n>0$, addition and additive inverses are defined via the equivalence $\KZtwo{n}\simeq \Omega\KZtwo{n+1}$ using the composition and inverse of loops respectively. We restate the operation properties below.
 
 
-\begin{proposition}\cite[Prop. 5.1.4]{brunerie:thesis}
-	The maps $ +: K(\ZZtwo,n) \times K(\ZZtwo,n) \to K(\ZZtwo,n) $ and $-: K(\ZZtwo,n) \times K(\ZZtwo,n) \to K(\ZZtwo,n) $ are given by the following equalities for all $x$, $y$, $z:K(\ZZtwo,n)$ :
+\begin{proposition}\cite[Prop. 5.1.4]{brunerie:thesis}\label{prop:abeliangpops}
+	The maps $ +: K(\ZZtwo,n) \times K(\ZZtwo,n) \to K(\ZZtwo,n) $ and $-: K(\ZZtwo,n)  \to K(\ZZtwo,n) $ have the following properties for all $n:\NN$ and $x$, $y$, $z:K(\ZZtwo,n)$:
 	
 	\[x+0=x,\]
 	\[0+x=x,\]
@@ -723,7 +724,9 @@ K (\ZZtwo , n) \wedge K(\ZZtwo, m)
 \xrightarrow{\widehat{\mu}}
 K(\ZZtwo, n+m)
 \]
-that we call \emph{multiplication} $ \mu $.  We will use this multiplication to induce
+that we call \emph{multiplication} $ \mu $. The proceeding definition only works when $n,m\geq 1$. In the special case where $n$ or $m$ is 0, we use the fact that $\KZtwo{0}=\ZZtwo$ and we define $\mu$ as one would expect: $\mu(x,0)=\mu(0,x)=0$ and $\mu(x,1)=\mu(1,x)=x$. 
+
+We will use this multiplication $\mu$ to induce
 the cup product
 \[
 \smile \from H^n(X) \times H^m(X) \to H^{n+m}(X)
@@ -750,12 +753,27 @@ pairing $ \langle \alpha, \beta \rangle $ followed by $ \mu $:
 \]
 Thus $ \smile ( |\alpha|, |\beta|) ) $ type-checks. It
 remains to show the usual ring properties hold for $ H^n(X)
-$. \Amelia{3/8/22: need to give more detail here} Distributivity follows directly from Guillaume's
-argument in Proposition 5.1.7 which uses only connectivity
-hence carries through to our context without issue.  To show
-`graded comutativity', it suffices to show standard
-comutativity because of the $ \ZZtwo $-coefficients.  
+$.  
 
+We prove the distributive property similarly to Proposition 5.1.8 in \cite{brunerie:thesis}.
+\begin{proposition}
+	The multiplication map $\widehat{\mu}:\KZtwo{n}\times\KZtwo{m}\to \KZtwo{n+m}$ distributes over addition.
+	\end{proposition}
+
+\begin{proof} Let $a:\KZtwo{n}$ and $b,c:\KZtwo{m}$. We must show that $\mu(a,b+c)=\mu(a,b)+\mu(a,c)$. 
+	
+	Consider the case where $m=0$. Since $\KZtwo{0}=\ZZtwo$, $b$ and $c$ are each either 0 or 1. Note that since $\mu$ is induced by the multiplication map $\ZZtwo\otimes\ZZtwo\to\ZZtwo$, $\mu(x,0)=\mu(0,x)=0$. So, if $b=0$, it follows from the properties in Proposition \ref{prop:abeliangpops} that \[\mu(a,b+c)=\mu(a,0+c)=\mu(a,c)=\mu(a,0)+\mu(a,c)=\mu(a,b)+\mu(a,c).\]
+	Distributivity holds similarly in the case where $c=0$. If $b=c=1$,
+	\[\mu(a,b)+\mu(a,c)=\mu(a,1)+\mu(a,1)=a+a\]
+	\Amelia{(3/15/22) wait, why is $a+a=0$ based on what we have defined? need to finish the proof later}
+	\end{proof}
+
+
+
+ To show
+`graded commutativity', it suffices to show standard
+commutativity because of the $ \ZZtwo $-coefficients.  
+\Amelia{(3/15/22) need to add a prop showing commutativity}
 
 
 
