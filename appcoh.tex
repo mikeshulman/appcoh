@@ -717,7 +717,7 @@ precompose $ \widehat{\mu} $ by several canonical arrows
 resulting in the composite
 \[
 K (\ZZtwo , n) \times K(\ZZtwo, m)
-\xrightarrow{\mathtt{proj}}
+\xrightarrow{\type{proj}}
 K (\ZZtwo , n) \wedge K(\ZZtwo, m)
 \xrightarrow{|-|_{n+m}}\cdots\]
 \[\rightarrow|| K (\ZZtwo , n) \wedge K(\ZZtwo, m) ||_{n+m}
@@ -757,15 +757,36 @@ $.
 
 We prove the distributive property similarly to Proposition 5.1.8 in \cite{brunerie:thesis}.
 \begin{proposition}
-	The multiplication map $\widehat{\mu}:\KZtwo{n}\times\KZtwo{m}\to \KZtwo{n+m}$ distributes over addition.
+	The multiplication map ${\mu}:\KZtwo{n}\times\KZtwo{m}\to \KZtwo{n+m}$ distributes over addition.
 	\end{proposition}
 
 \begin{proof} Let $a:\KZtwo{n}$ and $b,c:\KZtwo{m}$. We must show that $\mu(a,b+c)=\mu(a,b)+\mu(a,c)$. 
 	
-	Consider the case where $m=0$. Since $\KZtwo{0}=\ZZtwo$, $b$ and $c$ are each either 0 or 1. Note that since $\mu$ is induced by the multiplication map $\ZZtwo\otimes\ZZtwo\to\ZZtwo$, $\mu(x,0)=\mu(0,x)=0$. So, if $b=0$, it follows from the properties in Proposition \ref{prop:abeliangpops} that \[\mu(a,b+c)=\mu(a,0+c)=\mu(a,c)=\mu(a,0)+\mu(a,c)=\mu(a,b)+\mu(a,c).\]
-	Distributivity holds similarly in the case where $c=0$. If $b=c=1$,
-	\[\mu(a,b)+\mu(a,c)=\mu(a,1)+\mu(a,1)=a+a\]
-	\Amelia{(3/15/22) wait, why is $a+a=0$ based on what we have defined? need to finish the proof later}
+	First, consider the case where $m=0$. Since $\KZtwo{0}=\ZZtwo$, $b$ and $c$ are each either 0 or 1. Note that since $\mu$ is induced by the multiplication map $\ZZtwo\otimes\ZZtwo\to\ZZtwo$, $\mu(x,0)=\mu(0,x)=0$. So, if $b=0$, it follows from the properties in Proposition \ref{prop:abeliangpops} that \[\mu(a,b+c)=\mu(a,0+c)=\mu(a,c)=\mu(a,0)+\mu(a,c)=\mu(a,b)+\mu(a,c).\]
+	Distributivity holds similarly in the case where $c=0$. If $b=c=1$, then
+	\[\mu(a,b)+\mu(a,c)=\mu(a,1)+\mu(a,1)=a+a,\]
+	which equals 0 because composing a loop with itself in $\RRP^2$ results in a trivial loop. Thus when $m=0$, $\mu$ distributes over addition.
+	
+	Now consider $m>0$. We prove distributivity by showing there is a filler of the following diagram. (We abbreviate $\KZtwo{i}$ by $K_i$ to save space.)
+	
+	\[\begin{tikzcd}
+	K_n\wedge\left(K_m\times K_m\right) \arrow[rr,"id\wedge+"] \arrow[d,"p"]&  & K_n\wedge K_m\arrow[d,"\widehat{\mu}"]\\
+	\left(K_n\wedge K_m\right)\times\left(K_n\wedge K_m\right)\arrow[r,"\widehat{\mu}\times\widehat{\mu}"] & K_{n+m}\times K_{n+m}\arrow[r,"+"] &K_{n+m}	
+	\end{tikzcd}\]
+	The map $p$ on the left sends $\type{proj}(a,(b,c))$ to $(\type{proj}(a,b),\type{proj}(a,c))$. 
+	
+	\Amelia{3/22/22: Leaning on G's thesis this much seems like lazy writing... but I also didn't want to just re-write a bunch of bits from his thesis. This is coming from the proof of prop 4.3.1 and prop 3.2.8(which has multiple steps)}
+	
+	As shown in Propositions 4.3.1 and 3.2.8 of \cite{brunerie:thesis}, if $A$ and $B$ are two pointed types such that $A$ is $r$-connected and $B$ is $s$-connected, then map $i:A\vee B\to A\times B$ is $(r+s)$-connected. Since $\KZtwo{m}$ is $(m-1)$-connected, $i:\KZtwo{m}\vee\KZtwo{m}\to\KZtwo{m}\times\KZtwo{m}$ is $(2m-2)$-connected. Then the map 
+	\[f:\KZtwo{n}\wedge\left(\KZtwo{m}\vee\KZtwo{m}\right)\to \KZtwo{m}\wedge\left(\KZtwo{m}\times\KZtwo{m}\right)\]
+	given by 
+	\[f(\type{proj}(a,\type{inl}(b))):=\type{proj}(a,(y,0))\text{~and~} f(\type{proj}(a,\type{inr}(c))):=\type{proj}(a,(0,c))\]
+	is $(n+2m-2)$-connected. 
+	
+	\Amelia{need to finish this proof}
+	
+
+	
 	\end{proof}
 
 
