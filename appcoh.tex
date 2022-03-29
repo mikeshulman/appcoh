@@ -334,7 +334,7 @@ for this $x$, which implies that $g(x)= -g(x)$, hence $g(x)=0$.
 Statement \ref{BUOdd} implies \ref{BURetract}. Indeed, any odd
 continuous $h \from \SS^n \to \SS^{n-1} \subseteq \RR^n$ must have a
 zero, but $0 \not\in \SS^{n-1}$, so no such $h$ exists.  Conversely,
-suppose that an odd continuou $g \from \SS^n \to \RR^n$ has no zero,
+suppose that an odd continuous $g \from \SS^n \to \RR^n$ has no zero,
 then the map $h(x) = g(x) / \vert g(x) \vert$ defines an odd
 continuous function $h \from \SS^n \to \SS^{n-1}$. 
 
@@ -410,9 +410,26 @@ because we are using intuitionistic logic.  Statements
 \ref{BUClassic-HoTT} and \ref{BUOdd-HoTT} are equivalent for the same
 reason as in the classical case. The different lies in showing the
 equivalence between Statements \ref{BUOdd-HoTT} and
-\ref{BURetract-HoTT}.  
+\ref{BURetract-HoTT}.
 
+Let us denote Statement \ref{BUOdd-HoTT} by $O$ and Statement
+\ref{BURetract-HoTT} by $\neg R$. Therefore, $R$ is the statement that
+the type
+$\prod\limits_{h:\SS^n \rightarrow \SS^{n-1}} \sum\limits_{x : \SS^n}
+h(x) = h(-x)$ is inhabited. The first task in showing the equivalence
+between $O$ and $\neg R$ is that $O \Rightarrow \neg R $, or
+equivalently that $R \Rightarrow \neg O$. To remind readers how this
+equivalence works in intuitionistic logic, we have that
+\[
+  (O \Rightarrow \neg R)
+  = (\neg O \lor \neg R)
+  = (\neg R \lor \neg O)
+  = (R \Rightarrow \neg O).
+\]
+With the logic set, $R \Rightarrow \neg O$ follows from the same
+arguement as in the classical case.
 
+%% TODO show that -R => O
 
 
 
