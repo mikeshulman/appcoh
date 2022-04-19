@@ -534,7 +534,33 @@ Based on work of Shulman \cite{shul:bfp}, we have $\shape(\set{S}^{n-1} \times \
 
 Because we are in a Van Kampen category, it suffices to show that the vertical faces of the cube are pullbacks in order to prove that the top face of the cube is a pushout. \Chandrika{is the language in this paragraph correct?}
 
+\subsubsection{Showing that the front face of is a pullback}
+ We would like to show the following.
+ \[
+ \displaystyle\sum_{x \in \mathcal{M}^{n-1}} f\circ s (x) = \displaystyle\sum_{a \in \sum_{c \in \set{RP}^n}f(c)} \hspace {0.5cm}\displaystyle\sum_{b \in \mathcal{M}^{n-1}} (s(b) =p_1(a))
+ \]
+ 
+ In order to do this we define a homotopy equivalence between the left hand side and the right hand side. Let
+ \[
+ g:  \displaystyle\sum_{x \in \mathcal{M}^{n-1}} f\circ s (x) \longrightarrow \displaystyle\sum_{a \in \sum_{c \in \set{RP}^n}f(c)} \hspace {0.5cm}\displaystyle\sum_{b \in \mathcal{M}^{n-1}} (s(b) =p_1(a))
+ \]
+ be defined by $g (x, y) : = (\lambda(x, y), p_3(x, y), \text{refl}_{s\circ p_3(x,y)})$. Note that by the definition of $\lambda$, and the fact that $p_3$ is projection to the first coordinate, the right hand side simplifies to $((s(x), y), x, \text{refl}_{s(x)})$. This is in the codomain because the diagram commutes. Define
+  \[
+ h: \displaystyle\sum_{a \in \sum_{c \in \set{RP}^n}f(c)} \hspace {0.5cm}\displaystyle\sum_{b \in \mathcal{M}^{n-1}} (s(b) =p_1(a)) \longrightarrow  \displaystyle\sum_{x \in \mathcal{M}^{n-1}} f\circ s (x) 
+ \]
+by $h((c,r), b, k) := (b, r)$. The right hand side is a type in the codomain because $r : f(c)$, and $k$ is a witness that $(s(b)=c)$, so $r: f \circ s(b)$. Now we check that  $g\circ h$ and $h \circ g$ are homotopic to identity. Indeed,
+
+\begin{align*}
+g \circ h((c, r), b, k)	& = g(b, r) \\
+				& = ((s(b), r), b, \text{refl}_{s(b)})\\
+				& = ((c,r), b, \text{ref;}_{s(b)}),
+\end{align*}
+since $s(b) = c$ (as witnessed by $k$). It remains to show that $\text{refl}_{s(b)}=k$, but this must be true because $\set{RP}^n$ is a set. 
+
+
+
 \subsection{The $\mathbb{Z}$-homology of $\set{RP}^n$.}
+
 
 % =================================================
 % SECTION: COHOMOLGY
