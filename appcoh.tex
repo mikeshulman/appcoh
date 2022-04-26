@@ -520,17 +520,18 @@ Our first observation is that shape is a left adjoint operator, and so it preser
 \end{tikzcd}
 \] 
 
-Based on work of Shulman \cite{shul:bfp}, we have $\shape(\set{S}^{n-1} \times \set{I}) =S^{n-1}$ and $\shape (\set{D}^{n})$ is the unit type. Next, we find $\shape (\mathcal{M}^{n-1})$ so that we may understand $ \shape \set{RP}^n$.  We begin by showing that $\mathcal{M}^{n}$ is a push out for all $n$. Note that $\mathcal{M}^n= \sum _{x \in \set{RP}^n} f(x)$ where $f$ is the map taking each point in $\set{RP}^n$ to the fibre over it (see Definition~\ref{defn:tautologicalbundle}). Consider the following commutative diagram, where the bottom square in the cube is the push out defining $\set{RP}^n$, and $f$ is the map defining the bundle  $ \mathcal{M}^{n}$ (in the top, front, right position in the cube). The maps $s$ and $q$ are induced by the push out. The top square consists of bundles over each of the types in the bottom square with fibres are types homeomorphic to $\RR$. The map $\lambda$ above $s$ is defined by $\lambda (x,y). (s(x),y)$. The remaining maps in on the top square are similarly defined by each of the maps they lie over. 
-
-\[\begin{tikzcd}
+Based on work of Shulman \cite{shul:bfp}, we have $\shape(\set{S}^{n-1} \times \set{I}) =S^{n-1}$ and $\shape (\set{D}^{n})$ is the unit type. Next, we find $\shape (\mathcal{M}^{n-1})$ so that we may understand $ \shape \set{RP}^n$.  We begin by showing that $\mathcal{M}^{n}$ is a push out for all $n$. Note that $\mathcal{M}^n= \sum _{x \in \set{RP}^n} f(x)$ where $f$ is the map taking each point in $\set{RP}^n$ to the fibre over it (see Definition~\ref{defn:tautologicalbundle}). Consider the following commutative diagram, where the bottom square in the cube is the push out defining $\set{RP}^n$, and $f$ is the map defining the bundle  $ \mathcal{M}^{n}$ (in the top, front, right position in the cube). The maps $s$ and $q$ are induced by the push out. The top square consists of bundles over each of the types in the bottom square with fibres are types homeomorphic to $\RR$. The map $\lambda$ above $s$ is defined by $\lambda (x,y). (s(x),y)$. The remaining maps in on the top square are similarly defined by each of the maps they lie over. \\
+\begin{equation}
+\begin{tikzcd}
 																				& \sum_{x \in \set{S}^n \times \set{I}} f \circ s \circ b_n (x) \arrow[rr]	\arrow[ld] \arrow[dd, near start, "p_4"] 	&									& \sum_{x \in \set{D}^n} f \circ q (x) \arrow[ld] \arrow[dd, "p_2"]\\
-\sum_{x \in \mathcal{M}^{n-1}}  f \circ s (x) \arrow[rr, crossing over, near start, "\lambda"] \arrow[dd, "p_3"]	&																					& \sum_{x \in \set{RP}^n}f(x)				&	\\
+\sum_{x \in \mathcal{M}^{n-1}}  f \circ s (x) \arrow[rr, crossing over, near start, "\lambda"] \arrow[dd, "p_3"]	&																					& \sum_{x \in \set{RP}^n}f(x)\hspace{0.25cm} (=\mathcal{M}^n)		&	\\
 																				& \set{S}^n \times \set{I} \arrow[rr, near start, "a_n"] \arrow[ld, "b_n"]									&									& \set{D}^n \arrow [ld, "q"]\\
 \mathcal{M}^{n-1} \arrow[rr, "s" ]														&																					& \set{RP}^n \ar[rd, "f"] 					& \\
 																				&																					&									& \U_{\set{R}}\\
 \arrow[from=2-3, to=4-3, crossing over, near start, "p_1"]
 \end{tikzcd}
-\]
+\label{cube}
+\end{equation}
 
 Because we are in a Van Kampen category, it suffices to show that the vertical faces of the cube are pullbacks in order to prove that the top face of the cube is a pushout. \Chandrika{is the language in this paragraph correct?}
 
@@ -555,7 +556,14 @@ g \circ h((c, r), b, k)	& = g(b, r) \\
 				& = ((s(b), r), b, \text{refl}_{s(b)})\\
 				& = ((c,r), b, \text{ref;}_{s(b)}),
 \end{align*}
-since $s(b) = c$ (as witnessed by $k$). It remains to show that $\text{refl}_{s(b)}=k$, but this must be true because $\set{RP}^n$ is a set. 
+since $s(b) = c$ (as witnessed by $k$). It remains to show that $\text{refl}_{s(b)}=k$, but this must be true because $\set{RP}^n$ is a set. The simplification of $h \circ g$ is also straightforward.
+\begin{align*}
+h \circ g (x, y)	& = h((s(x), y), x, \text{refl}_{s(x)})\\
+			& = (x, y),
+\end{align*}
+which is exactly what we wanted to show.  Therefore the front face of Diagram~\ref{cube} is a pullback.
+
+The proof that the other faces of the cube in Diagram~\ref{cube} are pullbacks proceeds similarly. Therefore the top face (the face defining $\mathcal{M}^n$) is a pushout. \Chandrika{do we need to write out the proof of the other faces?}
 
 
 
