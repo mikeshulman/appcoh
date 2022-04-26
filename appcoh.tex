@@ -382,8 +382,6 @@ continuous odd map $h:\SS^n \rightarrow \SS^{n-1}$ can exist.
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Translating the classical Borsuk-Ulam Theorem into HoTT}
 
-% TODO input any sharp, flat terms in as needed.
-
 We start by restating the three Borsuk-Ulam statements above in a
 homotopy type theoretic language. In our restated versions, we include
 the $\flat$ and $\sharp$ modes from real-cohesive HoTT to allow us to
@@ -426,15 +424,14 @@ equivalence works in intuitionistic logic, we have that
   = (R \Rightarrow \neg O).
 \]
 With the logic settled, $R \Rightarrow \neg O$ follows from the same
-arguement as in the classical case.
+arguement as in the classical case.  The converse,
+$\neg R \Rightarrow O$, is equivalent to
+$\neg O \Rightarrow \neg\neg R$. This is proved by showing
+$\neg O \Rightarrow R$ as above in the classical way, then combining
+that with $R \Rightarrow \neg\neg R$.
 
-Next, we show that $\neg R \Rightarrow O$.  
-
-%% TODO show that -R => O, will need sharp and flat to get LEM?
-%% Want classically provable but not intuitionally provable:
-%% notP -> Q isEquivTo notQ -> P. Note that, we might have LEM flatly/sharply
-
-
+And so, the three classically equivalent statements described as the
+Borsuk-Ulam theorem are also equivalent in HoTT. To prove all three, we prove that there is no continuous, odd function $f \from \SS^n \to \SS^{n-1}$.
 
 % =================================================
 % SECTION: DEFINING RPn
