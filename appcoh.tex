@@ -479,20 +479,20 @@ We define $\set{RP}^1$ as the push out seen in the diagram below, where $\set{I}
 It is helpful to think of $a_1$ as an inclusion of a tubular neighbourhood of the boundary of $[0,1] \subseteq \set{R}$, with the boundary points deleted (so that it is indeed a subset of the open interval $\set{I}$). We call this a \emph{thickened boundary}. In fact, $b_1$ is also an inclusion of a thickened boundary. The image of $b_1$ is the deleted tubular neighbourhood of the boundary of $\{0\} \times [0,1] \subseteq \{0\} \times \set{R}$.
 
 \begin{definition}
-Let $A, B$ be two cohesive types, with $A$ an open subset of $B$. Let $\bar{A}$ be the closure of $A$ in $B$. Suppose $\bar{A}$ has a non-empty boundary, $\partial \bar{A}$. Let $N'$ be a tubular neighbourhood of $\partial\bar{A}$. Let $N := N' \setminus A^C$, where $A^C$ is the complement of $A$. Even though $A$ has no boundary, we call $N$ a \emph{thickened boundary of $A$, relative to $B$}.
+Let $A, B$ be two cohesive types, with $A$ an open subset of $B$. Let $\bar{A}$ be the closure of $A$ in $B$. Suppose $\bar{A}$ has a non-empty boundary, $\partial \bar{A}$. Let $N'$ be a neighbourhood of $\partial\bar{A}$ that is homotopy equivalent to $\partial\bar{A}$. Let $N := N' \setminus A^C$, where $A^C$ is the complement of $A$. Even though $A$ has no boundary, we call $N$ a \emph{thickened boundary of $A$, relative to $B$}.
 \end{definition}
 %%% show that shape of \set{RP1} is S1.. start reading pg 63 of brouwer fixed pt paper.%%
 
 We also need the following $\set{R}$-bundle as part of our base case. 
 \begin{definition}(M\"{o}bius strip)
-Let $\U_{\set{R}}$ be the universe of types homeomorphic to $\set{R}$. The \emph{tautological bundle} $\mathcal{M}^1: \set{RP}^1 \rightarrow \U_{\set{R}}$ is defined by the constructors $\set{I} \mapsto \set{R}$, $\{0 \} \times \set{I} \mapsto \set{R}$, and the equivalence $\lambda x. x$ for every point in $\{0\} \times \set{I}$, and the equivalence $\lambda x. -x$ for every point in $\{1\} \times \set{I}$.
+Let $\U_{\set{R}}$ be the universe of types homeomorphic to $\set{R}$. The \emph{tautological bundle of dimension one} $\mathcal{M}^1$, is an $\set{R}$ bundle over $\set{RP}^1$ defined by the map $m^1: \set{RP}^1 \rightarrow \U_{\set{R}}$, which is given by the constructors $\set{I} \mapsto \set{R}$, $\{0 \} \times \set{I} \mapsto \set{R}$, and the equivalence $\lambda x. x$ for every point in $\{0\} \times \set{I}$, and the equivalence $\lambda x. -x$ for every point in $\{1\} \times \set{I}$.
 \end{definition}
 
 We would like to consider a thickened boundary of the M\"{o}bius strip $\mathcal{M}^1$. Our topological intuition is that if one were to thicken the boundary of a M\"{o}bius strip, they would get a thickened $\set{RP}^1$ (homeomorphic to a cylinder). However since $\mathcal{M}^1$ is not embedded in a larger space, a thickened boundary is not defined. To define the thickened boundary that we desire, note that the homeomorphism $\tau: \set{R} \rightarrow \set{I}$, defined by $\tau (x)=\text{arctan}(x)+ \frac{1}{2}$, can be used to define an embedding of $\mathcal{M}^1$ into a larger space as follows. We define $\tau(\mathcal{M}^1)$ as a $\set{I}$-bundle over $\set{RP}^1$, given by the composing the constructors of  $\mathcal{M}^1$ with $\tau$ (so that the codomain of the constructors is $\U_{\set{I}}$).  Note that there is a natural inclusion $\tau(\mathcal{M}^1) \hookrightarrow \mathcal{M}^1$ defined by $\lambda (x, y). (x,y)$ where $x: \set{RP}^1$ and $y : \set{I}$ (induced by the inclusion of $\set{I}$ into $\set{R}$ defined by $\lambda y. y$). At this point we have defined maps as follows.
 \[
 \mathcal{M}^1 \rightarrow \tau(\mathcal{M}^1) \hookrightarrow \mathcal{M}^1
 \]
-A thickened boundary of the inclusion of $\tau(\mathcal{M}^1)$ relative to $\mathcal{M}^1$ has a pre-image in $\tau(\mathcal{M}^1)$. Slightly abusing notation, we call this the thickened boundary of $\tau(\mathcal{M}^1)$. Now we consider the pre-image of this thickened boundary in $\mathcal{M}^1$. Continuing the slight abuse of notation, we call this pre-image the thickened boundary of $\mathcal{M}^1$. \Chandrika{Is this correct language? (Where $\mathcal{M}^1$ is used as the map defining a bundle and also as the bundle itself?)}
+A thickened boundary of the inclusion of $\tau(\mathcal{M}^1)$ relative to $\mathcal{M}^1$ has a pre-image in $\tau(\mathcal{M}^1)$. Slightly abusing notation, we call this the thickened boundary of $\tau(\mathcal{M}^1)$. Now we consider the pre-image of this thickened boundary in $\mathcal{M}^1$. Continuing the slight abuse of notation, we call this pre-image the thickened boundary of $\mathcal{M}^1$. \Chandrika{Does  definition 4.3 up until here make sense? How can I prove that the thickened boundary of $\mathcal{M}^1$ is homeomorphic to $\set{S}^1 \times \set{I}$?}
 
 From here, we proceed inductively with the definitions below. The definition of $\set{RP}^n$ depends on the definition of $\mathcal{M}^{n-1}$, which depends on $\set{RP}^{n-1}$, which depends on $\mathcal{M}^{n-2}$, and so on.
 
@@ -503,12 +503,12 @@ From here, we proceed inductively with the definitions below. The definition of 
 \end{tikzcd}
 \] where $a_n$ and $b_n$ are both inclusions of $\set{S}^{n-1} \times \set{I} $ as thickened boundaries of $\mathcal{M}^{n-1}$ and $\set{D}^{n}$ (relative to $\set{R}^n$). The choice of thickened boundary does not change the homeomorphism type of $\set{RP}^n$.
 \end{definition}
-\Chandrika{Are others worried about only defining it up to homeomorphism? My thinking was that in type theory, things are only really ever defined up to equivalence, because of univalence.}
 
 \begin{definition}
 \label{defn:tautologicalbundle}
-The tautological bundle $\mathcal{M}^n: \set{RP}^n \rightarrow \U_{\set{R}}$ is defined by the constructors $\set{D}^n \mapsto \set{R}$ and $\mathcal{M}^{n-1} \mapsto \set{R}$, and the automorphism of $\set{R}$, $\lambda x.x$ for every point of $\set{S}^{n-1} \times \set{I}$.
+The tautological bundle $\mathcal{M}^n$ is defined by the map $m^n: \set{RP}^n \rightarrow \U_{\set{R}}$ which is given by the constructors of $m^{n-1}$ (which defines $\mathcal{M}^{n-1}$), as well as $\set{D}^n \mapsto \set{R}$, together with the equivalence $\set{R}$, $\lambda x.x$ for every point of $\set{S}^{n-1} \times \set{I}$.
 \end{definition}
+\Chandrika{This should not be the trivial bundle because $\mathcal{M}^{n-1}$ is not trivial, and we use its constructors.}
 
 %%%
 
@@ -521,20 +521,20 @@ Our first observation is that shape is a left adjoint operator, and so it preser
 \end{tikzcd}
 \] 
 
-Based on work of Shulman \cite{shul:bfp}, we have $\shape(\set{S}^{n-1} \times \set{I}) =S^{n-1}$ and $\shape (\set{D}^{n})$ is the unit type. Next, we find $\shape (\mathcal{M}^{n-1})$ so that we may understand $ \shape \set{RP}^n$.  We begin by showing that $\mathcal{M}^{n}$ is a push out for all $n$. Note that $\mathcal{M}^n= \sum _{x \in \set{RP}^n} f(x)$ where $f$ is the map taking each point in $\set{RP}^n$ to the fibre over it (see Definition~\ref{defn:tautologicalbundle}). Consider the following commutative diagram, where the bottom square in the cube is the push out defining $\set{RP}^n$, and $f$ is the map defining the bundle  $ \mathcal{M}^{n}$ (in the top, front, right position in the cube). The maps $s$ and $q$ are induced by the push out. The top square consists of bundles over each of the types in the bottom square with fibres are types homeomorphic to $\RR$. The map $\lambda$ above $s$ is defined by $\lambda (x,y). (s(x),y)$. The remaining maps in on the top square are similarly defined by each of the maps they lie over. \\
+Based on work of Shulman \cite{shul:bfp}, we have $\shape(\set{S}^{n-1} \times \set{I}) =S^{n-1}$ and $\shape (\set{D}^{n})$ is the unit type. Next, we find $\shape (\mathcal{M}^{n-1})$ so that we may understand $ \shape \set{RP}^n$.  We begin by showing that $\mathcal{M}^{n}$ is a push out for all $n$. Note that $\mathcal{M}^n= \sum _{x \in \set{RP}^n} m^n (x)$ where $m^n$ is the map taking each point in $\set{RP}^n$ to the fibre over it (see Definition~\ref{defn:tautologicalbundle}). Consider the following commutative diagram, where the bottom square in the cube is the push out defining $\set{RP}^n$, and $m^n$ is the map defining the bundle  $ \mathcal{M}^{n}$ (in the top, front, right position in the cube). The maps $s$ and $q$ are induced by the push out. The top square consists of bundles over each of the types in the bottom square with fibres are types homeomorphic to $\RR$. The map $\lambda$ above $s$ is defined by $\lambda (x,y). (s(x),y)$. The remaining maps in on the top square are similarly defined by each of the maps they lie over. \\
 \begin{equation}
 \begin{tikzcd}
-																				& \sum_{x \in \set{S}^n \times \set{I}} f \circ s \circ b_n (x) \arrow[rr]	\arrow[ld] \arrow[dd, near start, "p_4"] 	&									& \sum_{x \in \set{D}^n} f \circ q (x) \arrow[ld] \arrow[dd, "p_2"]\\
-\sum_{x \in \mathcal{M}^{n-1}}  f \circ s (x) \arrow[rr, crossing over, near start, "\lambda"] \arrow[dd, "p_3"]	&																					& \sum_{x \in \set{RP}^n}f(x)\hspace{0.25cm} (=\mathcal{M}^n)		&	\\
-																				& \set{S}^n \times \set{I} \arrow[rr, near start, "a_n"] \arrow[ld, "b_n"]									&									& \set{D}^n \arrow [ld, "q"]\\
-\mathcal{M}^{n-1} \arrow[rr, "s" ]														&																					& \set{RP}^n \ar[rd, "f"] 					& \\
-																				&																					&									& \U_{\set{R}}\\
-\arrow[from=2-3, to=4-3, crossing over, near start, "p_1"]
+																				& \sum_{x \in \set{S}^n \times \set{I}} m^n \circ s \circ b_n (x) \arrow[r]	\arrow[ld] \arrow[-, d, "p_4"] 	& \sum_{x \in \set{D}^n} m^n \circ q (x) \arrow[ld] \arrow[dd, "p_2"]\\
+\sum_{x \in \mathcal{M}^{n-1}}  m^n \circ s (x) \arrow[r, crossing over, near start, "\lambda"] \arrow[dd, "p_3"]	& \sum_{x \in \set{RP}^n}m^n(x)\hspace{0.25cm} (=\mathcal{M}^n)	\arrow[d]								&	\\
+																				& \set{S}^n \times \set{I} \arrow[r, "a_n"] \arrow[ld, "b_n"]										& \set{D}^n \arrow [ld, "q"]\\
+\mathcal{M}^{n-1} \arrow[r, "s" ]															& \set{RP}^n \ar[rd, "m^n"] 																	& \\
+																				&																						& \U_{\set{R}}\\
+\arrow[from=2-2, to=4-2, crossing over, bend left = 60, "p_1"]
 \end{tikzcd}
 \label{cube}
 \end{equation}
 
-Because we are in a Van Kampen category, it suffices to show that the vertical faces of the cube are pullbacks in order to prove that the top face of the cube is a pushout. \Chandrika{is the language in this paragraph correct?}
+Because pushouts are stable under pullback (due to the adhesiveness of this category \Chandrika{add other words from email from Mike to Dan}), it suffices to show that the vertical faces of the cube are pullbacks in order to prove that the top face of the cube is a pushout. The vertical faces are pullbacks because composition with the classifying map $m^n$ yields a pullback of the total spaces.
 
 \subsubsection{Showing that the front face of is a pullback}
  We would like to show the following.
