@@ -454,10 +454,32 @@ function, $h(x) = g(x)/\vert g(x) \vert$ which is both odd and
 continuous, plus has an image contained in $\SS^{n-1}$. Therefore, we
 conclude $R$.
 
-And so, the three classically equivalent statements described as the
-Borsuk-Ulam theorem are also equivalent in HoTT. To prove all three,
-we prove that there is no continuous, odd function
-$f \from \SS^n \to \SS^{n-1}$.
+As mentioned above, we do not attempt to prove the above three
+statements and instead prove versions involving truncations to make
+them propositions, and involving the $\sharp$ modality to break the
+continuous dependence of the bound variables on the free variables.  
+
+\begin{statement}\label{BUClassic-RCHoTT}
+  For any function $f \from \SS^n \to \RR^n$, we have
+  $\int \vert\vert \sum\limits_{x \tin \SS^n} f(x) = f(-x) \vert\vert_0$.
+\end{statement}
+
+\begin{statement}\label{BUOdd-RCHoTT}
+  For any odd continuous function $g: \SS^n \rightarrow \RR^n$, we
+  have
+  $\sharp \vert\vert\sum\limits_{x : \SS^n} (g(x) = 0) \vert\vert_0$.
+\end{statement}
+
+\begin{statement}\label{BURetract-RCHoTT}
+  For any odd continuous function $h \from \SS^n \to \SS^{n-1}$, we
+  have
+  $\sharp \vert\vert neg \prod\limits_{x : \SS^n} -h(x) = h(-x)
+  \vert\vert_0$.
+\end{statement}
+
+These equivalences follow from transporting the equivalences shown
+above along the maps $(-)^\sharp \circ \vert\vert - \vert\vert$.  
+
 
 % =================================================
 % SECTION: DEFINING RPn
