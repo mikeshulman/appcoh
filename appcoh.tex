@@ -382,24 +382,39 @@ continuous odd map $h:\SS^n \rightarrow \SS^{n-1}$ can exist.
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Translating the classical Borsuk-Ulam Theorem into HoTT}
 
-We start by restating the three Borsuk-Ulam statements above in a
-homotopy type theoretic language. In our restated versions, we include
-the $\flat$ and $\sharp$ modes from real-cohesive HoTT to allow us to
-prove Borsuk-Ulam discontinuously. 
+We now translate the three classical Borsuk-Ulam statements into their
+homotopy theory theoretic versions. This process takes two steps.  The
+first step is writing the statements in the language of standard
+homotopy type theory. While we do show that these are equivalent to
+each other, we do not try to prove them. Indeed, each bound variable
+depends continuously on the free variable which is far too strong a
+condition. This brings us to the second step of translating from
+statements in standard homotopy type theory into real cohesive
+homotopy type theory. The equivalence between statements will remain
+and we gain the ability to break the bound variables continuous
+dependence on the free variable so that we can actually prove that the
+statements are true.
+
+Here are the statements in standard homotopy type theory.  Below them,
+we show they are equivalent. Do note that $\RR$ refers to the Dedekind
+reals and $\SS^1$ is the topological circle
+$\{ (x,y) \in \RR^2 \from x^2+y^2=1\}$ and not the higher inductive
+circle with a single 0-type and single, non-trivial 1-type, which we
+denote by $\S^1$.
 
 \begin{statement}\label{BUClassic-HoTT}
-  For any $f: \SS^n \rightarrow \RR^n$, $\sum\limits_{x : \SS^n}
-  f(x) = f(-x)$ is inhabited.
+  For any function $f \from \SS^n \to \RR^n$, we have
+  $\sum\limits_{x \tin \SS^n} f(x) = f(-x)$.
 \end{statement}
 
 \begin{statement}\label{BUOdd-HoTT}
-  Any odd continuous function $g: \SS^n \rightarrow \RR^n$,
-  $\sum\limits_{x : \SS^n} g(x) = 0$ is inhabited.
+  For any odd continuous function $g: \SS^n \rightarrow \RR^n$, we have
+  $\sum\limits_{x : \SS^n} (g(x) = 0)$.
 \end{statement}
 
 \begin{statement}\label{BURetract-HoTT}
-  The type $\prod\limits_{h:\SS^n \rightarrow \SS^{n-1}}
-  \sum\limits_{x : \SS^n} h(x) = h(-x)$ is not inhabited. 
+  For any odd continuous function $h \from \SS^n \to \SS^{n-1}$, we
+  have $neg \prod\limits_{x : \SS^n} -h(x) = h(-x)$.
 \end{statement}
 
 To show these are equivalent is more subtle than the classical case
@@ -410,13 +425,12 @@ equivalence between Statements \ref{BUOdd-HoTT} and
 \ref{BURetract-HoTT}.
 
 Let us denote Statement \ref{BUOdd-HoTT} by $O$ and Statement
-\ref{BURetract-HoTT} by $\neg R$. Therefore, $R$ is the statement that
-the type
-$\prod\limits_{h:\SS^n \rightarrow \SS^{n-1}} \sum\limits_{x : \SS^n}
-h(x) = h(-x)$ is inhabited. The first task in showing the equivalence
-between $O$ and $\neg R$ is that $O \Rightarrow \neg R $, or
-equivalently that $R \Rightarrow \neg O$. To remind readers how this
-equivalence works in intuitionistic logic, we have that
+\ref{BURetract-HoTT} by $\neg R$, where $R$ refers to
+$\prod\limits_{x : \SS^n} (-h(x) = h(-x))$. The first task in showing
+the equivalence between $O$ and $\neg R$ is that
+$O \Rightarrow \neg R $, or equivalently that $R \Rightarrow \neg
+O$. To remind readers how this equivalence works in intuitionistic
+logic, we have that
 \[
   (O \Rightarrow \neg R)
   = (\neg O \lor \neg R)
@@ -424,14 +438,26 @@ equivalence works in intuitionistic logic, we have that
   = (R \Rightarrow \neg O).
 \]
 With the logic settled, $R \Rightarrow \neg O$ follows from the same
-arguement as in the classical case.  The converse,
-$\neg R \Rightarrow O$, is equivalent to
-$\neg O \Rightarrow \neg\neg R$. This is proved by showing
-$\neg O \Rightarrow R$ as above in the classical way, then combining
-that with $R \Rightarrow \neg\neg R$.
+arguement as in the classical case. To be clear, $R$ assumes the
+existance of an odd, continuous function
+$h \from \SS^{n} \to \SS^{n-1}$. Let us recast this as a function
+$h \from \SS^n \to \RR^n$ whose image lies in $\SS^{n-1}$, which
+implies that $\prod\limits_{x \tin \SS^n} \neg (h(x)=0)$. This gives
+us that $R \Rightarrow \neg O$.
+
+The converse, $\neg R \Rightarrow O$, is equivalent to
+$\neg O \Rightarrow \neg\neg R$. Because $R \Rightarrow \neg \neg R$,
+it suffices to show that $\neg O \Rightarrow R$. By $\neg O$, we
+assume the existance of an odd, continuous function
+$g \from \SS^n \to \RR^n$ without any roots.  From this, define a new
+function, $h(x) = g(x)/\vert g(x) \vert$ which is both odd and
+continuous, plus has an image contained in $\SS^{n-1}$. Therefore, we
+conclude $R$.
 
 And so, the three classically equivalent statements described as the
-Borsuk-Ulam theorem are also equivalent in HoTT. To prove all three, we prove that there is no continuous, odd function $f \from \SS^n \to \SS^{n-1}$.
+Borsuk-Ulam theorem are also equivalent in HoTT. To prove all three,
+we prove that there is no continuous, odd function
+$f \from \SS^n \to \SS^{n-1}$.
 
 % =================================================
 % SECTION: DEFINING RPn
