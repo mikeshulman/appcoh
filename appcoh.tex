@@ -578,7 +578,7 @@ OUTLINE:
 \item 
   \textbf{Subsection 1.} 
   Define cohomology for $ \ZZtwo $ coefficients and the
-  EM-spaces for $ \RRP^n $ \Amelia{Done except for some questions/references/anxiety and maybe a proof of prop 5.4}
+  EM-spaces for $ \RRP^n $ \Amelia{Done except for proof of prop 5.4}
 \item
   \textbf{Subsection 2.} Show that we get a commutative
   graded ring structure for cohomology of any type $ \X $
@@ -593,7 +593,9 @@ OUTLINE:
 \subsection{Cohomology and EM-spaces for $\RRP^n$}
 
 
-We follow a similar construction for cohomology as found in \cite{brunerie:thesis}, modifying their construction with $\ZZ$ coefficients to have coefficients in $\ZZtwo$. In order to define cohomology, we must first define Eilenberg-MacLane spaces $\KZtwo{n}$. Eilenberg-MacLane spaces $K(G,n)$ were defined for arbitrary group $G$ by Finster and Licata in \cite{fl:em}.
+\Amelia{7/8/22: Based on convos in June, it seems like maybe we actually want $\RP^2$ in our cohomology not $\set{RP}^2$. is this accurate?}
+
+We follow a similar construction for cohomology as found in \cite{brunerie:thesis}, modifying their construction with $\ZZ$ coefficients to have coefficients in $\ZZtwo$. In order to define cohomology, we must first define Eilenberg-MacLane spaces $\KZtwo{n}$. We follow the definition for Eilenberg-MacLane spaces $K(G,n)$ for arbitrary group $G$ given by Finster and Licata in \cite{fl:em}, although we omit the final truncation at level $n$, since our .
 
 We give a construction of $\RRP^n$ in Section \ref{sec:rpn}, which shows that $\trunc{\RRP^2}_1$ will have the homotopy groups necessary to be the foundation of our Eilenberg-MacLane spaces. 
 \begin{proposition}\label{prop:rpnhtpygps} %update this label when sec:rpn is done
@@ -603,15 +605,13 @@ We give a construction of $\RRP^n$ in Section \ref{sec:rpn}, which shows that $\
 	\end{array}\right.\]
 \end{proposition}
 \begin{proof}
-	\Amelia{We discussed this on Oct 1 2019 and thought this would go in Chandrika's section}
+	\Amelia{7/8/22: Again, need to check proof logic for which $RP$ to use.}
 \end{proof}
-
-\Amelia{(3/15/22) We need to say how we're viewing $\ZZtwo$ as a space below since we later refer to this as a functor landing in spaces}
 
 \begin{definition}\label{def:EM-space}
 	For $n:\NN$, the type \defn{Eilenberg-MacLane space} $\KZtwo{n}$ is the $n$-truncated and $(n-1)$-connected pointed type defined by
 	\[ \KZtwo{n}:=\left\{ \begin{array}{ll} \ZZtwo & \text{for }n=0\\
-	\trunc{\Sigma^{n-1}\RRP^2}_n & \text{for } n\ge 1, 
+	\trunc{\Sigma^{n-1}\trunc{\RRP^2}_1}_n & \text{for } n\ge 1, 
 	\end{array}\right.\]
 	where $\Sigma^{n-1}$ indicates the reduced suspension $n-1$ times. 
 \end{definition}
@@ -624,7 +624,7 @@ We give a construction of $\RRP^n$ in Section \ref{sec:rpn}, which shows that $\
 	\Amelia{the fact (that I don't have a HoTT reference for) that EM spaces are unique.}
 \end{proof}
 
-\Amelia{Finster and Licata constructed $K(G,1)$ in a particular way. My concern is that I am not sure how that impacts which of their results transfer over. I think that their results in section 4 and 5 mean that as long as the $K(G,1)$ has the right groups, using suspension and truncation works. In which case, it doesn't matter that we constructed $K(G,1)$ differently than they did, their results should all port over. I'd really like a second opinion on this. }
+
 \Amelia{On October 17 2019 we talked about this question of what results port over. we said: According to Mike, in classic topology, EM spaces are unique up to unique isomorphism, however in HoTT they are equivalent up to homotopy but the homotopy may not be unique. Our thought was that our K(G,1) should be homotopy equivalent to theirs, so by univalence they're equal as types. So, their results for their construction of K(G,1) should apply to ours.  }
 
 As noted in \cite{fl:em}, Eilenberg-MacLane spaces have the following delooping property. This property allows us to construct a spectrum for ordinary cohomology with $\ZZtwo$ coefficients. 
@@ -632,7 +632,7 @@ As noted in \cite{fl:em}, Eilenberg-MacLane spaces have the following delooping 
 \begin{proposition}\label{prop:EM-loop-equiv}
 	\[K(\ZZtwo,n)\simeq \Omega K(\ZZtwo,n+1)\]
 	\end{proposition}
-\Amelia{ **** G showed equivalence of $K_n$ and $\Omega K_{n+1}$. I thought this was in Finster and Licata. But now I can only find a mention of it as a fact, not something proven. May need to go back and prove this. }
+\Amelia{ 6/24/22: come back and fill in this proof later. It should be an easy connectivity argument about}
 
 Given this construction of the Eilenberg-MacLane spaces, we define cohomology in the following way. 
 
@@ -741,14 +741,14 @@ directly from \cite{brunerie:thesis}, and satisfy the properties to make $K(\ZZt
 
 
 
-We now define the ring operation multiplication. From the multiplication
+We now define the ring multiplication operation. From the multiplication
 $ \ZZtwo \otimes \ZZtwo \to \ZZtwo $, we induce a multiplication
 $ K(\ZZtwo \otimes \ZZtwo, n)\to K(\ZZtwo, n) $ by applying the
 functor
 \[
 K(-,n) \from \mathbf{Ring} \to \mathbf{Ho}(\mathbf{Top_\ast}).
 \]
-\Amelia{Do we know that $K(-,n)$ is a functor in HoTT? It is a functor, but I'm not sure we ever proved it and I don't think it's explicitly stated in Finster-Licata.}
+\Amelia{Do we know that $K(-,n)$ is a functor in HoTT? It is a functor, but I'm not sure we ever proved it and I don't think it's explicitly stated in Finster-Licata. I'm not sure what it does to morphisms, which I need to prove things about cohomology.}
 
 As we showed in Proposition \ref{prop:K_smash}, 
 \[
@@ -776,6 +776,33 @@ K (\ZZtwo , n) \wedge K(\ZZtwo, m)
 K(\ZZtwo, n+m)
 \]
 that we call \emph{multiplication} $ \mu $. The proceeding definition only works when $n,m\geq 1$. In the special case where $n$ or $m$ is 0, we use the fact that $\KZtwo{0}=\ZZtwo$ and we define $\mu$ as one would expect: $\mu(x,0)=\mu(0,x)=0$ and $\mu(x,1)=\mu(1,x)=x$. 
+
+\Amelia{July 2022: I'm trying a slightly different approach to defining $\widehat{\mu}$ but I need some help. This assumes that our idea in June that we should actually be using $\RP^2$ rather than $\set{RP}^2$ in the definition of cohomology. If that's incorrect, then throw out everything between the red asterisks.\\ 
+	**********
+}
+
+We need to define $\widehat{\mu}:\trunc{K_n\wedge K_m}_{n+m}\to K_{n+m}$. When $n$ or $m$ is zero, this is done, so assume $n,m\geq 1$. 
+
+So, we need a map
+\[\trunc{\trunc{\Sigma^{m-1}\trunc{\RP^2}_1}_m\wedge\trunc{\Sigma^{n-1}\trunc{\RP^2}_1}_n}_{n+m}\to\trunc{\Sigma^{n+m-1}\trunc{\RP^2}_1}_{n+m},\]
+which we could induce by a map (dropping the outer $n+m$ truncations)
+\[\trunc{\Sigma^{m-1}\trunc{\RP^2}_1}_m\wedge\trunc{\Sigma^{n-1}\trunc{\RP^2}_1}_n\to\Sigma^{n+m-1}\trunc{\RP^2}_1,\]
+\Amelia{Which I am hoping (need to come back again and think through if this is legal) we can drop the $m$ and $n$ truncations from and induce the above map from:}
+
+\[\Sigma^{m-1}\trunc{\RP^2}_1\wedge\Sigma^{n-1}\trunc{\RP^2}_1\to\Sigma^{n+m-1}\trunc{\RP^2}_1.\]
+
+Since suspension is equivalent to smashing with $S^1$,
+
+\[\Sigma^{m-1}\trunc{\RP^2}_1\wedge\Sigma^{n-1}\trunc{\RP^2}_1\simeq \left(S^1\wedge\right)^{\times m-1}\trunc{\RP^2}_1\wedge\left(S^1\wedge\right)^{\times n-1}\trunc{\RP^2}_1\]
+\[\simeq\Sigma^{n+m-2}\trunc{\RP^2}_1\wedge\trunc{\RP^2}_1.\]
+So, $\widehat{\mu}$ would be induced by
+\[\trunc{\RP^2}_1\wedge \trunc{\RP^2}_1\to \Sigma\trunc{\RP^2}_1.\]
+
+
+
+
+
+\Amelia{**********}
 
 We will use this multiplication $\mu$ to induce
 the cup product
