@@ -413,8 +413,8 @@ denote by $\S^1$.
 \end{statement}
 
 \begin{statement}\label{BURetract-HoTT}
-  For any odd continuous function $h \from \SS^n \to \SS^{n-1}$, we
-  have $neg \prod\limits_{x : \SS^n} -h(x) = h(-x)$.
+  For any continuous function $h \from \SS^n \to \SS^{n-1}$, we
+  have $\neg \prod\limits_{x : \SS^n} -h(x) = h(-x)$.
 \end{statement}
 
 To show these are equivalent is more subtle than the classical case
@@ -438,8 +438,8 @@ logic, we have that
   = (R \Rightarrow \neg O).
 \]
 With the logic settled, $R \Rightarrow \neg O$ follows from the same
-arguement as in the classical case. To be clear, $R$ assumes the
-existance of an odd, continuous function
+argument as in the classical case. To be clear, $R$ assumes the
+existence of an odd, continuous function
 $h \from \SS^{n} \to \SS^{n-1}$. Let us recast this as a function
 $h \from \SS^n \to \RR^n$ whose image lies in $\SS^{n-1}$, which
 implies that $\prod\limits_{x \tin \SS^n} \neg (h(x)=0)$. This gives
@@ -448,7 +448,7 @@ us that $R \Rightarrow \neg O$.
 The converse, $\neg R \Rightarrow O$, is equivalent to
 $\neg O \Rightarrow \neg\neg R$. Because $R \Rightarrow \neg \neg R$,
 it suffices to show that $\neg O \Rightarrow R$. By $\neg O$, we
-assume the existance of an odd, continuous function
+assume the existence of an odd, continuous function
 $g \from \SS^n \to \RR^n$ without any roots.  From this, define a new
 function, $h(x) = g(x)/\vert g(x) \vert$ which is both odd and
 continuous, plus has an image contained in $\SS^{n-1}$. Therefore, we
