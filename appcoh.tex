@@ -574,9 +574,9 @@ Our first observation is that shape is a left adjoint operator, and so it preser
 Based on work of Shulman \cite{shul:bfp}, we have $\shape(\set{S}^{n-1} \times \set{I}) =S^{n-1}$ and $\shape (\set{D}^{n})$ is the unit type. Next, we find $\shape (\mathcal{M}^{n-1})$ so that we may understand $ \shape \set{RP}^n$.  We begin by showing that $\mathcal{M}^{n}$ is a pushout for all $n$. Note that $\mathcal{M}^n= \sum _{x \in \set{RP}^n} m^n (x)$ where $m^n$ is the map taking each point in $\set{RP}^n$ to the fibre over it (see Definition~\ref{defn:tautologicalbundle}). Consider the following commutative diagram, where the bottom square in the cube is the pushout defining $\set{RP}^n$, and $m^n$ is the map defining the bundle  $ \mathcal{M}^{n}$ (in the top, front, right position in the cube). The maps $s$ and $q$ are induced by the pushout. The top square consists of bundles over each of the types in the bottom square with fibres are types homeomorphic to $\RR$. The map $\lambda$ above $s$ is defined by $\lambda (x,y). (s(x),y)$. The remaining maps in on the top square are similarly defined by each of the maps they lie over. \\
 \begin{equation}
 \begin{tikzcd}
-																				& \sum_{x \in \set{S}^n \times \set{I}} m^n \circ s \circ b_n (x) \arrow[r]	\arrow[ld] \arrow[-, d, "p_4"] 	& \sum_{x \in \set{D}^n} m^n \circ q (x) \arrow[ld] \arrow[dd, "p_2"]\\
+																				& \sum_{x \in \set{S}^{n-1} \times \set{I}} m^n \circ s \circ b_n (x) \arrow[r]	\arrow[ld] \arrow[-, d, "p_4"] 	& \sum_{x \in \set{D}^n} m^n \circ q (x) \arrow[ld] \arrow[dd, "p_2"]\\
 \sum_{x \in \mathcal{M}^{n-1}}  m^n \circ s (x) \arrow[r, crossing over, near start, "\lambda"] \arrow[dd, "p_3"]	& \sum_{x \in \set{RP}^n}m^n(x)\hspace{0.25cm} (=\mathcal{M}^n)	\arrow[d]								&	\\
-																				& \set{S}^n \times \set{I} \arrow[r, "a_n"] \arrow[ld, "b_n"]										& \set{D}^n \arrow [ld, "q"]\\
+																				& \set{S}^{n-1} \times \set{I} \arrow[r, "a_n"] \arrow[ld, "b_n"]										& \set{D}^n \arrow [ld, "q"]\\
 \mathcal{M}^{n-1} \arrow[r, "s" ]															& \set{RP}^n \ar[rd, "m^n"] 																	& \\
 																				&																						& \U_{\set{R}}\\
 \arrow[from=2-2, to=4-2, crossing over, bend left = 60, "p_1"]
