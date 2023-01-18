@@ -516,7 +516,7 @@ We define $\set{RP}^n$ using push outs, tautological bundles, spheres, and an in
 The base case for our induction is $\set{RP}^1$.
 
 \begin{definition}
-We define $\set{RP}^1$ as the push out seen in the diagram below, where $\set{I}$ is the open unit interval, and the maps are defined by $a_1(-1,x) = \frac{x}{4}$ and $a_1(1,x)= \frac{x}{4} + \frac{3}{4}$, and $b_1 (\pm 1, x) := (0, a(\pm1, x))$.\\
+We define $\set{RP}^1$ as the push out seen in the diagram below, where $\set{I}$ is the open unit interval, and the maps are defined by $a_1(-1,x) = \frac{x}{4}$ and $a_1(1,x)= \frac{x}{4} + \frac{3}{4}$, and $b_1 (\pm 1, x) := (0, a_1(\pm1, x))$.\\
 \[\begin{tikzcd}
 \set{S}^0 \times \set{I} \arrow[r, hook, "a_1"] \arrow[d, hook, "b_1" ] & \set{I} \arrow[d]\\
 \{0 \} \times \set{I} \arrow[r] & \set{RP}^1
@@ -533,13 +533,15 @@ Let $A, B$ be two cohesive types, with $A$ an open subset of $B$. Let $\bar{A}$ 
 
 We also need the following $\set{R}$-bundle as part of our base case. 
 \begin{definition}(M\"{o}bius strip)
-Let $\U_{\set{R}}$ be the universe of types homeomorphic to $\set{R}$. The \emph{tautological bundle of dimension one} $\mathcal{M}^1$, is an $\set{R}$ bundle over $\set{RP}^1$ defined by the map $m^1: \set{RP}^1 \rightarrow \U_{\set{R}}$, which is given by the constructors $\set{I} \mapsto \set{R}$, $\{0 \} \times \set{I} \mapsto \set{R}$, and the equivalence $\lambda x. x$ for every point in $\{0\} \times \set{I}$, and the equivalence $\lambda x. -x$ for every point in $\{1\} \times \set{I}$.
+Let $\U_{\set{R}}$ be the universe of types homeomorphic to $\set{R}$. The \emph{tautological bundle of dimension one} $\mathcal{M}^1$, is an $\set{R}$ bundle over $\set{RP}^1$ defined by the map $m^1: \set{RP}^1 \rightarrow \U_{\set{R}}$, which is given by the constructors $\set{I} \mapsto \set{R}$, $\{0 \} \times \set{I} \mapsto \set{R}$, and the equivalence $\lambda x. x$ for every point in $\{1\} \times \set{I}$, and the equivalence $\lambda x. -x$ for every point in $\{-1\} \times \set{I}$.
  \end{definition}
 
-We would like to consider a thickened boundary of the M\"{o}bius strip $\mathcal{M}^1$. Our topological intuition is that if one were to thicken the boundary of a M\"{o}bius strip, they would get a thickened $\set{RP}^1$ (homeomorphic to a cylinder). However since $\mathcal{M}^1$ is not embedded in a larger space, a thickened boundary is not defined. To define the thickened boundary that we desire, note that the homeomorphism $\tau: \set{R} \rightarrow \set{I}$, defined by $\tau (x)=\text{arctan}(x)+ \frac{1}{2}$, can be used to define an embedding of $\mathcal{M}^1$ into a larger space as follows. We define $\tau(\mathcal{M}^1)$ as a $\set{I}$-bundle over $\set{RP}^1$, given by the composing the constructors of  $\mathcal{M}^1$ with $\tau$ (so that the codomain of the constructors is $\U_{\set{I}}$).  Note that there is a natural inclusion $\tau(\mathcal{M}^1) \hookrightarrow \mathcal{M}^1$ defined by $\lambda (x, y). (x,y)$ where $x: \set{RP}^1$ and $y : \set{I}$ (induced by the inclusion of $\set{I}$ into $\set{R}$ defined by $\lambda y. y$). At this point we have defined maps as follows.
-\[
-\mathcal{M}^1 \rightarrow \tau(\mathcal{M}^1) \hookrightarrow \mathcal{M}^1
-\]
+We would like to consider a thickened boundary of the M\"{o}bius strip $\mathcal{M}^1$. Our topological intuition is that if one were to thicken the boundary of a M\"{o}bius strip, they would get a thickened $\set{RP}^1$ (homeomorphic to a cylinder). However since $\mathcal{M}^1$ is not embedded in a larger space, a thickened boundary is not defined. To define the thickened boundary that we desire, note that the homeomorphism $\tau: \set{R} \rightarrow \set{I}$, defined by $\tau (x)=\text{arctan}(x)+ \frac{1}{2}$, can be used to define an embedding of $\mathcal{M}^1$ into a larger space as follows. Because $\tau$ is a homeomorphism, $\mathbb{I} : \U_{\set{R}}$. We define $\tau(\mathcal{M}^1)$ as a $\set{I}$-bundle over $\set{RP}^1$, given by the map $m_2: \set{R}\set{R}^1 \rightarrow \U_{\set{R}}$ defined by the constructors $\set{I} \mapsto \set{I}$, $\{0 \} \times \set{I} \mapsto \set{I}$, and the equivalence $\lambda x. x$ for every point in $\{1\} \times \set{I}$, and the equivalence $\lambda x. -x$ for every point in $\{-1\} \times \set{I}$.
+
+Note that there is a natural inclusion $\tau(\mathcal{M}^1) \hookrightarrow \mathcal{M}^1$ defined by $\lambda (x, y). (x,y)$ where $x: \set{RP}^1$ and $y : \set{I}$ (induced by the inclusion of $\set{I}$ into $\set{R}$ defined by $\lambda y. y$). At this point we have defined maps as follows.
+%\[
+%\mathcal{M}^1 \rightarrow \tau(\mathcal{M}^1) \hookrightarrow \mathcal{M}^1
+%\]
 A thickened boundary of the inclusion of $\tau(\mathcal{M}^1)$ relative to $\mathcal{M}^1$ has a pre-image in $\tau(\mathcal{M}^1)$. Slightly abusing notation, we call this the thickened boundary of $\tau(\mathcal{M}^1)$. Now we consider the pre-image of this thickened boundary in $\mathcal{M}^1$. Continuing the slight abuse of notation, we call this pre-image the thickened boundary of $\mathcal{M}^1$. \Chandrika{Does  definition 4.3 up until here make sense? How can I prove that the thickened boundary of $\mathcal{M}^1$ is homeomorphic to $\set{S}^1 \times \set{I}$?}
 
 From here, we proceed inductively with the definitions below. The definition of $\set{RP}^n$ depends on the definition of $\mathcal{M}^{n-1}$, which depends on $\set{RP}^{n-1}$, which depends on $\mathcal{M}^{n-2}$, and so on.
